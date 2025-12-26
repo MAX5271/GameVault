@@ -1,16 +1,54 @@
-# React + Vite
+# 🎮 GameVault
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**GameVault** is a personal game tracking application designed to help users discover new titles and organize their gaming journey. It serves as a comprehensive library to keep track of games you have played, are currently playing, or plan to play in the future.
 
-Currently, two official plugins are available:
+Powered by the [RAWG Video Games Database API](https://rawg.io/apidocs).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
+* **Search & Discover:** Browse a massive database of games with real-time search functionality.
+* **Game Details:** View detailed information including Metacritic scores, genres, platforms, and descriptions.
+* **Personal Library:** (Planned) Categorize games into "Played", "Playing", and "Wishlist".
 
-## React Compiler
+## 🛠️ Tech Stack
+* **Frontend:** React.js
+* **Build Tool:** Vite
+* **Styling:** CSS3 (Custom Glassmorphism & Responsive Flexbox)
+* **API:** RAWG.io
+* **Routing:** React Router DOM
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Getting Started
 
-## Expanding the ESLint configuration
+Follow these instructions to get a copy of the project up and running on your local machine.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+* **Node.js** (Version 18 or higher recommended)
+* **npm** (comes with Node.js)
+
+### Installation
+
+1.  **Clone the repository**
+    ```bash
+    git clone [https://github.com/your-username/game-vault.git](https://github.com/your-username/game-vault.git)
+    cd game-vault
+    ```
+
+2.  **Install Dependencies**
+    ```bash
+    npm install
+    ```
+
+3.  **Configure Environment Variables**
+    This project requires an API key from RAWG.
+    * Get your free key at [https://rawg.io/apidocs](https://rawg.io/apidocs).
+    * Create a file named `.env` in the root directory of the project.
+    * Add your key using the following format:
+        ```env
+        VITE_API_KEY="YOUR_ACTUAL_API_KEY_HERE"
+        ```
+
+### 🏃‍♂️ Running the Project
+
+Start the development server:
+
+```bash
+npm run dev
