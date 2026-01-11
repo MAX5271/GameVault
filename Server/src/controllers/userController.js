@@ -19,7 +19,7 @@ const createUser = async (req,res)=>{
 
 const updateUserPassword = async (req,res)=>{
     try {
-        const response = await userService.updateUserPassword(req.body.username,req.body.password,req.body.newPassword);
+        const response = await userService.updateUserPassword(req.user,req.body.password,req.body.newPassword);
         return res.status(200).json({
             "Message":"Changed password successfully",
             "Response": response,
@@ -36,7 +36,7 @@ const updateUserPassword = async (req,res)=>{
 
 const deleteUser = async (req,res)=>{
     try {
-        const response = await userService.deleteUser(req.body.username,req.body.password);
+        const response = await userService.deleteUser(req.user,req.body.password);
         return res.status(200).json({
             "Message":"Deleted user successfully",
             "Response": response,
@@ -55,9 +55,14 @@ const getUser = async (req,res)=>{
     try {
         const username = req.params.username;
         const response = await userService.getUser(username);
+          const result = {
+            username: response.username,
+            wantToPlay: response.wantToPlay,
+            reviews: response.reviews,
+          };
         return res.status(200).json({
             "Message":"User fetched successfully",
-            "Response": response,
+            "Response": result,
             "Success": true
         });
     } catch (error) {
@@ -71,7 +76,7 @@ const getUser = async (req,res)=>{
 
 const addWantToPlay = async (req,res)=>{
     try {
-        const username = req.params.username;
+        const username = req.user;
         const response = await userService.addWantToPlay(username,req.body.gameId);
         return res.status(200).json({
             "Message":"Game added successfully",
@@ -89,7 +94,7 @@ const addWantToPlay = async (req,res)=>{
 
 const removeWantToPlay = async (req,res)=>{
     try {
-        const username = req.params.username;
+        const username = req.user;
         const response = await userService.removeWantToPlay(username,req.body.gameId);
         return res.status(200).json({
             "Message":"Game removed successfully",

@@ -18,7 +18,7 @@ const updateUserPassword = async (username, password, newPassword) => {
 };
 
 const deleteUser = async (username, password) => {
-  const user = await User.findOne({ username });
+  const user = await User.findOne({ username }).exec();
   if (user && (await user.comparePassword(password))) {
     await user.deleteOne().exec();
     console.log(`User ${username} deleted successfully`);
@@ -26,18 +26,13 @@ const deleteUser = async (username, password) => {
 };
 
 const getUser = async (username) => {
-  const res = await User.findOne({ username });
+  const res = await User.findOne({ username }).exec();
   if (!res) throw new Error("No User Found");
-  const result = {
-    username: res.username,
-    wantToPlay: res.wantToPlay,
-    reviews: res.reviews,
-  };
-  return result;
+  return res;
 };
 
 const addWantToPlay = async (username,gameId)=>{
-    const user = await User.findOne({username});
+    const user = await User.findOne({username}).exec();
     if(!user) throw new Error("User not found.");
     await user.updateOne({
         $addToSet: {
@@ -48,7 +43,7 @@ const addWantToPlay = async (username,gameId)=>{
 }
 
 const removeWantToPlay = async (username,gameId)=>{
-    const user = await User.findOne({username});
+    const user = await User.findOne({username}).exec();
     if(!user) throw new Error("User not found.");
     await user.updateOne({
         $pull: {
@@ -57,11 +52,27 @@ const removeWantToPlay = async (username,gameId)=>{
     });
 }
 
+const updateRefreshToken = async (username,refreshToken)=>{
+  const user = await User.findOne({username}).exec();
+  if(!user) throw new Error("User not found");
+  user.refreshToken = refreshToken;
+  await user.save();
+}
+
+const removeRefreshToken = async (username) => {
+  const user = await User.findOne({username}).exec();
+  if(!user) throw new Error("User not found");
+  user.refreshToken = "";
+  await user.save();
+}
+
 module.exports = {
   createUser,
   updateUserPassword,
   deleteUser,
   getUser,
   addWantToPlay,
-  removeWantToPlay
+  removeWantToPlay,
+  updateRefreshToken,
+  removeRefreshToken
 };

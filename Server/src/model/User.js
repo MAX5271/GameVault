@@ -24,6 +24,7 @@ const userSchema = new Schema({
   },
   reviews: [reviewSchema],
   wantToPlay: [String],
+  refreshToken: String,
 });
 
 
