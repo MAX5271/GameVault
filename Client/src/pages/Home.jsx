@@ -1,7 +1,6 @@
 import { useContext } from "react";
-import GameCard from "./GameCard";
-import DataContext from "./context/DataContext";
-import Nav from "./Nav";
+import GameCard from "../components/GameCard";
+import DataContext from "../context/DataContext";
 
 function Home() {
   const { searchResult } = useContext(DataContext);

@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import DataContext from "./context/DataContext"
+import DataContext from "../context/DataContext"
 
 function Nav() {
     const {search,setSearch} = useContext(DataContext);

@@ -43,7 +43,7 @@ export const DataProvider = ({children})=>{
     }
 
     fetchGame();
-    navigate('/');
+    // navigate('/');
 
     return ()=>{
         controller.abort();
