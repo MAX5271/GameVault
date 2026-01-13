@@ -53,7 +53,7 @@ const deleteUser = async (req,res)=>{
 
 const getUser = async (req,res)=>{
     try {
-        const username = req.params.username;
+        const username = req.user;
         const response = await userService.getUser(username);
           const result = {
             username: response.username,

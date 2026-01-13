@@ -12,7 +12,7 @@ const handleLogin = async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    res.status(200).json({ accessToken });
+    res.status(200).json({ username: req.body.username, accessToken });
   } catch (error) {
     console.log(error.message);
     res.status(401).json({

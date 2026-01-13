@@ -7,7 +7,7 @@ const { verifyJWT } = require('../../middlewares/verifyJWT');
 
 router.post('/register',userController.createUser);
 router.delete('/user',verifyJWT,userController.deleteUser);
-router.get('/user/:username',userController.getUser);
+router.get('/user/:username',verifyJWT,userController.getUser);
 router.patch('/user',verifyJWT,userController.updateUserPassword);
 router.patch('/user/addW',verifyJWT,userController.addWantToPlay);
 router.patch('/user/removeW',verifyJWT,userController.removeWantToPlay);
