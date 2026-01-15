@@ -1,0 +1,97 @@
+.profileContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+  color: #e0e0e0;
+  padding: 2rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background-color: #1e1e1e;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  background-color: #646cff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+}
+
+.userInfo h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+.roleTag {
+  background-color: #333;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 0.5rem;
+  display: inline-block;
+}
+
+.actionButton {
+  margin-left: auto;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.editBtn {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+.followBtn {
+  background-color: #646cff;
+  color: #fff;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.statCard {
+  background-color: #1e1e1e;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid #333;
+}
+
+.statNumber {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #646cff;
+  margin-bottom: 0.5rem;
+}
+
+.statLabel {
+  color: #888;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}

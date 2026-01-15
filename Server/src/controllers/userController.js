@@ -4,15 +4,15 @@ const createUser = async (req,res)=>{
     try {
         const response = await userService.createUser(req.body.username,req.body.password);
         return res.status(201).json({
-            "Message":"User created Successfully",
-            "Response": response,
-            "Success": true
+            "message":"User created successfully",
+            "response": response,
+            "success": true
         });
     } catch (error) {
         console.log(error.message);
         return res.status(409).json({
-            "Message": error.message,
-            "Success": false
+            "message": error.message,
+            "success": false
         });
     }
 }
@@ -21,15 +21,15 @@ const updateUserPassword = async (req,res)=>{
     try {
         const response = await userService.updateUserPassword(req.user,req.body.password,req.body.newPassword);
         return res.status(200).json({
-            "Message":"Changed password successfully",
-            "Response": response,
-            "Success": true
+            "message":"Changed password successfully",
+            "response": response,
+            "success": true
         });
     } catch (error) {
         console.log(error.message);
         return res.status(401).json({
-            "Message": error.message,
-            "Success": false
+            "message": error.message,
+            "success": false
         });
     }
 }
@@ -38,15 +38,15 @@ const deleteUser = async (req,res)=>{
     try {
         const response = await userService.deleteUser(req.user,req.body.password);
         return res.status(200).json({
-            "Message":"Deleted user successfully",
-            "Response": response,
-            "Success": true
+            "message":"Deleted user successfully",
+            "response": response,
+            "success": true
         });
     } catch (error) {
         console.log(error.message);
         return res.status(401).json({
-            "Message": error.message,
-            "Success": false
+            "message": error.message,
+            "success": false
         });
     }
 }
@@ -61,15 +61,15 @@ const getUser = async (req,res)=>{
             reviews: response.reviews,
           };
         return res.status(200).json({
-            "Message":"User fetched successfully",
-            "Response": result,
-            "Success": true
+            "message":"User fetched successfully",
+            "response": result,
+            "success": true
         });
     } catch (error) {
         console.log(error.message);
         return res.status(404).json({
-            "Message": error.message,
-            "Success": false
+            "message": error.message,
+            "success": false
         });
     }
 }
@@ -79,15 +79,15 @@ const addWantToPlay = async (req,res)=>{
         const username = req.user;
         const response = await userService.addWantToPlay(username,req.body.gameId);
         return res.status(200).json({
-            "Message":"Game added successfully",
-            "Response": response,
-            "Success": true
+            "message":"Game added successfully",
+            "response": response,
+            "success": true
         });
     } catch (error) {
         console.log(error.message);
         return res.status(404).json({
-            "Message": error.message,
-            "Success": false
+            "message": error.message,
+            "success": false
         });
     }
 }
@@ -97,15 +97,15 @@ const removeWantToPlay = async (req,res)=>{
         const username = req.user;
         const response = await userService.removeWantToPlay(username,req.body.gameId);
         return res.status(200).json({
-            "Message":"Game removed successfully",
-            "Response": response,
-            "Success": true
+            "message":"Game removed successfully",
+            "response": response,
+            "success": true
         });
     } catch (error) {
         console.log(error.message);
         return res.status(404).json({
-            "Message": error.message,
-            "Success": false
+            "message": error.message,
+            "success": false
         });
     }
 }

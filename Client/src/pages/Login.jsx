@@ -1,9 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import styles from "./Register.module.css";
 import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
+import DataContext from "../context/DataContext";
 
 function Login() {
+  const { user,setUser } = useContext(DataContext);
+
   const userRef = useRef();
   const navigate = useNavigate();
 
@@ -16,6 +19,7 @@ function Login() {
   const [showPwd, setShowPwd] = useState(false);
 
   const [success, setSuccess] = useState(false);
+  const [err, setErr] = useState("");
 
   useEffect(() => {
     userRef.current.focus();
@@ -29,8 +33,8 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(username, password);
-      const resopnse = await axios.post(
+    //   console.log(username, password);
+      const response = await axios.post(
         LOGIN_URL,
         JSON.stringify({ username, password }),
         {
@@ -41,18 +45,27 @@ function Login() {
         }
       );
 
-      console.log(resopnse.data);
-
-      setSuccess(true);
-      navigate("/");
+    //   console.log(response.data);
+      setUser({
+          username: response.data.username,
+          accessToken: response.data.accessToken,
+        });
+        console.log(user);
+        setSuccess(true);
+        setErr('');
+      navigate(`/profile/${response.data.username}`);
     } catch (error) {
       console.log(error.message);
+      if(!error.response) setErr("No response from server");
+      else if(error.response.status===401) setErr('Incorrect username or password');
+      else setErr('Login Failed');
     }
   };
 
   return (
     <div className={styles.registerPage}>
       <form onSubmit={handleSubmit} className={styles.container}>
+        {err ? <p className={styles.errorMessage}>{err}</p> : null}
         <h1 className={styles.title}>Login</h1>
         <>
           {success ? (
@@ -111,8 +124,8 @@ function Login() {
                   </button>
                 </div>
               </div>
-              <button type="submit" className={styles.button}>
-                Sign Up
+              <button type="submit" className={styles.button} disabled={!username||!password} >
+                Sign in
               </button>
             </>
           )}

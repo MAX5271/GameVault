@@ -77,6 +77,10 @@
   transform: translateY(0);
 }
 
+.button:disabled {
+    background-color: gray;
+}
+
 .passwordWrapper {
   position: relative;
   width: 100%;
@@ -194,4 +198,17 @@
 .loginButton:active {
   transform: translateY(0);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.errorMessage {
+  background-color: #3d1a1a;
+  color: #ff6b6b;
+  border: 1px solid #ff6b6b;
+  padding: 0.8rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  width: 100%;
 }

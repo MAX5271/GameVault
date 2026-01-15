@@ -28,9 +28,9 @@ const handleRefreshToken = async (req, res) => {
 
     const refreshToken = cookies.jwt;
 
-    const accessToken = await authServices.refreshAccessToken(refreshToken);
+    const response = await authServices.refreshAccessToken(refreshToken);
 
-    return res.json({ accessToken: accessToken });
+    return res.json(response);
   } catch (error) {
     console.log(error.message);
     res.status(401).json({

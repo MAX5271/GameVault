@@ -3,13 +3,14 @@ import styles from "./Register.module.css";
 import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
 
+const USER_REGEX = /^[A-z][A-z0-9-_]{2,23}$/;
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+
 function Register() {
   const userRef = useRef();
 
   const navigate = useNavigate();
 
-  const USER_REGEX = /^[A-z][A-z0-9-_]{2,23}$/;
-  const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
   const REGISTER_URL = "/api/v1/register";
 
   const [username, setUsername] = useState("");
@@ -28,6 +29,7 @@ function Register() {
   const [showMatch, setShowMatch] = useState(false);
 
   const [success, setSuccess] = useState(false);
+  const [err,setErr] = useState('');
 
   useEffect(() => {
     userRef.current.focus();
@@ -55,8 +57,7 @@ function Register() {
     }
 
     try {
-      console.log(username, password);
-      const resopnse = await axios.post(
+      await axios.post(
         REGISTER_URL,
         JSON.stringify({ username, password }),
         {
@@ -66,23 +67,24 @@ function Register() {
           withCredentials: true,
         }
       );
-
-      console.log(resopnse.data);
-
       setSuccess(true);
+      setErr('');
     } catch (error) {
-      console.log(error.message);
+      if(!error.response) setErr("No response from server");
+      else if(error.response.status===409) setErr("Username already taken");
+      else setErr('Registration failed');
     }
   };
 
   return (
     <div className={styles.registerPage}>
       <form onSubmit={handleSubmit} className={styles.container}>
+      {err ? <p className={styles.errorMessage}>{err}</p> : null}
         <h1 className={styles.title}>Register</h1>
         <>
           {success ? (
             <button
-              onClick={() => navigate("/login")}
+              onClick={(e) => {e.preventDefault(); navigate("/login");}}
               className={styles.loginButton}
             >
               Continue to Login
@@ -258,7 +260,7 @@ function Register() {
                 </p>
               </div>
 
-              <button type="submit" className={styles.button}>
+              <button type="submit" className={styles.button} disabled={!validMatch||!validUsername||!validPass} >
                 Sign Up
               </button>
             </>

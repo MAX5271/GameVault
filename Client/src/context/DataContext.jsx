@@ -1,16 +1,14 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 
 const DataContext = createContext({});
 
 export const DataProvider = ({children})=>{
-
-   const navigate = useNavigate();
   const apiKey = import.meta.env.VITE_API_KEY;
   const [searchResult, setSearchResult] = useState([]);
   const [search,setSearch] = useState("");
+  const [user,setUser] = useState({});
 
   const api = axios.create({
     baseURL: `https://api.rawg.io/api`
@@ -43,20 +41,20 @@ export const DataProvider = ({children})=>{
     }
 
     fetchGame();
-    // navigate('/');
 
     return ()=>{
         controller.abort();
     };
 
-
   },[search]);
+
 
   
 
     return <DataContext.Provider value={{
         search,setSearch,
-        searchResult,setSearchResult,apiKey
+        searchResult,setSearchResult,apiKey,
+        user,setUser
     }} >{children}</DataContext.Provider>
 
 }

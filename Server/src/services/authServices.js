@@ -27,7 +27,7 @@ const refreshAccessToken = async (refreshToken) =>{
     if(!user) throw new Error("User not found");
     if(user.refreshToken!==refreshToken) throw new Error("Invalid Refresh Token");
 
-    return jwtHelper.generateAccessToken(user.username);
+    return {username:user.username,accessToken:jwtHelper.generateAccessToken(user.username)};
 }
 
 const logoutUser = async (refreshToken) => {

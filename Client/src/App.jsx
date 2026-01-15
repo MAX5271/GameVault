@@ -5,28 +5,39 @@ import Home from "./pages/Home";
 import Nav from "./components/Nav";
 import GameDetails from "./pages/GameDetails";
 import Register from "./pages/Register";
-import { DataProvider } from "./context/DataContext";
+import DataContext, { DataProvider } from "./context/DataContext";
 import Login from "./pages/Login";
+import Profile from "./pages/Profile";
+import PersistLogin from "./components/PersistLogin";
+import { useContext } from "react";
 
- const LayoutWithNav = () => {
-    return <>
+const LayoutWithNav = () => {
+  return (
+    <>
       <Nav />
-      <Outlet/>
+      <Outlet />
     </>
-  }
+  );
+};
 
 function App() {
+  const { user } = useContext(DataContext);
+  console.log(JSON.stringify(user));
+
   return (
     <div className="App">
       <Header title="GameVault" />
       <DataProvider>
         <Routes>
-          <Route element={<LayoutWithNav/>}>
-          <Route path="/" element={<Home/>} />
-          <Route path="detail/:id" element={<GameDetails />} />
+          <Route element={<PersistLogin />}>
+            <Route element={<LayoutWithNav />}>
+              <Route path="/" element={<Home />} />
+              <Route path="detail/:id" element={<GameDetails />} />
+            </Route>
+              <Route path="profile/:username" element={<Profile />} />
           </Route>
-          <Route path='register' element={<Register/>}/>
-          <Route path='login' element={<Login/>}/>
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
         </Routes>
       </DataProvider>
       <Footer />
