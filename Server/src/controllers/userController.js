@@ -94,6 +94,7 @@ const addWantToPlay = async (req,res)=>{
 
 const removeWantToPlay = async (req,res)=>{
     try {
+        console.log(req.user,req.body.gameId);
         const username = req.user;
         const response = await userService.removeWantToPlay(username,req.body.gameId);
         return res.status(200).json({

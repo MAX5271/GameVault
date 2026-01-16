@@ -21,6 +21,7 @@ const fetchGameDetails = async (req,res) =>{
     return res.status(200).json({
             response: {
                 id: id,
+                name: result.name,
                 description_raw: result.description_raw,
                 background_image: result.background_image,
                 metacritic: result.metacritic,

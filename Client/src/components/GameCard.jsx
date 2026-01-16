@@ -1,16 +1,15 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import styles from "./GameCard.module.css";
 
-function GameCard({imgSrc,gameName,id}) {
-
-    const navigate = useNavigate();
-    console.log(imgSrc,gameName,id)
+function GameCard({ imgSrc, gameName, id }) {
+  const navigate = useNavigate();
 
   return (
-    <div className="GameCard" onClick={()=>navigate(`/detail/${id}`)} >
-      <img src={imgSrc}/>
-      <p>{gameName}</p>
+    <div className={styles.card} onClick={() => navigate(`/detail/${id}`)}>
+      <img src={imgSrc} alt={gameName} className={styles.image} />
+      <p className={styles.name}>{gameName}</p>
     </div>
-  )
+  );
 }
 
-export default GameCard
+export default GameCard;

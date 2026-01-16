@@ -1,0 +1,28 @@
+.header {
+  width: 100%;
+  background-color: var(--header-footer-bg, #000000);
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  color: #fff;
+  border-bottom: 1px solid #333;
+}
+
+.title {
+  margin: 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+    flex-direction: column;
+    gap: 10px;
+  }
+}

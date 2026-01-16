@@ -1,0 +1,22 @@
+.home {
+  flex-grow: 1;
+  background-color: var(--content-bg, #2d2d2d);
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  color: #888;
+  font-size: 1.2rem;
+  width: 100%;
+}

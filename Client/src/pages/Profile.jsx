@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import DataContext from "../context/DataContext";
 import axios from "../api/axios";
-import GameCard from "../components/GameCard";
+import GameListItem from "../components/GameListItem";
 import styles from "./Profile.module.css";
 
 function Profile() {
@@ -12,6 +12,15 @@ function Profile() {
   const [wantToPlayIDs, setWantToPlayIDs] = useState([]);
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(()=>{
+    
+    if(!user.username){
+      navigate('/login');
+      return;
+    }
+  })
 
   useEffect(() => {
     let isMounted = true;
@@ -67,21 +76,28 @@ function Profile() {
     return () => { isMounted = false; };
   }, [wantToPlayIDs]);
 
+  const handleLogout = async ()=>{
+    await axios.get('/api/v1/logout');
+    navigate('/login');
+  };
+
   return (
     <div className={styles.profileContainer}>
       <div className={styles.header}>
-        <h1 className={styles.title}>{username}'s Library</h1>
-        <p className={styles.subtitle}>
-            {games.length} Game{games.length !== 1 ? 's' : ''} in Want to Play
-        </p>
+        <h1 className={styles.title}>{username}</h1>
+        <button className={styles.logoutBtn} onClick={handleLogout}>
+    Logout
+</button>
       </div>
+
+      <h3 className={styles.sectionTitle}>Want to Play</h3>
 
       {loading ? (
         <div className={styles.emptyState}>Loading library...</div>
       ) : games.length > 0 ? (
-        <div className={styles.grid}>
+        <div className={styles.list}>
           {games.map((game) => (
-            <GameCard
+            <GameListItem
               key={game.id}
               imgSrc={game.background_image}
               gameName={game.name}
@@ -91,7 +107,7 @@ function Profile() {
         </div>
       ) : (
         <div className={styles.emptyState}>
-            <p>No games added yet.</p>
+            <p>No games in list.</p>
         </div>
       )}
     </div>

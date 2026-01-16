@@ -1,28 +1,32 @@
 import axios from "../api/axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import DataContext from "../context/DataContext";
+import styles from "./GameDetails.module.css";
 
 function GameDetails() {
-
   const { id } = useParams();
+  const { user } = useContext(DataContext);
+  
   const [gameData, setGameData] = useState(null);
   const [showMore, setShowMore] = useState(false);
+  const [isInLibrary, setIsInLibrary] = useState(false); 
+  const [loadingLibrary, setLoadingLibrary] = useState(true);
 
   useEffect(() => {
     const controller = new AbortController();
     const fetchGame = async () => {
       try {
         const res = await axios.get(`api/v1/game`, {
-          params: {
-            id: id
-          },
+          params: { id: id },
           signal: controller.signal,
         });
         if (!res.status) throw new Error("Error while loading the game!");
         setGameData(res.data.response);
       } catch (error) {
-        console.log(error.message);
+        if (error.name !== "CanceledError") {
+          console.log(error.message);
+        }
       }
     };
 
@@ -30,50 +34,127 @@ function GameDetails() {
     return () => controller.abort();
   }, [id]);
 
-  if (!gameData) return <div className="loading">Loading...</div>;
+  useEffect(() => {
+    let isMounted = true;
+    
+    const checkLibraryStatus = async () => {
+      if (!user?.username || !user?.accessToken) return;
+
+      try {
+        const response = await axios.get(`/api/v1/user/${user.username}`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.accessToken}`,
+          },
+          withCredentials: true,
+        });
+
+        if (isMounted) {
+          const wtpList = response.data.response.wantToPlay || [];
+          const exists = wtpList.some(gameId => String(gameId) === String(id));
+          setIsInLibrary(exists);
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        if (isMounted) setLoadingLibrary(false);
+      }
+    };
+
+    checkLibraryStatus();
+
+    return () => { isMounted = false; };
+  }, [id, user]);
+
+  const handleWTP = async () => {
+    const previousState = isInLibrary;
+    setIsInLibrary(!previousState);
+
+    try {
+      if (previousState) {
+        await axios.patch('/api/v1/user/removeW', 
+          { gameId: id },
+          {
+            headers: { Authorization: `Bearer ${user.accessToken}` },
+            withCredentials: true
+          }
+        );
+      } else {
+        await axios.patch('/api/v1/user/addW', 
+          { gameId: id }, 
+          {
+            headers: { Authorization: `Bearer ${user.accessToken}` },
+            withCredentials: true
+          }
+        );
+      }
+    } catch (error) {
+      console.error(error);
+      setIsInLibrary(previousState);
+    }
+  };
 
   const handleShowMore = () => {
     if (gameData.description_raw.length > 500) setShowMore(!showMore);
   };
 
+  if (!gameData) return <div className={styles.loading}>Loading...</div>;
+
   return (
-    <div className="game-details-container">
-      <div className="hero-section">
+    <div className={styles.gameDetailsContainer}>
+      <div className={styles.heroSection}>
         <img
           src={gameData.background_image}
           alt={gameData.name}
-          className="hero-image"
+          className={styles.heroImage}
         />
-        <div className="hero-overlay"></div>
+        <div className={styles.heroOverlay}></div>
       </div>
 
-      <div className="content-body">
-        <div className="header-row">
-          <h1 className="game-title">{gameData.name}</h1>
+      <div className={styles.contentBody}>
+        <div className={styles.headerRow}>
+          <h1 className={styles.gameTitle}>{gameData.name}</h1>
+          
+          <button 
+            onClick={handleWTP} 
+            disabled={loadingLibrary}
+            style={{
+                backgroundColor: isInLibrary ? '#ef4444' : '#646cff',
+                color: 'white',
+                padding: '0.8rem 1.5rem',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                fontWeight: '600'
+            }}
+          >
+            {loadingLibrary ? "..." : isInLibrary ? "Remove from List" : "Want to Play"}
+          </button>
+
           {gameData.metacritic && (
-            <div className="metacritic-badge" title="Metacritic Score">
+            <div className={styles.metacriticBadge} title="Metacritic Score">
               {gameData.metacritic}
             </div>
           )}
         </div>
 
-        <div className="meta-section">
-          <div className="meta-group">
+        <div className={styles.metaSection}>
+          <div className={styles.metaGroup}>
             <h3>Genres</h3>
-            <div className="tags-list">
+            <div className={styles.tagsList}>
               {gameData.genres.map((g) => (
-                <span key={g.id} className="tag genre-tag">
+                <span key={g.id} className={`${styles.tag} ${styles.genreTag}`}>
                   {g.name}
                 </span>
               ))}
             </div>
           </div>
 
-          <div className="meta-group">
+          <div className={styles.metaGroup}>
             <h3>Platforms</h3>
-            <div className="tags-list">
+            <div className={styles.tagsList}>
               {gameData.platforms.map((p) => (
-                <span key={p.platform.id} className="tag platform-tag">
+                <span key={p.platform.id} className={`${styles.tag} ${styles.platformTag}`}>
                   {p.platform.name}
                 </span>
               ))}
@@ -81,7 +162,7 @@ function GameDetails() {
           </div>
         </div>
 
-        <div className="description-section">
+        <div className={styles.descriptionSection}>
           <h3>About</h3>
           <p onClick={handleShowMore}>
             {gameData.description_raw.length > 500

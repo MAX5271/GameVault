@@ -1,12 +1,13 @@
-function Footer() {
+import styles from "./Footer.module.css";
 
-    const year = new Date().getFullYear();
+function Footer() {
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="Footer" >
+    <footer className={styles.footer}>
       GameVault, {year}
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

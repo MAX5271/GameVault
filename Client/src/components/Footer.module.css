@@ -1,0 +1,23 @@
+.footer {
+  width: 100%;
+  background-color: var(--header-footer-bg, #000000);
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  color: #fff;
+  font-size: 0.9rem;
+  border-top: 1px solid #333;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 1rem;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
