@@ -4,10 +4,22 @@ import DataContext from "../context/DataContext";
 
 function Home() {
   const { searchResult } = useContext(DataContext);
-
+  if (!searchResult) {
+    return (
+        <div style={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center', 
+            height: '100px', 
+            color: '#888', 
+            fontSize: '1.2rem'
+        }}>
+            Loading...
+        </div>
+    );
+}
   return (
     <>
-    
       <div className="Home">
         {searchResult.map((game) => (
           <GameCard

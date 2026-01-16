@@ -3,6 +3,7 @@ const router = express.Router();
 
 const userController = require('../../controllers/userController');
 const authController = require('../../controllers/authController');
+const gameController = require('../../controllers/gameController');
 const { verifyJWT } = require('../../middlewares/verifyJWT');
 
 router.post('/register',userController.createUser);
@@ -15,5 +16,8 @@ router.patch('/user/removeW',verifyJWT,userController.removeWantToPlay);
 router.post('/login',authController.handleLogin);
 router.get('/logout',authController.handleLogout);
 router.get('/refresh',authController.handleRefreshToken);
+
+router.get('/games',gameController.fetchHomePageGames);
+router.get('/game',gameController.fetchGameDetails)
 
 module.exports = router;

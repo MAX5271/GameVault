@@ -1,97 +1,43 @@
 .profileContainer {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
-  color: #e0e0e0;
   padding: 2rem;
+  color: #fff;
+  min-height: 100vh;
 }
 
 .header {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  background-color: #1e1e1e;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  margin-bottom: 3rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 1rem;
 }
 
-.avatar {
-  width: 100px;
-  height: 100px;
-  background-color: #646cff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
-  font-weight: bold;
-  color: white;
-  text-transform: uppercase;
-}
-
-.userInfo h1 {
-  margin: 0;
+.title {
   font-size: 2.5rem;
-  color: #fff;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(90deg, #fff, #888);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.roleTag {
-  background-color: #333;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.85rem;
+.subtitle {
   color: #888;
+  font-size: 1rem;
   margin-top: 0.5rem;
-  display: inline-block;
 }
 
-.actionButton {
-  margin-left: auto;
-  padding: 0.8rem 1.5rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.editBtn {
-  background-color: #333;
-  color: #fff;
-  border: 1px solid #555;
-}
-
-.followBtn {
-  background-color: #646cff;
-  color: #fff;
-}
-
-.statsGrid {
+.grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  width: 100%;
 }
 
-.statCard {
-  background-color: #1e1e1e;
-  padding: 1.5rem;
-  border-radius: 12px;
+.emptyState {
   text-align: center;
-  border: 1px solid #333;
-}
-
-.statNumber {
-  display: block;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #646cff;
-  margin-bottom: 0.5rem;
-}
-
-.statLabel {
-  color: #888;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  color: #666;
+  font-size: 1.2rem;
+  margin-top: 4rem;
+  width: 100%;
 }

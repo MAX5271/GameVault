@@ -1,13 +1,9 @@
-import axios from "axios";
+import axios from "../api/axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-const api = axios.create({
-  baseURL: `https://api.rawg.io/api`,
-});
 
 function GameDetails() {
-  const apiKey = import.meta.env.VITE_API_KEY;
 
   const { id } = useParams();
   const [gameData, setGameData] = useState(null);
@@ -17,14 +13,14 @@ function GameDetails() {
     const controller = new AbortController();
     const fetchGame = async () => {
       try {
-        const res = await api.get(`games/${id}`, {
+        const res = await axios.get(`api/v1/game`, {
           params: {
-            key: apiKey,
+            id: id
           },
           signal: controller.signal,
         });
         if (!res.status) throw new Error("Error while loading the game!");
-        setGameData(res.data);
+        setGameData(res.data.response);
       } catch (error) {
         console.log(error.message);
       }

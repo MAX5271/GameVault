@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import axios from "axios";
+import axios from '../api/axios';
 
 
 const DataContext = createContext({});
@@ -10,31 +10,24 @@ export const DataProvider = ({children})=>{
   const [search,setSearch] = useState("");
   const [user,setUser] = useState({});
 
-  const api = axios.create({
-    baseURL: `https://api.rawg.io/api`
-  });
-
   useEffect(()=>{
     const controller = new AbortController();
 
     const fetchGame = async ()=>{
         try {
-            const res = await api.get(`games`,{
+            const res = await axios.get('/api/v1/games',{
+                headers:{
+                    'Content-Type': 'application/json'
+                },
                 params: {
-                    key: apiKey,
                     search: search
                 },
-                signal: controller.signal
-                
+                signal: controller.signal,
+                withCredentials: true
             });
-
             if (!res.status)
             throw new Error("Something went wrong with fetching games");
-
-            const data = res.data;
-            if(data) setSearchResult(data.results);
-            console.log(searchResult);
-
+            setSearchResult(res.data.response);
         } catch (error) {
             console.log(error.message);
         }
