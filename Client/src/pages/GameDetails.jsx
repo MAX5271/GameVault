@@ -1,6 +1,6 @@
 import axios from "../api/axios";
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import DataContext from "../context/DataContext";
 import styles from "./GameDetails.module.css";
 
@@ -12,6 +12,7 @@ function GameDetails() {
   const [showMore, setShowMore] = useState(false);
   const [isInLibrary, setIsInLibrary] = useState(false); 
   const [loadingLibrary, setLoadingLibrary] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -38,7 +39,10 @@ function GameDetails() {
     let isMounted = true;
     
     const checkLibraryStatus = async () => {
-      if (!user?.username || !user?.accessToken) return;
+      if (!user?.username || !user?.accessToken) {
+        if (isMounted) setLoadingLibrary(false);
+        return;
+      }
 
       try {
         const response = await axios.get(`/api/v1/user/${user.username}`, {
@@ -67,6 +71,11 @@ function GameDetails() {
   }, [id, user]);
 
   const handleWTP = async () => {
+    if (!user?.accessToken) {
+      navigate('/login');
+      return;
+    }
+
     const previousState = isInLibrary;
     setIsInLibrary(!previousState);
 

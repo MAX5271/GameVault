@@ -1,11 +1,11 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import styles from "./Register.module.css";
 import axios from "../api/axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DataContext from "../context/DataContext";
 
 function Login() {
-  const { user,setUser } = useContext(DataContext);
+  const { setUser } = useContext(DataContext);
 
   const userRef = useRef();
   const navigate = useNavigate();
@@ -13,11 +13,8 @@ function Login() {
   const LOGIN_URL = "/api/v1/login";
 
   const [username, setUsername] = useState("");
-
   const [password, setPassword] = useState("");
-
   const [showPwd, setShowPwd] = useState(false);
-
   const [success, setSuccess] = useState(false);
   const [err, setErr] = useState("");
 
@@ -33,7 +30,6 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    //   console.log(username, password);
       const response = await axios.post(
         LOGIN_URL,
         JSON.stringify({ username, password }),
@@ -45,20 +41,19 @@ function Login() {
         }
       );
 
-    //   console.log(response.data);
       setUser({
-          username: response.data.username,
-          accessToken: response.data.accessToken,
-        });
-        console.log(user);
-        setSuccess(true);
-        setErr('');
+        username: response.data.username,
+        accessToken: response.data.accessToken,
+      });
+      console.log(response.data);
+      setSuccess(true);
+      setErr("");
       navigate(`/profile/${response.data.username}`);
     } catch (error) {
       console.log(error.message);
-      if(!error.response) setErr("No response from server");
-      else if(error.response.status===401) setErr('Incorrect username or password');
-      else setErr('Login Failed');
+      if (!error.response) setErr("No response from server");
+      else if (error.response.status === 401) setErr("Incorrect username or password");
+      else setErr("Login Failed");
     }
   };
 
@@ -67,69 +62,70 @@ function Login() {
       <form onSubmit={handleSubmit} className={styles.container}>
         {err ? <p className={styles.errorMessage}>{err}</p> : null}
         <h1 className={styles.title}>Login</h1>
-        <>
-          {success ? (
-            <div></div>
-          ) : (
-            <>
-              <div className={styles.formGroup}>
-                <label htmlFor="username" className={styles.label}>
-                  Username:
-                </label>
+        
+        {success ? (
+          <div></div>
+        ) : (
+          <>
+            <div className={styles.formGroup}>
+              <label htmlFor="username" className={styles.label}>
+                Username:
+              </label>
+              <input
+                type="text"
+                id="username"
+                ref={userRef}
+                autoComplete="off"
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+                required
+                className={styles.input}
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="password" className={styles.label}>
+                Password:
+              </label>
+              <div className={styles.passwordWrapper}>
                 <input
-                  type="text"
-                  id="username"
-                  ref={userRef}
-                  autoComplete="off"
-                  onChange={(e) => setUsername(e.target.value)}
-                  value={username}
+                  type={showPwd ? "text" : "password"}
+                  id="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
                   required
                   className={styles.input}
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPwd(!showPwd)}
+                  className={styles.eyeButton}
+                >
+                  {showPwd ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                      <path d={eyePath} />
+                    </svg>
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                      <path d={eyeSlashPath} />
+                    </svg>
+                  )}
+                </button>
               </div>
-
-              <div className={styles.formGroup}>
-                <label htmlFor="password" className={styles.label}>
-                  Password:
-                </label>
-                <div className={styles.passwordWrapper}>
-                  <input
-                    type={showPwd ? "text" : "password"}
-                    id="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                    required
-                    className={styles.input}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPwd(!showPwd)}
-                    className={styles.eyeButton}
-                  >
-                    {showPwd ? (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 576 512"
-                      >
-                        <path d={eyePath} />
-                      </svg>
-                    ) : (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 640 512"
-                      >
-                        <path d={eyeSlashPath} />
-                      </svg>
-                    )}
-                  </button>
-                </div>
-              </div>
-              <button type="submit" className={styles.button} disabled={!username||!password} >
-                Sign in
-              </button>
-            </>
-          )}
-        </>
+            </div>
+            
+            <button
+              type="submit"
+              className={styles.button}
+              disabled={!username || !password}
+            >
+              Sign in
+            </button>
+            <p className={styles.registerOption}>
+              Don't have an account? <Link to="/register">Sign Up</Link>
+            </p>
+          </>
+        )}
       </form>
     </div>
   );

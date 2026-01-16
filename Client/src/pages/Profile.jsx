@@ -79,6 +79,7 @@ function Profile() {
   const handleLogout = async ()=>{
     await axios.get('/api/v1/logout');
     navigate('/login');
+    window.location.reload();
   };
 
   return (

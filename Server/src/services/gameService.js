@@ -4,11 +4,13 @@ const api = axios.create({
   baseURL: `https://api.rawg.io/api`,
 });
 
-const fetchHomePageGames = async (search) => {
+const fetchHomePageGames = async (search,page) => {
   const res = await api.get("/games", {
     params: {
       key: apiKey,
       search: search,
+      page: page,
+      page_size: 21
     },
   });
 

@@ -2,8 +2,8 @@ const gameService = require('../services/gameService');
 
 const fetchHomePageGames = async (req,res) => {
     try {
-        const {search} = req.query;
-        const result = await gameService.fetchHomePageGames(search);
+        const {search,page} = req.query;
+        const result = await gameService.fetchHomePageGames(search,page);
         return res.status(200).json({
             response: result,
             message: "Home Page Games Fetched Successfully",
