@@ -19,10 +19,40 @@
   user-select: none;
 }
 
+.profileBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  border: 1px solid #444;
+  color: #eee;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.profileBtn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #666;
+  color: #fff;
+}
+
+.profileBtn:active {
+  transform: scale(0.96);
+}
+
 @media (max-width: 768px) {
   .header {
     padding: 1rem;
-    flex-direction: column;
+    flex-direction: row; 
     gap: 10px;
+  }
+  
+  .btnText {
+    display: none; 
   }
 }
