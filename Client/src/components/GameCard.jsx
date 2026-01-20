@@ -1,12 +1,19 @@
-import { useNavigate } from "react-router-dom";
 import styles from "./GameCard.module.css";
+import { useState } from "react";
 
-function GameCard({ imgSrc, gameName, id }) {
-  const navigate = useNavigate();
+function GameCard({ imgSrc, gameName, onClick }) {
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <div className={styles.card} onClick={() => navigate(`/detail/${id}`)}>
-      <img src={imgSrc} alt={gameName} className={styles.image} />
+    <div className={styles.card} onClick={onClick}>
+      {!isLoaded && <div className={styles.placeholder} />}
+      <img
+        src={imgSrc}
+        alt={gameName}
+        className={styles.image}
+        style={isLoaded ? {} : { display: "none" }}
+        onLoad={() => setIsLoaded(true)}
+      />
       <p className={styles.name}>{gameName}</p>
     </div>
   );

@@ -45,7 +45,6 @@ function Login() {
         username: response.data.username,
         accessToken: response.data.accessToken,
       });
-      console.log(response.data);
       setSuccess(true);
       setErr("");
       navigate(`/profile/${response.data.username}`);

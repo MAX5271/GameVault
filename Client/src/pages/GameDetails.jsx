@@ -1,11 +1,10 @@
 import axios from "../api/axios";
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import DataContext from "../context/DataContext";
 import styles from "./GameDetails.module.css";
 
-function GameDetails() {
-  const { id } = useParams();
+function GameDetails({ id }) {
   const { user } = useContext(DataContext);
   
   const [gameData, setGameData] = useState(null);
@@ -18,7 +17,7 @@ function GameDetails() {
     const controller = new AbortController();
     const fetchGame = async () => {
       try {
-        const res = await axios.get(`api/v1/game`, {
+        const res = await axios.get(`/api/v1/game`, {
           params: { id: id },
           signal: controller.signal,
         });
@@ -127,15 +126,7 @@ function GameDetails() {
           <button 
             onClick={handleWTP} 
             disabled={loadingLibrary}
-            style={{
-                backgroundColor: isInLibrary ? '#ef4444' : '#646cff',
-                color: 'white',
-                padding: '0.8rem 1.5rem',
-                border: 'none',
-                borderRadius: '8px',
-                cursor: 'pointer',
-                fontWeight: '600'
-            }}
+            className={`${styles.wtpButton} ${isInLibrary ? styles.remove : styles.add}`}
           >
             {loadingLibrary ? "..." : isInLibrary ? "Remove from List" : "Want to Play"}
           </button>
@@ -173,7 +164,7 @@ function GameDetails() {
 
         <div className={styles.descriptionSection}>
           <h3>About</h3>
-          <p onClick={handleShowMore}>
+          <p onClick={handleShowMore} style={{ cursor: gameData.description_raw.length > 500 ? 'pointer' : 'default' }}>
             {gameData.description_raw.length > 500
               ? !showMore
                 ? `${gameData.description_raw.slice(0, 500)}...`

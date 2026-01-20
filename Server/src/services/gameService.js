@@ -10,7 +10,7 @@ const fetchHomePageGames = async (search,page) => {
       key: apiKey,
       search: search,
       page: page,
-      page_size: 21
+      page_size: 28
     },
   });
 
