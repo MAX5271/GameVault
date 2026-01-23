@@ -31,39 +31,75 @@ const getUser = async (username) => {
   return res;
 };
 
-const addWantToPlay = async (username,gameId)=>{
-    const user = await User.findOne({username}).exec();
-    if(!user) throw new Error("User not found.");
-    await user.updateOne({
-        $addToSet: {
-            wantToPlay: gameId
-        }
-    });
-    return gameId;
-}
+const addStatus = async (username, gameId, status = "WANT_TO_PLAY") => {
+  const exists = await User.findOne({
+    username,
+    "games.gameId": gameId,
+  });
 
-const removeWantToPlay = async (username,gameId)=>{
-    const user = await User.findOne({username}).exec();
-    if(!user) throw new Error("User not found.");
-    await user.updateOne({
-        $pull: {
-            wantToPlay: gameId
-        }
-    });
-}
+  if (exists) {
+    throw new Error("Game already in library");
+  }
+  const updatedUser = await User.findOneAndUpdate(
+    { username },
+    {
+      $push: {
+        games: {
+          gameId: gameId,
+          status: status,
+        },
+      },
+    },
+    { new: true, runValidators: true },
+  );
 
-const updateRefreshToken = async (username,refreshToken)=>{
-  const user = await User.findOne({username}).exec();
-  if(!user) throw new Error("User not found");
+  if (!updatedUser) throw new Error("User not found");
+  return updatedUser;
+};
+
+const getStatus = async (username, gameId) => {
+  const user = await User.findOne({ username }).exec();
+  if (!user) throw new Error("User not found");
+  const game = user.games.find((g) => g.gameId === gameId);
+  if (!game) throw new Error("Game not found");
+  return game.status;
+};
+
+const updateStatus = async (username, gameId, status) => {
+  const user = await User.findOneAndUpdate(
+    { username, "games.gameId": gameId },
+    {
+      $set: {
+        "games.$.status": status,
+      },
+    },
+    {
+      new: true,
+      runValidators: true,
+    },
+  );
+  if (!user) throw new Error("User or game not found");
+  return user;
+};
+
+const updateRefreshToken = async (username, refreshToken) => {
+  const user = await User.findOne({ username }).exec();
+  if (!user) throw new Error("User not found");
   user.refreshToken = refreshToken;
   await user.save();
-}
+};
 
 const removeRefreshToken = async (username) => {
-  const user = await User.findOne({username}).exec();
-  if(!user) throw new Error("User not found");
+  const user = await User.findOne({ username }).exec();
+  if (!user) throw new Error("User not found");
   user.refreshToken = "";
   await user.save();
+};
+
+const getUserGames = async (username) => {
+  const user = await User.findOne({username}).select('games -_id').exec();
+  if (!user) throw new Error("User not found");
+  return user.games;
 }
 
 module.exports = {
@@ -71,8 +107,10 @@ module.exports = {
   updateUserPassword,
   deleteUser,
   getUser,
-  addWantToPlay,
-  removeWantToPlay,
   updateRefreshToken,
-  removeRefreshToken
+  removeRefreshToken,
+  addStatus,
+  getStatus,
+  updateStatus,
+  getUserGames
 };

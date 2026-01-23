@@ -13,6 +13,18 @@ const reviewSchema = new Schema({
   },
 });
 
+const statusSchema = new Schema({
+  gameId: {
+    type: String,
+    required: true
+  },
+  status: {
+    type: String,
+    enum: ['WANT_TO_PLAY','ON_HOLD','PLAYED','DROPPED'],
+    default:'WANT_TO_PLAY'
+  }
+});
+
 const userSchema = new Schema({
   username: {
     type: String,
@@ -23,7 +35,7 @@ const userSchema = new Schema({
     required: true,
   },
   reviews: [reviewSchema],
-  wantToPlay: [String],
+  games: [statusSchema],
   refreshToken: String,
 });
 

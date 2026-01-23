@@ -24,14 +24,24 @@ const getUser = async (username) => {
   return res;
 };
 
-const addWantToPlay = async (username,gameId) =>{
-    const res = await userRepository.addWantToPlay(username,gameId);
-    return res;
+const getUserGames = async (username) => {
+  const res = await userRepository.getUserGames(username);
+  return res;
 }
 
-const removeWantToPlay = async (username,gameId) => {
-    const res = await userRepository.removeWantToPlay(username,gameId);
-    return res;
+const addStatus = async (username,gameId,status) =>{
+  const res = await userRepository.addStatus(username,gameId,status);
+  return res;
+}
+
+const getStatus = async (username,gameId) => {
+  const res = await userRepository.getStatus(username,gameId);
+  return res;
+}
+
+const updateStatus = async (username,gameId,status) => {
+  const res = await userRepository.updateStatus(username,gameId,status);
+  return res;
 }
 
 module.exports = {
@@ -39,6 +49,8 @@ module.exports = {
   updateUserPassword,
   deleteUser,
   getUser,
-  addWantToPlay,
-  removeWantToPlay
+  addStatus,
+  getStatus,
+  updateStatus,
+  getUserGames
 };

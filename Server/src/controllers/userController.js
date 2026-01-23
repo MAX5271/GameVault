@@ -74,48 +74,11 @@ const getUser = async (req,res)=>{
     }
 }
 
-const addWantToPlay = async (req,res)=>{
-    try {
-        const username = req.user;
-        const response = await userService.addWantToPlay(username,req.body.gameId);
-        return res.status(200).json({
-            "message":"Game added successfully",
-            "response": response,
-            "success": true
-        });
-    } catch (error) {
-        console.log(error.message);
-        return res.status(404).json({
-            "message": error.message,
-            "success": false
-        });
-    }
-}
 
-const removeWantToPlay = async (req,res)=>{
-    try {
-        console.log(req.user,req.body.gameId);
-        const username = req.user;
-        const response = await userService.removeWantToPlay(username,req.body.gameId);
-        return res.status(200).json({
-            "message":"Game removed successfully",
-            "response": response,
-            "success": true
-        });
-    } catch (error) {
-        console.log(error.message);
-        return res.status(404).json({
-            "message": error.message,
-            "success": false
-        });
-    }
-}
 
 module.exports = {
     getUser,
     createUser,
     deleteUser,
     updateUserPassword,
-    addWantToPlay,
-    removeWantToPlay
 }
