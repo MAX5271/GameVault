@@ -10,6 +10,7 @@ router.post('/register',userController.createUser);
 router.post('/user/game/add',verifyJWT,userController.addStatus);
 router.post('/user/game',verifyJWT,userController.getStatus);
 router.post('/user/updateGame',verifyJWT,userController.updateStatus);
+router.post('/user/removeGame',verifyJWT,userController.removeGame);
 router.get('/user/:username',verifyJWT,userController.getUser);
 router.get('/user/games',verifyJWT,userController.getUserGames);
 router.patch('/user',verifyJWT,userController.updateUserPassword);

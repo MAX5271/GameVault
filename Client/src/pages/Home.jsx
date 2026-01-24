@@ -75,13 +75,13 @@ function Home() {
   const handleOpenModal = (id) => {
     setActiveId(id);
     setIsOpen(true);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   };
 
   const handleCloseModal = () => {
     setIsOpen(false);
     setActiveId(null);
-    document.body.style.overflow = 'unset';
+    document.body.style.overflow = "unset";
   };
 
   if (loading && searchResult.length === 0) {
@@ -100,17 +100,13 @@ function Home() {
             key={game.id}
             imgSrc={game.background_image}
             gameName={game.name}
+            metacritic={game.metacritic}
             id={game.id}
             onClick={() => handleOpenModal(game.id)}
           />
         ))}
       </div>
-      {isOpen && (
-        <Modal 
-            activeId={activeId} 
-            onClose={handleCloseModal} 
-        />
-      )}
+      {isOpen && <Modal activeId={activeId} onClose={handleCloseModal} />}
     </>
   );
 }

@@ -151,6 +151,24 @@ const updateStatus = async (req,res) => {
     }
 }
 
+const removeGame = async (req,res) => {
+    try {
+        const username = req.user;
+        const response = await userService.updateStatus(username,req.body.gameId);
+        return res.status(200).json({
+            "message":"Games removed successfully",
+            "response": response,
+            "success": true
+        });
+    } catch (error) {
+        console.log(error.message);
+        return res.status(404).json({
+            "message": error.message,
+            "success": false
+        });
+    }
+}
+
 module.exports = {
     getUser,
     createUser,
@@ -159,5 +177,6 @@ module.exports = {
     getUserGames,
     addStatus,
     getStatus,
-    updateStatus
+    updateStatus,
+    removeGame
 }

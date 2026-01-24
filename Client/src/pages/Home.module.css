@@ -1,6 +1,6 @@
 .home {
   flex-grow: 1;
-  background-color: var(--content-bg, #2d2d2d);
+  background-color: rgba(21, 21, 21, 0.6); 
   width: 100%;
   margin: 0 auto;
   padding: 2rem;
@@ -9,6 +9,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
+  backdrop-filter: blur(5px);
 }
 
 .loadingContainer {

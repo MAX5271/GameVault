@@ -1,13 +1,12 @@
-import { useNavigate } from "react-router-dom";
 import styles from "./GameListItem.module.css";
 
-function GameListItem({ imgSrc, gameName, id }) {
-  const navigate = useNavigate();
-
+function GameListItem({ imgSrc, gameName, onClick }) {
   return (
-    <div className={styles.container} onClick={() => navigate(`/detail/${id}`)}>
-      <img src={imgSrc} alt={gameName} className={styles.image} />
-      <span className={styles.name}>{gameName}</span>
+    <div className={styles.gameListItem} onClick={onClick}>
+      <img src={imgSrc} alt={gameName} className={styles.gameImage} />
+      <div className={styles.gameInfo}>
+        <h3 className={styles.gameName}>{gameName}</h3>
+      </div>
     </div>
   );
 }

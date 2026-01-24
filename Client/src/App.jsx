@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import PersistLogin from "./components/PersistLogin";
 import { useContext } from "react";
+import BackgroundVideo from "./components/BackgroundVideo";
 
 const LayoutWithNav = () => {
   return (
@@ -26,6 +27,7 @@ function App() {
 
   return (
     <div className="App">
+        <BackgroundVideo/>
       <DataProvider>
         <Header title="GameVault" />
         <Routes>

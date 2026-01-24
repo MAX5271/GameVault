@@ -232,3 +232,37 @@
   text-decoration: underline;
   color: #747bff;
 }
+
+.loginRedirect {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #333;
+  width: 100%;
+}
+
+.loginLinkText {
+  color: #888;
+  font-size: 0.9rem;
+  margin-right: 0.5rem;
+}
+
+.loginRedirectButton {
+  background: none;
+  border: none;
+  color: #646cff;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-family: inherit;
+}
+
+.loginRedirectButton:hover {
+  color: #8888ff;
+  text-decoration: underline;
+}

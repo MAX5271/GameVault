@@ -4,13 +4,14 @@ import { useNavigate } from "react-router-dom";
 import DataContext from "../context/DataContext";
 import styles from "./GameDetails.module.css";
 
-function GameDetails({ id }) {
+// 1. Accept the new prop here
+function GameDetails({ id, onLoaded }) {
   const { user } = useContext(DataContext);
   
   const [gameData, setGameData] = useState(null);
   const [showMore, setShowMore] = useState(false);
-  const [isInLibrary, setIsInLibrary] = useState(false); 
-  const [loadingLibrary, setLoadingLibrary] = useState(true);
+  const [currentStatus, setCurrentStatus] = useState(""); 
+  const [loadingStatus, setLoadingStatus] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,89 +22,104 @@ function GameDetails({ id }) {
           params: { id: id },
           signal: controller.signal,
         });
-        if (!res.status) throw new Error("Error while loading the game!");
-        setGameData(res.data.response);
+        
+        if (res.data && res.data.success) {
+            setGameData(res.data.response);
+            // 2. Notify parent (Modal) that loading is done
+            if (onLoaded) onLoaded();
+        } else {
+            throw new Error("Failed to retrieve game data");
+        }
       } catch (error) {
         if (error.name !== "CanceledError") {
-          console.log(error.message);
+          console.error(error);
         }
       }
     };
 
     fetchGame();
     return () => controller.abort();
-  }, [id]);
+  }, [id, onLoaded]);
 
   useEffect(() => {
     let isMounted = true;
     
-    const checkLibraryStatus = async () => {
+    const fetchUserGameStatus = async () => {
       if (!user?.username || !user?.accessToken) {
-        if (isMounted) setLoadingLibrary(false);
+        if (isMounted) setLoadingStatus(false);
         return;
       }
 
       try {
-        const response = await axios.get(`/api/v1/user/${user.username}`, {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user.accessToken}`,
-          },
-          withCredentials: true,
-        });
+        const response = await axios.post(`/api/v1/user/game`, 
+          { gameId: id },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user.accessToken}`,
+            },
+            withCredentials: true,
+          }
+        );
 
         if (isMounted) {
-          const wtpList = response.data.response.wantToPlay || [];
-          const exists = wtpList.some(gameId => String(gameId) === String(id));
-          setIsInLibrary(exists);
+            if (response.data && response.data.success) {
+                setCurrentStatus(response.data.response?.status || "");
+            } else {
+                setCurrentStatus("");
+            }
         }
       } catch (err) {
-        console.error(err);
+        console.log(err);
+        if (isMounted) setCurrentStatus("");
       } finally {
-        if (isMounted) setLoadingLibrary(false);
+        if (isMounted) setLoadingStatus(false);
       }
     };
 
-    checkLibraryStatus();
+    fetchUserGameStatus();
 
     return () => { isMounted = false; };
   }, [id, user]);
 
-  const handleWTP = async () => {
+  const handleStatusChange = async (e) => {
+    const newStatus = e.target.value;
+
     if (!user?.accessToken) {
       navigate('/login');
       return;
     }
 
-    const previousState = isInLibrary;
-    setIsInLibrary(!previousState);
+    const previousStatus = currentStatus;
+    setCurrentStatus(newStatus);
 
     try {
-      if (previousState) {
-        await axios.patch('/api/v1/user/removeW', 
-          { gameId: id },
-          {
+        const config = {
             headers: { Authorization: `Bearer ${user.accessToken}` },
             withCredentials: true
-          }
-        );
-      } else {
-        await axios.patch('/api/v1/user/addW', 
-          { gameId: id }, 
-          {
-            headers: { Authorization: `Bearer ${user.accessToken}` },
-            withCredentials: true
-          }
-        );
-      }
+        };
+
+        let res;
+        if (newStatus === "") {
+            res = await axios.post('/api/v1/user/removeGame', { gameId: id }, config);
+        } else if (previousStatus === "") {
+            res = await axios.post('/api/v1/user/game/add', { gameId: id, status: newStatus }, config);
+        } else {
+            res = await axios.post('/api/v1/user/updateGame', { gameId: id, status: newStatus }, config);
+        }
+
+        if (!res.data || !res.data.success) {
+            throw new Error("API reported failure");
+        }
+
     } catch (error) {
       console.error(error);
-      setIsInLibrary(previousState);
+      setCurrentStatus(previousStatus);
     }
   };
 
   const handleShowMore = () => {
-    if (gameData.description_raw.length > 500) setShowMore(!showMore);
+    if (gameData?.description_raw?.length > 500) setShowMore(!showMore);
   };
 
   if (!gameData) return <div className={styles.loading}>Loading...</div>;
@@ -123,13 +139,18 @@ function GameDetails({ id }) {
         <div className={styles.headerRow}>
           <h1 className={styles.gameTitle}>{gameData.name}</h1>
           
-          <button 
-            onClick={handleWTP} 
-            disabled={loadingLibrary}
-            className={`${styles.wtpButton} ${isInLibrary ? styles.remove : styles.add}`}
+          <select 
+            value={currentStatus} 
+            onChange={handleStatusChange}
+            disabled={loadingStatus}
+            className={`${styles.statusDropdown} ${currentStatus ? styles.statusActive : ''}`}
           >
-            {loadingLibrary ? "..." : isInLibrary ? "Remove from List" : "Want to Play"}
-          </button>
+            <option value="">Add to Library</option>
+            <option value="WANT_TO_PLAY">Want to Play</option>
+            <option value="PLAYED">Played</option>
+            <option value="ON_HOLD">On Hold</option>
+            <option value="DROPPED">Dropped</option>
+          </select>
 
           {gameData.metacritic && (
             <div className={styles.metacriticBadge} title="Metacritic Score">
@@ -142,7 +163,7 @@ function GameDetails({ id }) {
           <div className={styles.metaGroup}>
             <h3>Genres</h3>
             <div className={styles.tagsList}>
-              {gameData.genres.map((g) => (
+              {gameData.genres?.map((g) => (
                 <span key={g.id} className={`${styles.tag} ${styles.genreTag}`}>
                   {g.name}
                 </span>
@@ -153,7 +174,7 @@ function GameDetails({ id }) {
           <div className={styles.metaGroup}>
             <h3>Platforms</h3>
             <div className={styles.tagsList}>
-              {gameData.platforms.map((p) => (
+              {gameData.platforms?.map((p) => (
                 <span key={p.platform.id} className={`${styles.tag} ${styles.platformTag}`}>
                   {p.platform.name}
                 </span>
@@ -164,8 +185,8 @@ function GameDetails({ id }) {
 
         <div className={styles.descriptionSection}>
           <h3>About</h3>
-          <p onClick={handleShowMore} style={{ cursor: gameData.description_raw.length > 500 ? 'pointer' : 'default' }}>
-            {gameData.description_raw.length > 500
+          <p onClick={handleShowMore} style={{ cursor: gameData.description_raw?.length > 500 ? 'pointer' : 'default' }}>
+            {gameData.description_raw?.length > 500
               ? !showMore
                 ? `${gameData.description_raw.slice(0, 500)}...`
                 : gameData.description_raw

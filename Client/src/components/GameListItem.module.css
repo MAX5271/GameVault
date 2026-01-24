@@ -1,31 +1,41 @@
-.container {
+.gameListItem {
   display: flex;
   align-items: center;
-  width: 100%;
-  padding: 1.5rem 0;
-  border-bottom: 1px solid #333;
+  background-color: #1a1a1a;
+  padding: 12px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
+  border: 1px solid #333;
+  width: 100%;
   box-sizing: border-box;
 }
 
-.container:hover {
-  background-color: rgba(255, 255, 255, 0.05);
+.gameListItem:hover {
+  background-color: #252525;
+  transform: translateY(-2px);
+  border-color: #555;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.image {
-  width: 160px;
-  height: 90px;
+.gameImage {
+  width: 100px;
+  height: 60px;
   object-fit: cover;
-  border-radius: 8px;
-  margin-right: 2rem;
+  border-radius: 6px;
+  margin-right: 20px;
 }
 
-.name {
-  font-size: 1.8rem;
-  font-weight: 700;
+.gameInfo {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gameName {
+  font-size: 1.2rem;
+  font-weight: 600;
   color: #fff;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin: 0;
 }

@@ -44,6 +44,11 @@ const updateStatus = async (username,gameId,status) => {
   return res;
 }
 
+const removeGame = async (username,gameId) => {
+  const res = await userRepository.removeGame(username,gameId);
+  return res;
+}
+
 module.exports = {
   createUser,
   updateUserPassword,
@@ -52,5 +57,6 @@ module.exports = {
   addStatus,
   getStatus,
   updateStatus,
-  getUserGames
+  getUserGames,
+  removeGame
 };

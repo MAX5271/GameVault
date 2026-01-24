@@ -6,7 +6,6 @@
   --text-color: #f0f0f0;
   --accent-color: #646cff;
   --header-footer-bg: #000000;
-  
 }
 
 * {
@@ -18,7 +17,7 @@
 body {
   font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
-  background-color: var(--bg-color);
+  background-color: transparent; 
   color: var(--text-color);
 }
 

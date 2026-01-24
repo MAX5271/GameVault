@@ -87,6 +87,29 @@ const updateStatus = async (username, gameId, status) => {
   return { gameId, status };
 };
 
+const getUserGames = async (username) => {
+  const user = await User.findOne({ username }).select("games -_id").exec();
+  if (!user) throw new Error("User not found");
+  return user.games;
+};
+
+const removeGame = async (username, gameId) => {
+  const result = await User.updateOne(
+    { username, "games.gameId": gameId },
+    {
+      $pull: {
+        games: { gameId: gameId },
+      },
+    }
+  );
+
+  if (result.matchedCount === 0) {
+    throw new Error("User or game not found");
+  }
+
+  return { gameId };
+};
+
 const updateRefreshToken = async (username, refreshToken) => {
   const user = await User.findOne({ username }).exec();
   if (!user) throw new Error("User not found");
@@ -101,11 +124,6 @@ const removeRefreshToken = async (username) => {
   await user.save();
 };
 
-const getUserGames = async (username) => {
-  const user = await User.findOne({ username }).select("games -_id").exec();
-  if (!user) throw new Error("User not found");
-  return user.games;
-};
 
 module.exports = {
   createUser,
@@ -118,4 +136,5 @@ module.exports = {
   getStatus,
   updateStatus,
   getUserGames,
+  removeGame
 };
