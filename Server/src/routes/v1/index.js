@@ -7,11 +7,13 @@ const gameController = require('../../controllers/gameController');
 const { verifyJWT } = require('../../middlewares/verifyJWT');
 
 router.post('/register',userController.createUser);
-router.delete('/user',verifyJWT,userController.deleteUser);
+router.post('/user/game/add',verifyJWT,userController.addStatus);
+router.post('/user/game',verifyJWT,userController.getStatus);
+router.post('/user/updateGame',verifyJWT,userController.updateStatus);
 router.get('/user/:username',verifyJWT,userController.getUser);
+router.get('/user/games',verifyJWT,userController.getUserGames);
 router.patch('/user',verifyJWT,userController.updateUserPassword);
-router.patch('/user/addW',verifyJWT,userController.addWantToPlay);
-router.patch('/user/removeW',verifyJWT,userController.removeWantToPlay);
+router.delete('/user',verifyJWT,userController.deleteUser);
 
 router.post('/login',authController.handleLogin);
 router.get('/logout',authController.handleLogout);

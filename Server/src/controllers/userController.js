@@ -57,7 +57,7 @@ const getUser = async (req,res)=>{
         const response = await userService.getUser(username);
           const result = {
             username: response.username,
-            wantToPlay: response.wantToPlay,
+            games: response.games,
             reviews: response.reviews,
           };
         return res.status(200).json({
@@ -74,11 +74,90 @@ const getUser = async (req,res)=>{
     }
 }
 
+const getUserGames = async (req,res) => {
+    try {
+        const username = req.user;
+        const response = await userService.getUserGames(username);
+          const result = {
+            username: response.username,
+            games: response.games,
+          };
+        return res.status(200).json({
+            "message":"User's games fetched successfully",
+            "response": result,
+            "success": true
+        });
+    } catch (error) {
+        console.log(error.message);
+        return res.status(404).json({
+            "message": error.message,
+            "success": false
+        });
+    }
+}
 
+const addStatus = async (req,res) => {
+    try {
+        const username = req.user;
+        const response = await userService.addStatus(username,req.body.gameId,req.body.status);
+ 
+        return res.status(200).json({
+            "message":"Games's status added successfully",
+            "response": response,
+            "success": true
+        });
+    } catch (error) {
+        console.log(error.message);
+        return res.status(404).json({
+            "message": error.message,
+            "success": false
+        });
+    }
+}
+
+const getStatus = async (req,res) => {
+    try {
+        const username = req.user;
+        const response = await userService.getStatus(username,req.body.gameId);
+        return res.status(200).json({
+            "message":"Games's status added successfully",
+            "response": response,
+            "success": true
+        });
+    } catch (error) {
+        console.log(error.message);
+        return res.status(404).json({
+            "message": error.message,
+            "success": false
+        });
+    }
+}
+
+const updateStatus = async (req,res) => {
+    try {
+        const username = req.user;
+        const response = await userService.updateStatus(username,req.body.gameId,req.body.status);
+        return res.status(200).json({
+            "message":"Games's status added successfully",
+            "response": response,
+            "success": true
+        });
+    } catch (error) {
+        console.log(error.message);
+        return res.status(404).json({
+            "message": error.message,
+            "success": false
+        });
+    }
+}
 
 module.exports = {
     getUser,
     createUser,
     deleteUser,
     updateUserPassword,
+    getUserGames,
+    addStatus,
+    getStatus,
+    updateStatus
 }

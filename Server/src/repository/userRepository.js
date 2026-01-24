@@ -40,7 +40,8 @@ const addStatus = async (username, gameId, status = "WANT_TO_PLAY") => {
   if (exists) {
     throw new Error("Game already in library");
   }
-  const updatedUser = await User.findOneAndUpdate(
+
+  const result = await User.updateOne(
     { username },
     {
       $push: {
@@ -50,11 +51,14 @@ const addStatus = async (username, gameId, status = "WANT_TO_PLAY") => {
         },
       },
     },
-    { new: true, runValidators: true },
+    { runValidators: true }
   );
 
-  if (!updatedUser) throw new Error("User not found");
-  return updatedUser;
+  if (result.matchedCount === 0) {
+    throw new Error("User not found");
+  }
+
+  return { gameId, status };
 };
 
 const getStatus = async (username, gameId) => {
@@ -62,24 +66,25 @@ const getStatus = async (username, gameId) => {
   if (!user) throw new Error("User not found");
   const game = user.games.find((g) => g.gameId === gameId);
   if (!game) throw new Error("Game not found");
-  return game.status;
+  return game;
 };
 
 const updateStatus = async (username, gameId, status) => {
-  const user = await User.findOneAndUpdate(
+  const result = await User.updateOne(
     { username, "games.gameId": gameId },
     {
       $set: {
         "games.$.status": status,
       },
     },
-    {
-      new: true,
-      runValidators: true,
-    },
+    { runValidators: true }
   );
-  if (!user) throw new Error("User or game not found");
-  return user;
+
+  if (result.matchedCount === 0) {
+    throw new Error("User or game not found");
+  }
+
+  return { gameId, status };
 };
 
 const updateRefreshToken = async (username, refreshToken) => {
@@ -97,10 +102,10 @@ const removeRefreshToken = async (username) => {
 };
 
 const getUserGames = async (username) => {
-  const user = await User.findOne({username}).select('games -_id').exec();
+  const user = await User.findOne({ username }).select("games -_id").exec();
   if (!user) throw new Error("User not found");
   return user.games;
-}
+};
 
 module.exports = {
   createUser,
@@ -112,5 +117,5 @@ module.exports = {
   addStatus,
   getStatus,
   updateStatus,
-  getUserGames
+  getUserGames,
 };
