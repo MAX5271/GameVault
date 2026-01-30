@@ -49,6 +49,16 @@ const removeGame = async (username,gameId) => {
   return res;
 }
 
+const setPcSpecs = async (username,cpu,gpu,ram) => {
+  const res = await userRepository.setPcSpecs(username,cpu,gpu,ram);
+  return res;
+}
+
+const getPcSpecs = async (username) => {
+  const res = await userRepository.getPcSpecs(username);
+  return res;
+}
+
 module.exports = {
   createUser,
   updateUserPassword,
@@ -58,5 +68,7 @@ module.exports = {
   getStatus,
   updateStatus,
   getUserGames,
-  removeGame
+  removeGame,
+  setPcSpecs,
+  getPcSpecs
 };

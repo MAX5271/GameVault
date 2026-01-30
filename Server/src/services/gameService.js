@@ -17,6 +17,7 @@ const fetchHomePageGames = async (search,page) => {
   const gamesArray = res.data.results.map((game) => {
     return {
       id: game.id,
+      metacritic: game.metacritic,
       name: game.name,
       background_image: game.background_image,
     };

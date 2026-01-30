@@ -169,6 +169,42 @@ const removeGame = async (req,res) => {
     }
 }
 
+const setPcSpecs = async (req,res) => {
+    try {
+        const username = req.user;
+        const response = await userService.setPcSpecs(username,req.body.cpu,req.body.gpu,req.body.ram);
+        return res.status(200).json({
+            "message":"Data updated successfully",
+            "response": response,
+            "success": true
+        });
+    } catch (error) {
+        console.log(error.message);
+        return res.status(404).json({
+            "message": error.message,
+            "success": false
+        });
+    }
+}
+
+const getPcSpecs = async (req,res) => {
+    try {
+        const username = req.user;
+        const response = await userService.getPcSpecs(username);
+        return res.status(200).json({
+            "message":"Data Fetched successfully",
+            "response": response,
+            "success": true
+        });
+    } catch (error) {
+        console.log(error.message);
+        return res.status(404).json({
+            "message": error.message,
+            "success": false
+        });
+    }
+}
+
 module.exports = {
     getUser,
     createUser,
@@ -178,5 +214,7 @@ module.exports = {
     addStatus,
     getStatus,
     updateStatus,
-    removeGame
+    removeGame,
+    setPcSpecs,
+    getPcSpecs
 }

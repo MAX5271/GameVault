@@ -53,6 +53,8 @@ function Profile() {
           withCredentials: true,
         });
 
+        console.log(response);
+
         if (!isMounted) return;
 
         const userGames = response.data.response.games;
@@ -62,12 +64,16 @@ function Profile() {
             return;
         }
 
-        const detailsPromises = userGames.map(game => 
-            axios.get('/api/v1/game', { params: { id: game.gameId } })
-                .then(res => ({
-                    ...game,
-                    details: res.data.response
-                }))
+        const detailsPromises = userGames.map(game => {
+
+          if(!game.gameId) return null;
+
+          return axios.get('/api/v1/game', { params: { id: game.gameId } })
+          .then(res => ({
+            ...game,
+            details: res.data.response
+          }))
+        }
         );
 
         const gamesWithDetails = await Promise.all(detailsPromises);

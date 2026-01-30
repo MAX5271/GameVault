@@ -110,6 +110,27 @@ const removeGame = async (username, gameId) => {
   return { gameId };
 };
 
+const setPcSpecs = async (username,cpu,gpu,ram) => {
+  const parsedRam = parseInt(ram) || 0;
+  const result = await User.updateOne({username},{
+    $set:{
+      "pcSpecs.cpu": cpu,
+      "pcSpecs.gpu": gpu,
+      "pcSpecs.ram": parsedRam
+    }
+  });
+  if (result.matchedCount === 0) {
+    throw new Error("User not found");
+  }
+  return result;
+}
+
+const getPcSpecs = async (username) => {
+  const user = await User.findOne({username}).exec();
+  if(!user) throw new Error("User not found");
+  return user.pcSpecs;
+}
+
 const updateRefreshToken = async (username, refreshToken) => {
   const user = await User.findOne({ username }).exec();
   if (!user) throw new Error("User not found");
@@ -136,5 +157,7 @@ module.exports = {
   getStatus,
   updateStatus,
   getUserGames,
-  removeGame
+  removeGame,
+  setPcSpecs,
+  getPcSpecs
 };

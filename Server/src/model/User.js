@@ -25,6 +25,23 @@ const statusSchema = new Schema({
   }
 });
 
+const pcSpecsSchema = new Schema({
+  cpu:{
+    type: String,
+    trim: true,
+    default:""
+  },
+  gpu:{
+    type: String,
+    trim: true,
+    default:""
+  },
+  ram:{
+    type: Number,
+    default: 0
+  }
+},{_id:false});
+
 const userSchema = new Schema({
   username: {
     type: String,
@@ -62,6 +79,10 @@ const userSchema = new Schema({
   },
   reviews: [reviewSchema],
   games: [statusSchema],
+  pcSpecs: {
+    type: pcSpecsSchema,
+    default: () => ({}) // This forces the defaults (ram: 0, cpu: "") to trigger
+  },
   refreshToken: String,
 });
 

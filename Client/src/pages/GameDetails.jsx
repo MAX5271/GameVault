@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import DataContext from "../context/DataContext";
 import styles from "./GameDetails.module.css";
 
-// 1. Accept the new prop here
 function GameDetails({ id, onLoaded }) {
   const { user } = useContext(DataContext);
   
@@ -25,7 +24,6 @@ function GameDetails({ id, onLoaded }) {
         
         if (res.data && res.data.success) {
             setGameData(res.data.response);
-            // 2. Notify parent (Modal) that loading is done
             if (onLoaded) onLoaded();
         } else {
             throw new Error("Failed to retrieve game data");
