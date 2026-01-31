@@ -1,130 +1,190 @@
 module.exports = [
   {
-    "gpuName": "GeForce RTX 5090",
+    "gpuName": "128MB Video Card",
+    "g3dMark": 100
+  },
+  {
+    "gpuName": "256MB Video Card",
+    "g3dMark": 250
+  },
+  {
+    "gpuName": "512MB Video Card",
+    "g3dMark": 600
+  },
+  {
+    "gpuName": "1GB Video Card",
+    "g3dMark": 1800
+  },
+  {
+    "gpuName": "1024MB Video Card",
+    "g3dMark": 1800
+  },
+  {
+    "gpuName": "2048MB Video Card",
+    "g3dMark": 3500
+  },
+  {
+    "gpuName": "3072MB Video Card",
+    "g3dMark": 5500
+  },
+  {
+    "gpuName": "4096MB Video Card",
+    "g3dMark": 8000
+  },
+  {
+    "gpuName": "6144MB Video Card",
+    "g3dMark": 10000
+  },
+  {
+    "gpuName": "8192MB Video Card",
+    "g3dMark": 14000
+  },
+  {
+    "gpuName": "2GB Video Card",
+    "g3dMark": 3500
+  },
+  {
+    "gpuName": "3GB Video Card",
+    "g3dMark": 5500
+  },
+  {
+    "gpuName": "4GB Video Card",
+    "g3dMark": 8000
+  },
+  {
+    "gpuName": "6GB Video Card",
+    "g3dMark": 10000
+  },
+  {
+    "gpuName": "8GB Video Card",
+    "g3dMark": 14000
+  },
+  {
+    "gpuName": "NVIDIA RTX 5090",
     "g3dMark": 41059
   },
   {
-    "gpuName": "GeForce RTX 5090 D",
+    "gpuName": "NVIDIA RTX 5090 D",
     "g3dMark": 38110
   },
   {
-    "gpuName": "GeForce RTX 5080",
+    "gpuName": "NVIDIA RTX 5080",
     "g3dMark": 35819
   },
   {
-    "gpuName": "GeForce RTX 5070 Ti",
+    "gpuName": "NVIDIA RTX 5070 Ti",
     "g3dMark": 31838
   },
   {
-    "gpuName": "GeForce RTX 5070",
+    "gpuName": "NVIDIA RTX 5070",
     "g3dMark": 26585
   },
   {
-    "gpuName": "GeForce RTX 5090 Laptop GPU",
+    "gpuName": "NVIDIA RTX 5090 Laptop GPU",
     "g3dMark": 28280
   },
   {
-    "gpuName": "GeForce RTX 5080 Laptop GPU",
+    "gpuName": "NVIDIA RTX 5080 Laptop GPU",
     "g3dMark": 25839
   },
   {
-    "gpuName": "GeForce RTX 5060 Ti 16GB",
+    "gpuName": "NVIDIA RTX 5060 Ti 16GB",
     "g3dMark": 22704
   },
   {
-    "gpuName": "GeForce RTX 5060 Ti",
+    "gpuName": "NVIDIA RTX 5060 Ti",
     "g3dMark": 22562
   },
   {
-    "gpuName": "GeForce RTX 5060",
+    "gpuName": "NVIDIA RTX 5060",
     "g3dMark": 19833
   },
   {
-    "gpuName": "GeForce RTX 5070 Ti Laptop GPU",
+    "gpuName": "NVIDIA RTX 5070 Ti Laptop GPU",
     "g3dMark": 21500
   },
   {
-    "gpuName": "GeForce RTX 5070 Laptop GPU",
+    "gpuName": "NVIDIA RTX 5070 Laptop GPU",
     "g3dMark": 18200
   },
   {
-    "gpuName": "GeForce RTX 5060 Laptop GPU",
+    "gpuName": "NVIDIA RTX 5060 Laptop GPU",
     "g3dMark": 15400
   },
   {
-    "gpuName": "GeForce RTX 5050",
+    "gpuName": "NVIDIA RTX 5050",
     "g3dMark": 12500
   },
   {
-    "gpuName": "GeForce RTX 5050 Laptop GPU",
+    "gpuName": "NVIDIA RTX 5050 Laptop GPU",
     "g3dMark": 11200
   },
   {
-    "gpuName": "GeForce RTX 4090",
+    "gpuName": "NVIDIA RTX 4090",
     "g3dMark": 38436
   },
   {
-    "gpuName": "GeForce RTX 4080 Super",
+    "gpuName": "NVIDIA RTX 4080 Super",
     "g3dMark": 34845
   },
   {
-    "gpuName": "GeForce RTX 4080",
+    "gpuName": "NVIDIA RTX 4080",
     "g3dMark": 34460
   },
   {
-    "gpuName": "GeForce RTX 4070 Ti Super",
+    "gpuName": "NVIDIA RTX 4070 Ti Super",
     "g3dMark": 31750
   },
   {
-    "gpuName": "GeForce RTX 4070 Ti",
+    "gpuName": "NVIDIA RTX 4070 Ti",
     "g3dMark": 31480
   },
   {
-    "gpuName": "GeForce RTX 4070 Super",
+    "gpuName": "NVIDIA RTX 4070 Super",
     "g3dMark": 30060
   },
   {
-    "gpuName": "GeForce RTX 4070",
+    "gpuName": "NVIDIA RTX 4070",
     "g3dMark": 26940
   },
   {
-    "gpuName": "GeForce RTX 4090 Laptop GPU",
+    "gpuName": "NVIDIA RTX 4090 Laptop GPU",
     "g3dMark": 27043
   },
   {
-    "gpuName": "GeForce RTX 4080 Laptop GPU",
+    "gpuName": "NVIDIA RTX 4080 Laptop GPU",
     "g3dMark": 24802
   },
   {
-    "gpuName": "GeForce RTX 4060 Ti",
+    "gpuName": "NVIDIA RTX 4060 Ti",
     "g3dMark": 20680
   },
   {
-    "gpuName": "GeForce RTX 4070 Laptop GPU",
+    "gpuName": "NVIDIA RTX 4070 Laptop GPU",
     "g3dMark": 19553
   },
   {
-    "gpuName": "GeForce RTX 4060",
+    "gpuName": "NVIDIA RTX 4060",
     "g3dMark": 19541
   },
   {
-    "gpuName": "GeForce RTX 4060 Laptop GPU",
+    "gpuName": "NVIDIA RTX 4060 Laptop GPU",
     "g3dMark": 17414
   },
   {
-    "gpuName": "GeForce RTX 4050 Laptop GPU",
+    "gpuName": "NVIDIA RTX 4050 Laptop GPU",
     "g3dMark": 14336
   },
   {
-    "gpuName": "GeForce RTX 3090 Ti",
+    "gpuName": "NVIDIA RTX 3090 Ti",
     "g3dMark": 29094
   },
   {
-    "gpuName": "GeForce RTX 3080 Ti",
+    "gpuName": "NVIDIA RTX 3080 Ti",
     "g3dMark": 26887
   },
   {
-    "gpuName": "GeForce RTX 3090",
+    "gpuName": "NVIDIA RTX 3090",
     "g3dMark": 26395
   },
   {
@@ -132,11 +192,11 @@ module.exports = [
     "g3dMark": 25458
   },
   {
-    "gpuName": "GeForce RTX 3080",
+    "gpuName": "NVIDIA RTX 3080",
     "g3dMark": 24853
   },
   {
-    "gpuName": "GeForce RTX 3070 Ti",
+    "gpuName": "NVIDIA RTX 3070 Ti",
     "g3dMark": 23367
   },
   {
@@ -152,11 +212,11 @@ module.exports = [
     "g3dMark": 22122
   },
   {
-    "gpuName": "GeForce RTX 3070",
+    "gpuName": "NVIDIA RTX 3070",
     "g3dMark": 22093
   },
   {
-    "gpuName": "GeForce RTX 2080 Ti",
+    "gpuName": "NVIDIA RTX 2080 Ti",
     "g3dMark": 21796
   },
   {
@@ -168,7 +228,7 @@ module.exports = [
     "g3dMark": 20667
   },
   {
-    "gpuName": "GeForce RTX 3060 Ti",
+    "gpuName": "NVIDIA RTX 3060 Ti",
     "g3dMark": 20206
   },
   {
@@ -180,7 +240,7 @@ module.exports = [
     "g3dMark": 19692
   },
   {
-    "gpuName": "GeForce RTX 2080 SUPER",
+    "gpuName": "NVIDIA RTX 2080 SUPER",
     "g3dMark": 19519
   },
   {
@@ -188,7 +248,7 @@ module.exports = [
     "g3dMark": 19508
   },
   {
-    "gpuName": "GeForce RTX 3080 Ti Laptop GPU",
+    "gpuName": "NVIDIA RTX 3080 Ti Laptop GPU",
     "g3dMark": 19507
   },
   {
@@ -212,7 +272,7 @@ module.exports = [
     "g3dMark": 18802
   },
   {
-    "gpuName": "GeForce RTX 2080",
+    "gpuName": "NVIDIA RTX 2080",
     "g3dMark": 18732
   },
   {
@@ -220,11 +280,11 @@ module.exports = [
     "g3dMark": 18721
   },
   {
-    "gpuName": "GeForce RTX 3070 Ti Laptop GPU",
+    "gpuName": "NVIDIA RTX 3070 Ti Laptop GPU",
     "g3dMark": 18490
   },
   {
-    "gpuName": "GeForce GTX 1080 Ti",
+    "gpuName": "NVIDIA GTX 1080 Ti",
     "g3dMark": 18284
   },
   {
@@ -232,7 +292,7 @@ module.exports = [
     "g3dMark": 18280
   },
   {
-    "gpuName": "GeForce RTX 2070 SUPER",
+    "gpuName": "NVIDIA RTX 2070 SUPER",
     "g3dMark": 18168
   },
   {
@@ -244,7 +304,7 @@ module.exports = [
     "g3dMark": 16988
   },
   {
-    "gpuName": "GeForce RTX 3060",
+    "gpuName": "NVIDIA RTX 3060",
     "g3dMark": 16958
   },
   {
@@ -264,11 +324,11 @@ module.exports = [
     "g3dMark": 16650
   },
   {
-    "gpuName": "GeForce RTX 3080 Laptop GPU",
+    "gpuName": "NVIDIA RTX 3080 Laptop GPU",
     "g3dMark": 16522
   },
   {
-    "gpuName": "GeForce RTX 2060 SUPER",
+    "gpuName": "NVIDIA RTX 2060 SUPER",
     "g3dMark": 16514
   },
   {
@@ -292,7 +352,7 @@ module.exports = [
     "g3dMark": 16203
   },
   {
-    "gpuName": "GeForce RTX 2070",
+    "gpuName": "NVIDIA RTX 2070",
     "g3dMark": 16079
   },
   {
@@ -316,15 +376,15 @@ module.exports = [
     "g3dMark": 15515
   },
   {
-    "gpuName": "GeForce GTX 1080",
+    "gpuName": "NVIDIA GTX 1080",
     "g3dMark": 15265
   },
   {
-    "gpuName": "GeForce RTX 3070 Laptop GPU",
+    "gpuName": "NVIDIA RTX 3070 Laptop GPU",
     "g3dMark": 15231
   },
   {
-    "gpuName": "GeForce RTX 2080 (Mobile)",
+    "gpuName": "NVIDIA RTX 2080 (Mobile)",
     "g3dMark": 15107
   },
   {
@@ -352,11 +412,11 @@ module.exports = [
     "g3dMark": 14630
   },
   {
-    "gpuName": "GeForce GTX 1070 Ti",
+    "gpuName": "NVIDIA GTX 1070 Ti",
     "g3dMark": 14500
   },
   {
-    "gpuName": "GeForce RTX 2070 Super with Max-Q Design",
+    "gpuName": "NVIDIA RTX 2070 Super with Max-Q Design",
     "g3dMark": 14261
   },
   {
@@ -368,11 +428,11 @@ module.exports = [
     "g3dMark": 14110
   },
   {
-    "gpuName": "GeForce RTX 2080 Super with Max-Q Design",
+    "gpuName": "NVIDIA RTX 2080 Super with Max-Q Design",
     "g3dMark": 14020
   },
   {
-    "gpuName": "GeForce RTX 2060",
+    "gpuName": "NVIDIA RTX 2060",
     "g3dMark": 13953
   },
   {
@@ -384,7 +444,7 @@ module.exports = [
     "g3dMark": 13881
   },
   {
-    "gpuName": "GeForce GTX 980 Ti",
+    "gpuName": "NVIDIA GTX 980 Ti",
     "g3dMark": 13864
   },
   {
@@ -400,7 +460,7 @@ module.exports = [
     "g3dMark": 13688
   },
   {
-    "gpuName": "GeForce RTX 2080 with Max-Q Design",
+    "gpuName": "NVIDIA RTX 2080 with Max-Q Design",
     "g3dMark": 13681
   },
   {
@@ -416,7 +476,7 @@ module.exports = [
     "g3dMark": 13622
   },
   {
-    "gpuName": "GeForce GTX 1070",
+    "gpuName": "NVIDIA GTX 1070",
     "g3dMark": 13482
   },
   {
@@ -432,7 +492,7 @@ module.exports = [
     "g3dMark": 13241
   },
   {
-    "gpuName": "GeForce GTX TITAN X",
+    "gpuName": "NVIDIA GTX TITAN X",
     "g3dMark": 13173
   },
   {
@@ -448,15 +508,15 @@ module.exports = [
     "g3dMark": 12853
   },
   {
-    "gpuName": "GeForce GTX 1660 SUPER",
+    "gpuName": "NVIDIA GTX 1660 SUPER",
     "g3dMark": 12732
   },
   {
-    "gpuName": "GeForce RTX 3050",
+    "gpuName": "NVIDIA RTX 3050",
     "g3dMark": 12718
   },
   {
-    "gpuName": "GeForce RTX 3060 Laptop GPU",
+    "gpuName": "NVIDIA RTX 3060 Laptop GPU",
     "g3dMark": 12674
   },
   {
@@ -472,7 +532,7 @@ module.exports = [
     "g3dMark": 12386
   },
   {
-    "gpuName": "GeForce RTX 2070 (Mobile)",
+    "gpuName": "NVIDIA RTX 2070 (Mobile)",
     "g3dMark": 12354
   },
   {
@@ -488,7 +548,7 @@ module.exports = [
     "g3dMark": 12144
   },
   {
-    "gpuName": "GeForce RTX 2070 with Max-Q Design",
+    "gpuName": "NVIDIA RTX 2070 with Max-Q Design",
     "g3dMark": 12062
   },
   {
@@ -508,11 +568,11 @@ module.exports = [
     "g3dMark": 11844
   },
   {
-    "gpuName": "GeForce GTX 1660 Ti",
+    "gpuName": "NVIDIA GTX 1660 Ti",
     "g3dMark": 11794
   },
   {
-    "gpuName": "GeForce GTX 1660",
+    "gpuName": "NVIDIA GTX 1660",
     "g3dMark": 11695
   },
   {
@@ -520,7 +580,7 @@ module.exports = [
     "g3dMark": 11658
   },
   {
-    "gpuName": "GeForce GTX 1080 with Max-Q Design",
+    "gpuName": "NVIDIA GTX 1080 with Max-Q Design",
     "g3dMark": 11507
   },
   {
@@ -540,11 +600,11 @@ module.exports = [
     "g3dMark": 11397
   },
   {
-    "gpuName": "GeForce RTX 2060 (Mobile)",
+    "gpuName": "NVIDIA RTX 2060 (Mobile)",
     "g3dMark": 11355
   },
   {
-    "gpuName": "GeForce GTX 980",
+    "gpuName": "NVIDIA GTX 980",
     "g3dMark": 11237
   },
   {
@@ -568,7 +628,7 @@ module.exports = [
     "g3dMark": 10466
   },
   {
-    "gpuName": "GeForce GTX 1070 (Mobile)",
+    "gpuName": "NVIDIA GTX 1070 (Mobile)",
     "g3dMark": 10465
   },
   {
@@ -576,7 +636,7 @@ module.exports = [
     "g3dMark": 10200
   },
   {
-    "gpuName": "GeForce GTX 1660 Ti (Mobile)",
+    "gpuName": "NVIDIA GTX 1660 Ti (Mobile)",
     "g3dMark": 10176
   },
   {
@@ -592,15 +652,15 @@ module.exports = [
     "g3dMark": 10088
   },
   {
-    "gpuName": "GeForce GTX 1060",
+    "gpuName": "NVIDIA GTX 1060",
     "g3dMark": 10070
   },
   {
-    "gpuName": "GeForce GTX 1650 SUPER",
+    "gpuName": "NVIDIA GTX 1650 SUPER",
     "g3dMark": 10032
   },
   {
-    "gpuName": "GeForce GTX 1070 with Max-Q Design",
+    "gpuName": "NVIDIA GTX 1070 with Max-Q Design",
     "g3dMark": 10030
   },
   {
@@ -612,7 +672,7 @@ module.exports = [
     "g3dMark": 9827
   },
   {
-    "gpuName": "GeForce RTX 2060 with Max-Q Design",
+    "gpuName": "NVIDIA RTX 2060 with Max-Q Design",
     "g3dMark": 9743
   },
   {
@@ -620,11 +680,11 @@ module.exports = [
     "g3dMark": 9741
   },
   {
-    "gpuName": "GeForce GTX 1060 3GB",
+    "gpuName": "NVIDIA GTX 1060 3GB",
     "g3dMark": 9728
   },
   {
-    "gpuName": "GeForce GTX 970",
+    "gpuName": "NVIDIA GTX 970",
     "g3dMark": 9688
   },
   {
@@ -648,7 +708,7 @@ module.exports = [
     "g3dMark": 9461
   },
   {
-    "gpuName": "GeForce RTX 3050 Ti Laptop GPU",
+    "gpuName": "NVIDIA RTX 3050 Ti Laptop GPU",
     "g3dMark": 9452
   },
   {
@@ -656,7 +716,7 @@ module.exports = [
     "g3dMark": 9445
   },
   {
-    "gpuName": "GeForce GTX 780 Ti",
+    "gpuName": "NVIDIA GTX 780 Ti",
     "g3dMark": 9312
   },
   {
@@ -672,7 +732,7 @@ module.exports = [
     "g3dMark": 9242
   },
   {
-    "gpuName": "GeForce GTX TITAN Z",
+    "gpuName": "NVIDIA GTX TITAN Z",
     "g3dMark": 9189
   },
   {
@@ -680,7 +740,7 @@ module.exports = [
     "g3dMark": 9188
   },
   {
-    "gpuName": "GeForce GTX TITAN Black",
+    "gpuName": "NVIDIA GTX TITAN Black",
     "g3dMark": 9140
   },
   {
@@ -692,7 +752,7 @@ module.exports = [
     "g3dMark": 9083
   },
   {
-    "gpuName": "GeForce RTX 3050 Laptop GPU",
+    "gpuName": "NVIDIA RTX 3050 Laptop GPU",
     "g3dMark": 9037
   },
   {
@@ -724,7 +784,7 @@ module.exports = [
     "g3dMark": 8754
   },
   {
-    "gpuName": "GeForce GTX 1060 5GB",
+    "gpuName": "NVIDIA GTX 1060 5GB",
     "g3dMark": 8704
   },
   {
@@ -736,7 +796,7 @@ module.exports = [
     "g3dMark": 8663
   },
   {
-    "gpuName": "GeForce GTX 1660 Ti with Max-Q Design",
+    "gpuName": "NVIDIA GTX 1660 Ti with Max-Q Design",
     "g3dMark": 8646
   },
   {
@@ -752,7 +812,7 @@ module.exports = [
     "g3dMark": 8572
   },
   {
-    "gpuName": "GeForce GTX Titan",
+    "gpuName": "NVIDIA GTX Titan",
     "g3dMark": 8556
   },
   {
@@ -780,7 +840,7 @@ module.exports = [
     "g3dMark": 8229
   },
   {
-    "gpuName": "GeForce GTX 1060 (Mobile)",
+    "gpuName": "NVIDIA GTX 1060 (Mobile)",
     "g3dMark": 8161
   },
   {
@@ -796,11 +856,11 @@ module.exports = [
     "g3dMark": 8070
   },
   {
-    "gpuName": "GeForce GTX 780",
+    "gpuName": "NVIDIA GTX 780",
     "g3dMark": 8022
   },
   {
-    "gpuName": "GeForce RTX 2050",
+    "gpuName": "NVIDIA RTX 2050",
     "g3dMark": 8007
   },
   {
@@ -812,7 +872,7 @@ module.exports = [
     "g3dMark": 7915
   },
   {
-    "gpuName": "GeForce GTX 1060 with Max-Q Design",
+    "gpuName": "NVIDIA GTX 1060 with Max-Q Design",
     "g3dMark": 7907
   },
   {
@@ -828,7 +888,7 @@ module.exports = [
     "g3dMark": 7822
   },
   {
-    "gpuName": "GeForce GTX 1650",
+    "gpuName": "NVIDIA GTX 1650",
     "g3dMark": 7807
   },
   {
@@ -872,7 +932,7 @@ module.exports = [
     "g3dMark": 7509
   },
   {
-    "gpuName": "GeForce GTX 1650 Ti",
+    "gpuName": "NVIDIA GTX 1650 Ti",
     "g3dMark": 7490
   },
   {
@@ -888,7 +948,7 @@ module.exports = [
     "g3dMark": 7321
   },
   {
-    "gpuName": "GeForce GTX 980M",
+    "gpuName": "NVIDIA GTX 980M",
     "g3dMark": 7317
   },
   {
@@ -912,7 +972,7 @@ module.exports = [
     "g3dMark": 6999
   },
   {
-    "gpuName": "GeForce GTX 1650 (Mobile)",
+    "gpuName": "NVIDIA GTX 1650 (Mobile)",
     "g3dMark": 6969
   },
   {
@@ -940,7 +1000,7 @@ module.exports = [
     "g3dMark": 6725
   },
   {
-    "gpuName": "GeForce GTX 970XM FORCE",
+    "gpuName": "NVIDIA GTX 970XM FORCE",
     "g3dMark": 6707
   },
   {
@@ -972,7 +1032,7 @@ module.exports = [
     "g3dMark": 6509
   },
   {
-    "gpuName": "GeForce GTX 1650 Ti with Max-Q Design",
+    "gpuName": "NVIDIA GTX 1650 Ti with Max-Q Design",
     "g3dMark": 6342
   },
   {
@@ -980,7 +1040,7 @@ module.exports = [
     "g3dMark": 6337
   },
   {
-    "gpuName": "GeForce GTX 1050 Ti",
+    "gpuName": "NVIDIA GTX 1050 Ti",
     "g3dMark": 6314
   },
   {
@@ -1008,7 +1068,7 @@ module.exports = [
     "g3dMark": 6049
   },
   {
-    "gpuName": "GeForce GTX 960",
+    "gpuName": "NVIDIA GTX 960",
     "g3dMark": 6042
   },
   {
@@ -1020,7 +1080,7 @@ module.exports = [
     "g3dMark": 5945
   },
   {
-    "gpuName": "GeForce GTX 1050 Ti (Mobile)",
+    "gpuName": "NVIDIA GTX 1050 Ti (Mobile)",
     "g3dMark": 5919
   },
   {
@@ -1028,11 +1088,11 @@ module.exports = [
     "g3dMark": 5916
   },
   {
-    "gpuName": "GeForce GTX 770",
+    "gpuName": "NVIDIA GTX 770",
     "g3dMark": 5892
   },
   {
-    "gpuName": "GeForce GTX 1650 with Max-Q Design",
+    "gpuName": "NVIDIA GTX 1650 with Max-Q Design",
     "g3dMark": 5884
   },
   {
@@ -1048,7 +1108,7 @@ module.exports = [
     "g3dMark": 5780
   },
   {
-    "gpuName": "GeForce GTX 970M",
+    "gpuName": "NVIDIA GTX 970M",
     "g3dMark": 5761
   },
   {
@@ -1068,7 +1128,7 @@ module.exports = [
     "g3dMark": 5668
   },
   {
-    "gpuName": "GeForce GTX 690",
+    "gpuName": "NVIDIA GTX 690",
     "g3dMark": 5654
   },
   {
@@ -1084,7 +1144,7 @@ module.exports = [
     "g3dMark": 5550
   },
   {
-    "gpuName": "GeForce GTX 680",
+    "gpuName": "NVIDIA GTX 680",
     "g3dMark": 5535
   },
   {
@@ -1100,15 +1160,15 @@ module.exports = [
     "g3dMark": 5428
   },
   {
-    "gpuName": "GeForce GTX 760 Ti OEM",
+    "gpuName": "NVIDIA GTX 760 Ti OEM",
     "g3dMark": 5427
   },
   {
-    "gpuName": "GeForce GTX 950",
+    "gpuName": "NVIDIA GTX 950",
     "g3dMark": 5392
   },
   {
-    "gpuName": "GeForce GTX 1050 Ti with Max-Q Design",
+    "gpuName": "NVIDIA GTX 1050 Ti with Max-Q Design",
     "g3dMark": 5372
   },
   {
@@ -1116,7 +1176,7 @@ module.exports = [
     "g3dMark": 5315
   },
   {
-    "gpuName": "GeForce GTX 670",
+    "gpuName": "NVIDIA GTX 670",
     "g3dMark": 5304
   },
   {
@@ -1128,7 +1188,7 @@ module.exports = [
     "g3dMark": 5214
   },
   {
-    "gpuName": "GeForce GTX 760 Ti",
+    "gpuName": "NVIDIA GTX 760 Ti",
     "g3dMark": 5206
   },
   {
@@ -1152,11 +1212,11 @@ module.exports = [
     "g3dMark": 5117
   },
   {
-    "gpuName": "GeForce GTX 1050",
+    "gpuName": "NVIDIA GTX 1050",
     "g3dMark": 5090
   },
   {
-    "gpuName": "GeForce MX550",
+    "gpuName": "NVIDIA MX550",
     "g3dMark": 5090
   },
   {
@@ -1196,7 +1256,7 @@ module.exports = [
     "g3dMark": 4777
   },
   {
-    "gpuName": "GeForce GTX 760",
+    "gpuName": "NVIDIA GTX 760",
     "g3dMark": 4775
   },
   {
@@ -1236,7 +1296,7 @@ module.exports = [
     "g3dMark": 4557
   },
   {
-    "gpuName": "GeForce GTX 580",
+    "gpuName": "NVIDIA GTX 580",
     "g3dMark": 4538
   },
   {
@@ -1256,7 +1316,7 @@ module.exports = [
     "g3dMark": 4466
   },
   {
-    "gpuName": "GeForce GTX 1050 (Mobile)",
+    "gpuName": "NVIDIA GTX 1050 (Mobile)",
     "g3dMark": 4462
   },
   {
@@ -1276,7 +1336,7 @@ module.exports = [
     "g3dMark": 4429
   },
   {
-    "gpuName": "GeForce GTX 660 Ti",
+    "gpuName": "NVIDIA GTX 660 Ti",
     "g3dMark": 4367
   },
   {
@@ -1324,7 +1384,7 @@ module.exports = [
     "g3dMark": 4276
   },
   {
-    "gpuName": "GeForce GTX 680MX",
+    "gpuName": "NVIDIA GTX 680MX",
     "g3dMark": 4271
   },
   {
@@ -1336,7 +1396,7 @@ module.exports = [
     "g3dMark": 4251
   },
   {
-    "gpuName": "GeForce GTX 775M",
+    "gpuName": "NVIDIA GTX 775M",
     "g3dMark": 4208
   },
   {
@@ -1356,7 +1416,7 @@ module.exports = [
     "g3dMark": 4114
   },
   {
-    "gpuName": "GeForce GTX 480",
+    "gpuName": "NVIDIA GTX 480",
     "g3dMark": 4110
   },
   {
@@ -1368,7 +1428,7 @@ module.exports = [
     "g3dMark": 4010
   },
   {
-    "gpuName": "GeForce GTX 660",
+    "gpuName": "NVIDIA GTX 660",
     "g3dMark": 4004
   },
   {
@@ -1384,11 +1444,11 @@ module.exports = [
     "g3dMark": 3926
   },
   {
-    "gpuName": "GeForce GTX 750 Ti",
+    "gpuName": "NVIDIA GTX 750 Ti",
     "g3dMark": 3919
   },
   {
-    "gpuName": "GeForce GTX 570",
+    "gpuName": "NVIDIA GTX 570",
     "g3dMark": 3902
   },
   {
@@ -1408,7 +1468,7 @@ module.exports = [
     "g3dMark": 3877
   },
   {
-    "gpuName": "GeForce GTX 880M",
+    "gpuName": "NVIDIA GTX 880M",
     "g3dMark": 3876
   },
   {
@@ -1432,11 +1492,11 @@ module.exports = [
     "g3dMark": 3826
   },
   {
-    "gpuName": "GeForce GTX 965M",
+    "gpuName": "NVIDIA GTX 965M",
     "g3dMark": 3824
   },
   {
-    "gpuName": "GeForce GTX 1050 with Max-Q Design",
+    "gpuName": "NVIDIA GTX 1050 with Max-Q Design",
     "g3dMark": 3785
   },
   {
@@ -1448,11 +1508,11 @@ module.exports = [
     "g3dMark": 3766
   },
   {
-    "gpuName": "GeForce GTX 780M",
+    "gpuName": "NVIDIA GTX 780M",
     "g3dMark": 3755
   },
   {
-    "gpuName": "GeForce MX450",
+    "gpuName": "NVIDIA MX450",
     "g3dMark": 3743
   },
   {
@@ -1480,7 +1540,7 @@ module.exports = [
     "g3dMark": 3574
   },
   {
-    "gpuName": "GeForce GTX 680M KY_Bullet Edition",
+    "gpuName": "NVIDIA GTX 680M KY_Bullet Edition",
     "g3dMark": 3569
   },
   {
@@ -1524,7 +1584,7 @@ module.exports = [
     "g3dMark": 3428
   },
   {
-    "gpuName": "GeForce GTX 960M",
+    "gpuName": "NVIDIA GTX 960M",
     "g3dMark": 3419
   },
   {
@@ -1532,7 +1592,7 @@ module.exports = [
     "g3dMark": 3400
   },
   {
-    "gpuName": "GeForce GTX 750",
+    "gpuName": "NVIDIA GTX 750",
     "g3dMark": 3399
   },
   {
@@ -1540,7 +1600,7 @@ module.exports = [
     "g3dMark": 3399
   },
   {
-    "gpuName": "GeForce GTX 870M",
+    "gpuName": "NVIDIA GTX 870M",
     "g3dMark": 3380
   },
   {
@@ -1568,7 +1628,7 @@ module.exports = [
     "g3dMark": 3342
   },
   {
-    "gpuName": "GeForce GTX 650 Ti BOOST",
+    "gpuName": "NVIDIA GTX 650 Ti BOOST",
     "g3dMark": 3330
   },
   {
@@ -1580,7 +1640,7 @@ module.exports = [
     "g3dMark": 3315
   },
   {
-    "gpuName": "GeForce GTX 590",
+    "gpuName": "NVIDIA GTX 590",
     "g3dMark": 3307
   },
   {
@@ -1588,7 +1648,7 @@ module.exports = [
     "g3dMark": 3266
   },
   {
-    "gpuName": "GeForce 770M",
+    "gpuName": "NVIDIA 770M",
     "g3dMark": 3246
   },
   {
@@ -1620,7 +1680,7 @@ module.exports = [
     "g3dMark": 3162
   },
   {
-    "gpuName": "GeForce GTX 470",
+    "gpuName": "NVIDIA GTX 470",
     "g3dMark": 3147
   },
   {
@@ -1656,7 +1716,7 @@ module.exports = [
     "g3dMark": 3090
   },
   {
-    "gpuName": "GeForce GTX 680M",
+    "gpuName": "NVIDIA GTX 680M",
     "g3dMark": 3077
   },
   {
@@ -1664,11 +1724,11 @@ module.exports = [
     "g3dMark": 3056
   },
   {
-    "gpuName": "GeForce GTX 560 Ti",
+    "gpuName": "NVIDIA GTX 560 Ti",
     "g3dMark": 3056
   },
   {
-    "gpuName": "GeForce GTX 860M",
+    "gpuName": "NVIDIA GTX 860M",
     "g3dMark": 3045
   },
   {
@@ -1740,7 +1800,7 @@ module.exports = [
     "g3dMark": 2863
   },
   {
-    "gpuName": "GeForce MX350",
+    "gpuName": "NVIDIA MX350",
     "g3dMark": 2855
   },
   {
@@ -1768,7 +1828,7 @@ module.exports = [
     "g3dMark": 2812
   },
   {
-    "gpuName": "GeForce GTX 770M",
+    "gpuName": "NVIDIA GTX 770M",
     "g3dMark": 2786
   },
   {
@@ -1824,7 +1884,7 @@ module.exports = [
     "g3dMark": 2714
   },
   {
-    "gpuName": "GeForce GTX 560",
+    "gpuName": "NVIDIA GTX 560",
     "g3dMark": 2711
   },
   {
@@ -1860,7 +1920,7 @@ module.exports = [
     "g3dMark": 2682
   },
   {
-    "gpuName": "GeForce GTX 465",
+    "gpuName": "NVIDIA GTX 465",
     "g3dMark": 2681
   },
   {
@@ -1888,7 +1948,7 @@ module.exports = [
     "g3dMark": 2639
   },
   {
-    "gpuName": "MONSTER GeForce GTX 675M",
+    "gpuName": "MONSTER NVIDIA GTX 675M",
     "g3dMark": 2637
   },
   {
@@ -1916,7 +1976,7 @@ module.exports = [
     "g3dMark": 2604
   },
   {
-    "gpuName": "GeForce GTX 950M",
+    "gpuName": "NVIDIA GTX 950M",
     "g3dMark": 2602
   },
   {
@@ -1940,7 +2000,7 @@ module.exports = [
     "g3dMark": 2580
   },
   {
-    "gpuName": "GeForce GTX 850M",
+    "gpuName": "NVIDIA GTX 850M",
     "g3dMark": 2574
   },
   {
@@ -1948,11 +2008,11 @@ module.exports = [
     "g3dMark": 2550
   },
   {
-    "gpuName": "GeForce MX330",
+    "gpuName": "NVIDIA MX330",
     "g3dMark": 2547
   },
   {
-    "gpuName": "GeForce GT 1030",
+    "gpuName": "NVIDIA GT 1030",
     "g3dMark": 2545
   },
   {
@@ -1980,7 +2040,7 @@ module.exports = [
     "g3dMark": 2528
   },
   {
-    "gpuName": "GeForce GTX 650 Ti",
+    "gpuName": "NVIDIA GTX 650 Ti",
     "g3dMark": 2527
   },
   {
@@ -1988,7 +2048,7 @@ module.exports = [
     "g3dMark": 2525
   },
   {
-    "gpuName": "GeForce MX250",
+    "gpuName": "NVIDIA MX250",
     "g3dMark": 2515
   },
   {
@@ -2008,7 +2068,7 @@ module.exports = [
     "g3dMark": 2496
   },
   {
-    "gpuName": "GeForce GTX 950A",
+    "gpuName": "NVIDIA GTX 950A",
     "g3dMark": 2483
   },
   {
@@ -2032,7 +2092,7 @@ module.exports = [
     "g3dMark": 2418
   },
   {
-    "gpuName": "GeForce GTX 960A",
+    "gpuName": "NVIDIA GTX 960A",
     "g3dMark": 2411
   },
   {
@@ -2060,7 +2120,7 @@ module.exports = [
     "g3dMark": 2386
   },
   {
-    "gpuName": "GeForce GTX 580M",
+    "gpuName": "NVIDIA GTX 580M",
     "g3dMark": 2373
   },
   {
@@ -2072,7 +2132,7 @@ module.exports = [
     "g3dMark": 2363
   },
   {
-    "gpuName": "GeForce GTX 485M",
+    "gpuName": "NVIDIA GTX 485M",
     "g3dMark": 2360
   },
   {
@@ -2088,7 +2148,7 @@ module.exports = [
     "g3dMark": 2341
   },
   {
-    "gpuName": "GeForce GTX 675MX",
+    "gpuName": "NVIDIA GTX 675MX",
     "g3dMark": 2338
   },
   {
@@ -2108,7 +2168,7 @@ module.exports = [
     "g3dMark": 2310
   },
   {
-    "gpuName": "GeForce MX150",
+    "gpuName": "NVIDIA MX150",
     "g3dMark": 2310
   },
   {
@@ -2128,7 +2188,7 @@ module.exports = [
     "g3dMark": 2298
   },
   {
-    "gpuName": "GeForce GTX 460",
+    "gpuName": "NVIDIA GTX 460",
     "g3dMark": 2289
   },
   {
@@ -2228,7 +2288,7 @@ module.exports = [
     "g3dMark": 2181
   },
   {
-    "gpuName": "GeForce GTX 745",
+    "gpuName": "NVIDIA GTX 745",
     "g3dMark": 2175
   },
   {
@@ -2288,7 +2348,7 @@ module.exports = [
     "g3dMark": 2093
   },
   {
-    "gpuName": "GeForce GTX 560 SE",
+    "gpuName": "NVIDIA GTX 560 SE",
     "g3dMark": 2087
   },
   {
@@ -2304,7 +2364,7 @@ module.exports = [
     "g3dMark": 2060
   },
   {
-    "gpuName": "GeForce GTX 480M",
+    "gpuName": "NVIDIA GTX 480M",
     "g3dMark": 2051
   },
   {
@@ -2356,11 +2416,11 @@ module.exports = [
     "g3dMark": 2007
   },
   {
-    "gpuName": "GeForce GT 645",
+    "gpuName": "NVIDIA GT 645",
     "g3dMark": 2006
   },
   {
-    "gpuName": "GeForce GTX 460 v2",
+    "gpuName": "NVIDIA GTX 460 v2",
     "g3dMark": 2005
   },
   {
@@ -2392,7 +2452,7 @@ module.exports = [
     "g3dMark": 1977
   },
   {
-    "gpuName": "GeForce GTX 460 SE",
+    "gpuName": "NVIDIA GTX 460 SE",
     "g3dMark": 1974
   },
   {
@@ -2400,7 +2460,7 @@ module.exports = [
     "g3dMark": 1973
   },
   {
-    "gpuName": "GeForce GTX 765M",
+    "gpuName": "NVIDIA GTX 765M",
     "g3dMark": 1972
   },
   {
@@ -2432,7 +2492,7 @@ module.exports = [
     "g3dMark": 1958
   },
   {
-    "gpuName": "GeForce GTX 470M",
+    "gpuName": "NVIDIA GTX 470M",
     "g3dMark": 1953
   },
   {
@@ -2448,7 +2508,7 @@ module.exports = [
     "g3dMark": 1945
   },
   {
-    "gpuName": "GeForce 945M",
+    "gpuName": "NVIDIA 945M",
     "g3dMark": 1945
   },
   {
@@ -2460,7 +2520,7 @@ module.exports = [
     "g3dMark": 1935
   },
   {
-    "gpuName": "GeForce GTX 675M",
+    "gpuName": "NVIDIA GTX 675M",
     "g3dMark": 1934
   },
   {
@@ -2476,11 +2536,11 @@ module.exports = [
     "g3dMark": 1919
   },
   {
-    "gpuName": "GeForce GTX 570M",
+    "gpuName": "NVIDIA GTX 570M",
     "g3dMark": 1910
   },
   {
-    "gpuName": "GeForce GTX 670MX",
+    "gpuName": "NVIDIA GTX 670MX",
     "g3dMark": 1906
   },
   {
@@ -2496,7 +2556,7 @@ module.exports = [
     "g3dMark": 1899
   },
   {
-    "gpuName": "GeForce MX130",
+    "gpuName": "NVIDIA MX130",
     "g3dMark": 1895
   },
   {
@@ -2508,7 +2568,7 @@ module.exports = [
     "g3dMark": 1891
   },
   {
-    "gpuName": "GeForce MX230",
+    "gpuName": "NVIDIA MX230",
     "g3dMark": 1884
   },
   {
@@ -2520,11 +2580,11 @@ module.exports = [
     "g3dMark": 1867
   },
   {
-    "gpuName": "GeForce GTX 645",
+    "gpuName": "NVIDIA GTX 645",
     "g3dMark": 1858
   },
   {
-    "gpuName": "GeForce 945A",
+    "gpuName": "NVIDIA 945A",
     "g3dMark": 1852
   },
   {
@@ -2572,7 +2632,7 @@ module.exports = [
     "g3dMark": 1810
   },
   {
-    "gpuName": "GeForce GTX 555",
+    "gpuName": "NVIDIA GTX 555",
     "g3dMark": 1807
   },
   {
@@ -2620,7 +2680,7 @@ module.exports = [
     "g3dMark": 1784
   },
   {
-    "gpuName": "GeForce GTX 670M",
+    "gpuName": "NVIDIA GTX 670M",
     "g3dMark": 1775
   },
   {
@@ -2632,7 +2692,7 @@ module.exports = [
     "g3dMark": 1772
   },
   {
-    "gpuName": "GeForce GTX 650",
+    "gpuName": "NVIDIA GTX 650",
     "g3dMark": 1769
   },
   {
@@ -2696,7 +2756,7 @@ module.exports = [
     "g3dMark": 1694
   },
   {
-    "gpuName": "GeForce GTX 760M",
+    "gpuName": "NVIDIA GTX 760M",
     "g3dMark": 1691
   },
   {
@@ -2756,7 +2816,7 @@ module.exports = [
     "g3dMark": 1613
   },
   {
-    "gpuName": "GeForce GT 755M",
+    "gpuName": "NVIDIA GT 755M",
     "g3dMark": 1610
   },
   {
@@ -2800,7 +2860,7 @@ module.exports = [
     "g3dMark": 1565
   },
   {
-    "gpuName": "GeForce GTX 550 Ti",
+    "gpuName": "NVIDIA GTX 550 Ti",
     "g3dMark": 1557
   },
   {
@@ -2828,7 +2888,7 @@ module.exports = [
     "g3dMark": 1552
   },
   {
-    "gpuName": "GeForce GTX 285",
+    "gpuName": "NVIDIA GTX 285",
     "g3dMark": 1550
   },
   {
@@ -2860,7 +2920,7 @@ module.exports = [
     "g3dMark": 1533
   },
   {
-    "gpuName": "GeForce GT 740",
+    "gpuName": "NVIDIA GT 740",
     "g3dMark": 1529
   },
   {
@@ -2880,7 +2940,7 @@ module.exports = [
     "g3dMark": 1505
   },
   {
-    "gpuName": "GeForce 940MX",
+    "gpuName": "NVIDIA 940MX",
     "g3dMark": 1503
   },
   {
@@ -2908,7 +2968,7 @@ module.exports = [
     "g3dMark": 1482
   },
   {
-    "gpuName": "GeForce MX110",
+    "gpuName": "NVIDIA MX110",
     "g3dMark": 1469
   },
   {
@@ -2932,7 +2992,7 @@ module.exports = [
     "g3dMark": 1436
   },
   {
-    "gpuName": "GeForce 845M",
+    "gpuName": "NVIDIA 845M",
     "g3dMark": 1430
   },
   {
@@ -2952,7 +3012,7 @@ module.exports = [
     "g3dMark": 1418
   },
   {
-    "gpuName": "GeForce GTX 660M",
+    "gpuName": "NVIDIA GTX 660M",
     "g3dMark": 1414
   },
   {
@@ -2972,7 +3032,7 @@ module.exports = [
     "g3dMark": 1406
   },
   {
-    "gpuName": "GeForce GTX 275",
+    "gpuName": "NVIDIA GTX 275",
     "g3dMark": 1401
   },
   {
@@ -3040,7 +3100,7 @@ module.exports = [
     "g3dMark": 1333
   },
   {
-    "gpuName": "GeForce GTS 450",
+    "gpuName": "NVIDIA GTS 450",
     "g3dMark": 1321
   },
   {
@@ -3052,7 +3112,7 @@ module.exports = [
     "g3dMark": 1314
   },
   {
-    "gpuName": "GeForce GT 750M",
+    "gpuName": "NVIDIA GT 750M",
     "g3dMark": 1313
   },
   {
@@ -3080,7 +3140,7 @@ module.exports = [
     "g3dMark": 1306
   },
   {
-    "gpuName": "GeForce 930MX",
+    "gpuName": "NVIDIA 930MX",
     "g3dMark": 1302
   },
   {
@@ -3120,7 +3180,7 @@ module.exports = [
     "g3dMark": 1271
   },
   {
-    "gpuName": "GeForce GTX 560M",
+    "gpuName": "NVIDIA GTX 560M",
     "g3dMark": 1266
   },
   {
@@ -3164,7 +3224,7 @@ module.exports = [
     "g3dMark": 1237
   },
   {
-    "gpuName": "GeForce GPU",
+    "gpuName": "NVIDIA GPU",
     "g3dMark": 1236
   },
   {
@@ -3188,7 +3248,7 @@ module.exports = [
     "g3dMark": 1222
   },
   {
-    "gpuName": "GeForce GTX 260",
+    "gpuName": "NVIDIA GTX 260",
     "g3dMark": 1221
   },
   {
@@ -3220,11 +3280,11 @@ module.exports = [
     "g3dMark": 1202
   },
   {
-    "gpuName": "GeForce GT 650M",
+    "gpuName": "NVIDIA GT 650M",
     "g3dMark": 1199
   },
   {
-    "gpuName": "GeForce GTX 460M",
+    "gpuName": "NVIDIA GTX 460M",
     "g3dMark": 1198
   },
   {
@@ -3244,19 +3304,19 @@ module.exports = [
     "g3dMark": 1183
   },
   {
-    "gpuName": "GeForce GT 640",
+    "gpuName": "NVIDIA GT 640",
     "g3dMark": 1182
   },
   {
-    "gpuName": "GeForce GTX 280",
+    "gpuName": "NVIDIA GTX 280",
     "g3dMark": 1181
   },
   {
-    "gpuName": "GeForce 840A",
+    "gpuName": "NVIDIA 840A",
     "g3dMark": 1180
   },
   {
-    "gpuName": "GeForce GTX 295",
+    "gpuName": "NVIDIA GTX 295",
     "g3dMark": 1171
   },
   {
@@ -3292,11 +3352,11 @@ module.exports = [
     "g3dMark": 1150
   },
   {
-    "gpuName": "GeForce 940A",
+    "gpuName": "NVIDIA 940A",
     "g3dMark": 1145
   },
   {
-    "gpuName": "GeForce GT 745A",
+    "gpuName": "NVIDIA GT 745A",
     "g3dMark": 1144
   },
   {
@@ -3360,7 +3420,7 @@ module.exports = [
     "g3dMark": 1107
   },
   {
-    "gpuName": "GeForce 940M",
+    "gpuName": "NVIDIA 940M",
     "g3dMark": 1106
   },
   {
@@ -3376,7 +3436,7 @@ module.exports = [
     "g3dMark": 1098
   },
   {
-    "gpuName": "GeForce GT 545",
+    "gpuName": "NVIDIA GT 545",
     "g3dMark": 1096
   },
   {
@@ -3384,11 +3444,11 @@ module.exports = [
     "g3dMark": 1096
   },
   {
-    "gpuName": "GeForce GTX 850M - MODDED",
+    "gpuName": "NVIDIA GTX 850M - MODDED",
     "g3dMark": 1092
   },
   {
-    "gpuName": "GeForce 920MX",
+    "gpuName": "NVIDIA 920MX",
     "g3dMark": 1088
   },
   {
@@ -3396,7 +3456,7 @@ module.exports = [
     "g3dMark": 1086
   },
   {
-    "gpuName": "GeForce 930A",
+    "gpuName": "NVIDIA 930A",
     "g3dMark": 1082
   },
   {
@@ -3420,7 +3480,7 @@ module.exports = [
     "g3dMark": 1067
   },
   {
-    "gpuName": "GeForce 840M",
+    "gpuName": "NVIDIA 840M",
     "g3dMark": 1067
   },
   {
@@ -3440,7 +3500,7 @@ module.exports = [
     "g3dMark": 1061
   },
   {
-    "gpuName": "GeForce GTX 760A",
+    "gpuName": "NVIDIA GTX 760A",
     "g3dMark": 1060
   },
   {
@@ -3448,7 +3508,7 @@ module.exports = [
     "g3dMark": 1059
   },
   {
-    "gpuName": "GeForce GT 745M",
+    "gpuName": "NVIDIA GT 745M",
     "g3dMark": 1055
   },
   {
@@ -3456,7 +3516,7 @@ module.exports = [
     "g3dMark": 1053
   },
   {
-    "gpuName": "GeForce GTX 850A",
+    "gpuName": "NVIDIA GTX 850A",
     "g3dMark": 1050
   },
   {
@@ -3544,7 +3604,7 @@ module.exports = [
     "g3dMark": 1015
   },
   {
-    "gpuName": "GeForce 930M",
+    "gpuName": "NVIDIA 930M",
     "g3dMark": 1011
   },
   {
@@ -3552,7 +3612,7 @@ module.exports = [
     "g3dMark": 1009
   },
   {
-    "gpuName": "GeForce 830A",
+    "gpuName": "NVIDIA 830A",
     "g3dMark": 1005
   },
   {
@@ -3632,7 +3692,7 @@ module.exports = [
     "g3dMark": 977
   },
   {
-    "gpuName": "GeForce 830M",
+    "gpuName": "NVIDIA 830M",
     "g3dMark": 976
   },
   {
@@ -3680,7 +3740,7 @@ module.exports = [
     "g3dMark": 962
   },
   {
-    "gpuName": "GeForce GT 645M",
+    "gpuName": "NVIDIA GT 645M",
     "g3dMark": 958
   },
   {
@@ -3848,7 +3908,7 @@ module.exports = [
     "g3dMark": 911
   },
   {
-    "gpuName": "GeForce GT 640M",
+    "gpuName": "NVIDIA GT 640M",
     "g3dMark": 907
   },
   {
@@ -3920,7 +3980,7 @@ module.exports = [
     "g3dMark": 882
   },
   {
-    "gpuName": "GeForce GT 445M",
+    "gpuName": "NVIDIA GT 445M",
     "g3dMark": 881
   },
   {
@@ -3936,7 +3996,7 @@ module.exports = [
     "g3dMark": 875
   },
   {
-    "gpuName": "GeForce 920A",
+    "gpuName": "NVIDIA 920A",
     "g3dMark": 872
   },
   {
@@ -4004,7 +4064,7 @@ module.exports = [
     "g3dMark": 853
   },
   {
-    "gpuName": "GeForce GT 635",
+    "gpuName": "NVIDIA GT 635",
     "g3dMark": 852
   },
   {
@@ -4100,7 +4160,7 @@ module.exports = [
     "g3dMark": 819
   },
   {
-    "gpuName": "GeForce GT 730M",
+    "gpuName": "NVIDIA GT 730M",
     "g3dMark": 816
   },
   {
@@ -4116,7 +4176,7 @@ module.exports = [
     "g3dMark": 813
   },
   {
-    "gpuName": "GeForce GT 730",
+    "gpuName": "NVIDIA GT 730",
     "g3dMark": 812
   },
   {
@@ -4144,7 +4204,7 @@ module.exports = [
     "g3dMark": 800
   },
   {
-    "gpuName": "GeForce 9800 GX2",
+    "gpuName": "NVIDIA 9800 GX2",
     "g3dMark": 798
   },
   {
@@ -4192,7 +4252,7 @@ module.exports = [
     "g3dMark": 780
   },
   {
-    "gpuName": "GeForce GT 740M",
+    "gpuName": "NVIDIA GT 740M",
     "g3dMark": 779
   },
   {
@@ -4224,7 +4284,7 @@ module.exports = [
     "g3dMark": 775
   },
   {
-    "gpuName": "GeForce GT 340",
+    "gpuName": "NVIDIA GT 340",
     "g3dMark": 774
   },
   {
@@ -4260,15 +4320,15 @@ module.exports = [
     "g3dMark": 771
   },
   {
-    "gpuName": "GeForce 730A",
+    "gpuName": "NVIDIA 730A",
     "g3dMark": 769
   },
   {
-    "gpuName": "GeForce 825M",
+    "gpuName": "NVIDIA 825M",
     "g3dMark": 769
   },
   {
-    "gpuName": "GeForce 9800 GTX",
+    "gpuName": "NVIDIA 9800 GTX",
     "g3dMark": 769
   },
   {
@@ -4280,7 +4340,7 @@ module.exports = [
     "g3dMark": 769
   },
   {
-    "gpuName": "GeForce GT 440",
+    "gpuName": "NVIDIA GT 440",
     "g3dMark": 766
   },
   {
@@ -4392,7 +4452,7 @@ module.exports = [
     "g3dMark": 744
   },
   {
-    "gpuName": "GeForce GT 730A",
+    "gpuName": "NVIDIA GT 730A",
     "g3dMark": 743
   },
   {
@@ -4456,7 +4516,7 @@ module.exports = [
     "g3dMark": 726
   },
   {
-    "gpuName": "GeForce 720A",
+    "gpuName": "NVIDIA 720A",
     "g3dMark": 725
   },
   {
@@ -4464,7 +4524,7 @@ module.exports = [
     "g3dMark": 724
   },
   {
-    "gpuName": "GeForce 920M",
+    "gpuName": "NVIDIA 920M",
     "g3dMark": 723
   },
   {
@@ -4560,7 +4620,7 @@ module.exports = [
     "g3dMark": 703
   },
   {
-    "gpuName": "GeForce GT 740A",
+    "gpuName": "NVIDIA GT 740A",
     "g3dMark": 702
   },
   {
@@ -4600,7 +4660,7 @@ module.exports = [
     "g3dMark": 689
   },
   {
-    "gpuName": "GeForce GT 555M",
+    "gpuName": "NVIDIA GT 555M",
     "g3dMark": 688
   },
   {
@@ -4616,7 +4676,7 @@ module.exports = [
     "g3dMark": 685
   },
   {
-    "gpuName": "GeForce GT 630",
+    "gpuName": "NVIDIA GT 630",
     "g3dMark": 683
   },
   {
@@ -4632,7 +4692,7 @@ module.exports = [
     "g3dMark": 680
   },
   {
-    "gpuName": "GeForce GTS 160M",
+    "gpuName": "NVIDIA GTS 160M",
     "g3dMark": 679
   },
   {
@@ -4640,11 +4700,11 @@ module.exports = [
     "g3dMark": 677
   },
   {
-    "gpuName": "GeForce GT 530",
+    "gpuName": "NVIDIA GT 530",
     "g3dMark": 676
   },
   {
-    "gpuName": "GeForce GTX 285M",
+    "gpuName": "NVIDIA GTX 285M",
     "g3dMark": 676
   },
   {
@@ -4660,7 +4720,7 @@ module.exports = [
     "g3dMark": 676
   },
   {
-    "gpuName": "GeForce GT 640M LE",
+    "gpuName": "NVIDIA GT 640M LE",
     "g3dMark": 673
   },
   {
@@ -4712,7 +4772,7 @@ module.exports = [
     "g3dMark": 659
   },
   {
-    "gpuName": "GeForce GT 140",
+    "gpuName": "NVIDIA GT 140",
     "g3dMark": 658
   },
   {
@@ -4720,7 +4780,7 @@ module.exports = [
     "g3dMark": 656
   },
   {
-    "gpuName": "GeForce GTS 360M",
+    "gpuName": "NVIDIA GTS 360M",
     "g3dMark": 655
   },
   {
@@ -4780,7 +4840,7 @@ module.exports = [
     "g3dMark": 642
   },
   {
-    "gpuName": "GeForce 8800 Ultra",
+    "gpuName": "NVIDIA 8800 Ultra",
     "g3dMark": 639
   },
   {
@@ -4788,7 +4848,7 @@ module.exports = [
     "g3dMark": 638
   },
   {
-    "gpuName": "GeForce GT 710",
+    "gpuName": "NVIDIA GT 710",
     "g3dMark": 637
   },
   {
@@ -4800,7 +4860,7 @@ module.exports = [
     "g3dMark": 637
   },
   {
-    "gpuName": "GeForce 9800 S",
+    "gpuName": "NVIDIA 9800 S",
     "g3dMark": 636
   },
   {
@@ -4828,7 +4888,7 @@ module.exports = [
     "g3dMark": 634
   },
   {
-    "gpuName": "GeForce 9800 GTX/9800 GTX+",
+    "gpuName": "NVIDIA 9800 GTX/9800 GTX+",
     "g3dMark": 632
   },
   {
@@ -4860,7 +4920,7 @@ module.exports = [
     "g3dMark": 628
   },
   {
-    "gpuName": "GeForce GT 820M",
+    "gpuName": "NVIDIA GT 820M",
     "g3dMark": 627
   },
   {
@@ -4900,15 +4960,15 @@ module.exports = [
     "g3dMark": 623
   },
   {
-    "gpuName": "GeForce 810A",
+    "gpuName": "NVIDIA 810A",
     "g3dMark": 622
   },
   {
-    "gpuName": "GeForce GTS 240",
+    "gpuName": "NVIDIA GTS 240",
     "g3dMark": 622
   },
   {
-    "gpuName": "GeForce GTX 280M",
+    "gpuName": "NVIDIA GTX 280M",
     "g3dMark": 621
   },
   {
@@ -4932,7 +4992,7 @@ module.exports = [
     "g3dMark": 619
   },
   {
-    "gpuName": "GeForce GTS 250",
+    "gpuName": "NVIDIA GTS 250",
     "g3dMark": 618
   },
   {
@@ -4980,7 +5040,7 @@ module.exports = [
     "g3dMark": 607
   },
   {
-    "gpuName": "GeForce GT 720",
+    "gpuName": "NVIDIA GT 720",
     "g3dMark": 606
   },
   {
@@ -4996,7 +5056,7 @@ module.exports = [
     "g3dMark": 605
   },
   {
-    "gpuName": "GeForce GT 430",
+    "gpuName": "NVIDIA GT 430",
     "g3dMark": 603
   },
   {
@@ -5004,7 +5064,7 @@ module.exports = [
     "g3dMark": 603
   },
   {
-    "gpuName": "GeForce GT 720A",
+    "gpuName": "NVIDIA GT 720A",
     "g3dMark": 601
   },
   {
@@ -5020,7 +5080,7 @@ module.exports = [
     "g3dMark": 598
   },
   {
-    "gpuName": "GeForce 8800 GTX",
+    "gpuName": "NVIDIA 8800 GTX",
     "g3dMark": 597
   },
   {
@@ -5036,7 +5096,7 @@ module.exports = [
     "g3dMark": 595
   },
   {
-    "gpuName": "GeForce GT 735M",
+    "gpuName": "NVIDIA GT 735M",
     "g3dMark": 594
   },
   {
@@ -5044,7 +5104,7 @@ module.exports = [
     "g3dMark": 594
   },
   {
-    "gpuName": "GeForce 8800 GTS 512",
+    "gpuName": "NVIDIA 8800 GTS 512",
     "g3dMark": 591
   },
   {
@@ -5092,7 +5152,7 @@ module.exports = [
     "g3dMark": 582
   },
   {
-    "gpuName": "GeForce GT 550M",
+    "gpuName": "NVIDIA GT 550M",
     "g3dMark": 580
   },
   {
@@ -5104,7 +5164,7 @@ module.exports = [
     "g3dMark": 579
   },
   {
-    "gpuName": "GeForce 910M",
+    "gpuName": "NVIDIA 910M",
     "g3dMark": 578
   },
   {
@@ -5168,7 +5228,7 @@ module.exports = [
     "g3dMark": 571
   },
   {
-    "gpuName": "GeForce GTS 250M",
+    "gpuName": "NVIDIA GTS 250M",
     "g3dMark": 569
   },
   {
@@ -5176,7 +5236,7 @@ module.exports = [
     "g3dMark": 569
   },
   {
-    "gpuName": "GeForce 820A",
+    "gpuName": "NVIDIA 820A",
     "g3dMark": 568
   },
   {
@@ -5188,7 +5248,7 @@ module.exports = [
     "g3dMark": 564
   },
   {
-    "gpuName": "GeForce GT 635M",
+    "gpuName": "NVIDIA GT 635M",
     "g3dMark": 563
   },
   {
@@ -5232,7 +5292,7 @@ module.exports = [
     "g3dMark": 554
   },
   {
-    "gpuName": "GeForce 615",
+    "gpuName": "NVIDIA 615",
     "g3dMark": 552
   },
   {
@@ -5248,7 +5308,7 @@ module.exports = [
     "g3dMark": 550
   },
   {
-    "gpuName": "GeForce GT 630M",
+    "gpuName": "NVIDIA GT 630M",
     "g3dMark": 549
   },
   {
@@ -5296,7 +5356,7 @@ module.exports = [
     "g3dMark": 544
   },
   {
-    "gpuName": "GeForce GT 240",
+    "gpuName": "NVIDIA GT 240",
     "g3dMark": 543
   },
   {
@@ -5312,7 +5372,7 @@ module.exports = [
     "g3dMark": 541
   },
   {
-    "gpuName": "GeForce 9800 GTX+",
+    "gpuName": "NVIDIA 9800 GTX+",
     "g3dMark": 538
   },
   {
@@ -5376,7 +5436,7 @@ module.exports = [
     "g3dMark": 523
   },
   {
-    "gpuName": "GeForce GT 435M",
+    "gpuName": "NVIDIA GT 435M",
     "g3dMark": 521
   },
   {
@@ -5396,7 +5456,7 @@ module.exports = [
     "g3dMark": 520
   },
   {
-    "gpuName": "GeForce 8800 GT",
+    "gpuName": "NVIDIA 8800 GT",
     "g3dMark": 519
   },
   {
@@ -5404,7 +5464,7 @@ module.exports = [
     "g3dMark": 519
   },
   {
-    "gpuName": "GeForce GT 425M",
+    "gpuName": "NVIDIA GT 425M",
     "g3dMark": 517
   },
   {
@@ -5432,7 +5492,7 @@ module.exports = [
     "g3dMark": 512
   },
   {
-    "gpuName": "GeForce 820M",
+    "gpuName": "NVIDIA 820M",
     "g3dMark": 511
   },
   {
@@ -5456,11 +5516,11 @@ module.exports = [
     "g3dMark": 507
   },
   {
-    "gpuName": "GeForce 9600 GT",
+    "gpuName": "NVIDIA 9600 GT",
     "g3dMark": 505
   },
   {
-    "gpuName": "GeForce GTS 150M",
+    "gpuName": "NVIDIA GTS 150M",
     "g3dMark": 504
   },
   {
@@ -5504,11 +5564,11 @@ module.exports = [
     "g3dMark": 495
   },
   {
-    "gpuName": "GeForce GT 540M",
+    "gpuName": "NVIDIA GT 540M",
     "g3dMark": 493
   },
   {
-    "gpuName": "GeForce GT625M",
+    "gpuName": "NVIDIA GT625M",
     "g3dMark": 493
   },
   {
@@ -5544,7 +5604,7 @@ module.exports = [
     "g3dMark": 485
   },
   {
-    "gpuName": "GeForce 9800 GT",
+    "gpuName": "NVIDIA 9800 GT",
     "g3dMark": 481
   },
   {
@@ -5620,11 +5680,11 @@ module.exports = [
     "g3dMark": 469
   },
   {
-    "gpuName": "GeForce 800M",
+    "gpuName": "NVIDIA 800M",
     "g3dMark": 468
   },
   {
-    "gpuName": "GeForce GT 720M",
+    "gpuName": "NVIDIA GT 720M",
     "g3dMark": 467
   },
   {
@@ -5660,19 +5720,19 @@ module.exports = [
     "g3dMark": 463
   },
   {
-    "gpuName": "GeForce 8800M GTX",
+    "gpuName": "NVIDIA 8800M GTX",
     "g3dMark": 462
   },
   {
-    "gpuName": "GeForce 9800M GTX",
+    "gpuName": "NVIDIA 9800M GTX",
     "g3dMark": 462
   },
   {
-    "gpuName": "GeForce 9800M GS",
+    "gpuName": "NVIDIA 9800M GS",
     "g3dMark": 460
   },
   {
-    "gpuName": "GeForce GT 525M",
+    "gpuName": "NVIDIA GT 525M",
     "g3dMark": 460
   },
   {
@@ -5680,7 +5740,7 @@ module.exports = [
     "g3dMark": 460
   },
   {
-    "gpuName": "GeForce 705M",
+    "gpuName": "NVIDIA 705M",
     "g3dMark": 456
   },
   {
@@ -5704,7 +5764,7 @@ module.exports = [
     "g3dMark": 452
   },
   {
-    "gpuName": "GeForce 710A",
+    "gpuName": "NVIDIA 710A",
     "g3dMark": 451
   },
   {
@@ -5720,7 +5780,7 @@ module.exports = [
     "g3dMark": 451
   },
   {
-    "gpuName": "GeForce 710M",
+    "gpuName": "NVIDIA 710M",
     "g3dMark": 450
   },
   {
@@ -5748,11 +5808,11 @@ module.exports = [
     "g3dMark": 445
   },
   {
-    "gpuName": "GeForce GT 320",
+    "gpuName": "NVIDIA GT 320",
     "g3dMark": 444
   },
   {
-    "gpuName": "GeForce GT 710M",
+    "gpuName": "NVIDIA GT 710M",
     "g3dMark": 444
   },
   {
@@ -5764,7 +5824,7 @@ module.exports = [
     "g3dMark": 443
   },
   {
-    "gpuName": "GeForce 8800 GTS",
+    "gpuName": "NVIDIA 8800 GTS",
     "g3dMark": 440
   },
   {
@@ -5776,7 +5836,7 @@ module.exports = [
     "g3dMark": 436
   },
   {
-    "gpuName": "GeForce GT 625M",
+    "gpuName": "NVIDIA GT 625M",
     "g3dMark": 435
   },
   {
@@ -5804,15 +5864,15 @@ module.exports = [
     "g3dMark": 432
   },
   {
-    "gpuName": "GeForce GT 620M",
+    "gpuName": "NVIDIA GT 620M",
     "g3dMark": 431
   },
   {
-    "gpuName": "GeForce 800A",
+    "gpuName": "NVIDIA 800A",
     "g3dMark": 428
   },
   {
-    "gpuName": "GeForce 9800M GT",
+    "gpuName": "NVIDIA 9800M GT",
     "g3dMark": 424
   },
   {
@@ -5832,7 +5892,7 @@ module.exports = [
     "g3dMark": 423
   },
   {
-    "gpuName": "GeForce GT 330",
+    "gpuName": "NVIDIA GT 330",
     "g3dMark": 422
   },
   {
@@ -5844,7 +5904,7 @@ module.exports = [
     "g3dMark": 420
   },
   {
-    "gpuName": "GeForce GT 420M",
+    "gpuName": "NVIDIA GT 420M",
     "g3dMark": 418
   },
   {
@@ -5860,11 +5920,11 @@ module.exports = [
     "g3dMark": 414
   },
   {
-    "gpuName": "GeForce GTX 260M",
+    "gpuName": "NVIDIA GTX 260M",
     "g3dMark": 412
   },
   {
-    "gpuName": "GeForce GT 420",
+    "gpuName": "NVIDIA GT 420",
     "g3dMark": 411
   },
   {
@@ -5872,7 +5932,7 @@ module.exports = [
     "g3dMark": 410
   },
   {
-    "gpuName": "GeForce GTS 350M",
+    "gpuName": "NVIDIA GTS 350M",
     "g3dMark": 408
   },
   {
@@ -5904,7 +5964,7 @@ module.exports = [
     "g3dMark": 403
   },
   {
-    "gpuName": "GeForce 810M",
+    "gpuName": "NVIDIA 810M",
     "g3dMark": 402
   },
   {
@@ -5912,7 +5972,7 @@ module.exports = [
     "g3dMark": 401
   },
   {
-    "gpuName": "GeForce GT 335M",
+    "gpuName": "NVIDIA GT 335M",
     "g3dMark": 400
   },
   {
@@ -5940,7 +6000,7 @@ module.exports = [
     "g3dMark": 389
   },
   {
-    "gpuName": "GeForce 7900 GTX",
+    "gpuName": "NVIDIA 7900 GTX",
     "g3dMark": 388
   },
   {
@@ -5956,11 +6016,11 @@ module.exports = [
     "g3dMark": 383
   },
   {
-    "gpuName": "GeForce 8800M GTS",
+    "gpuName": "NVIDIA 8800M GTS",
     "g3dMark": 382
   },
   {
-    "gpuName": "GeForce 9800M GTS",
+    "gpuName": "NVIDIA 9800M GTS",
     "g3dMark": 379
   },
   {
@@ -5988,7 +6048,7 @@ module.exports = [
     "g3dMark": 370
   },
   {
-    "gpuName": "GeForce GT 610M / GT 620M / GT 710M / GT 720M / GT",
+    "gpuName": "NVIDIA GT 610M / GT 620M / GT 710M / GT 720M / GT",
     "g3dMark": 369
   },
   {
@@ -6008,7 +6068,7 @@ module.exports = [
     "g3dMark": 366
   },
   {
-    "gpuName": "GeForce GT 620",
+    "gpuName": "NVIDIA GT 620",
     "g3dMark": 365
   },
   {
@@ -6040,7 +6100,7 @@ module.exports = [
     "g3dMark": 356
   },
   {
-    "gpuName": "GeForce GT 705",
+    "gpuName": "NVIDIA GT 705",
     "g3dMark": 355
   },
   {
@@ -6060,19 +6120,19 @@ module.exports = [
     "g3dMark": 351
   },
   {
-    "gpuName": "GeForce 9600 GSO",
+    "gpuName": "NVIDIA 9600 GSO",
     "g3dMark": 350
   },
   {
-    "gpuName": "GeForce GT 130",
+    "gpuName": "NVIDIA GT 130",
     "g3dMark": 347
   },
   {
-    "gpuName": "GeForce 9600 GSO 512",
+    "gpuName": "NVIDIA 9600 GSO 512",
     "g3dMark": 345
   },
   {
-    "gpuName": "GeForce 7950 GT",
+    "gpuName": "NVIDIA 7950 GT",
     "g3dMark": 344
   },
   {
@@ -6116,7 +6176,7 @@ module.exports = [
     "g3dMark": 332
   },
   {
-    "gpuName": "GeForce 8800 GS",
+    "gpuName": "NVIDIA 8800 GS",
     "g3dMark": 332
   },
   {
@@ -6136,7 +6196,7 @@ module.exports = [
     "g3dMark": 330
   },
   {
-    "gpuName": "GeForce GT 625",
+    "gpuName": "NVIDIA GT 625",
     "g3dMark": 329
   },
   {
@@ -6152,11 +6212,11 @@ module.exports = [
     "g3dMark": 328
   },
   {
-    "gpuName": "GeForce 9700M GTS",
+    "gpuName": "NVIDIA 9700M GTS",
     "g3dMark": 326
   },
   {
-    "gpuName": "GeForce GT 120 / 9500 GT",
+    "gpuName": "NVIDIA GT 120 / 9500 GT",
     "g3dMark": 325
   },
   {
@@ -6168,11 +6228,11 @@ module.exports = [
     "g3dMark": 324
   },
   {
-    "gpuName": "GeForce GT 230",
+    "gpuName": "NVIDIA GT 230",
     "g3dMark": 322
   },
   {
-    "gpuName": "GeForce 240M GT",
+    "gpuName": "NVIDIA 240M GT",
     "g3dMark": 320
   },
   {
@@ -6216,7 +6276,7 @@ module.exports = [
     "g3dMark": 306
   },
   {
-    "gpuName": "GeForce 605",
+    "gpuName": "NVIDIA 605",
     "g3dMark": 305
   },
   {
@@ -6224,7 +6284,7 @@ module.exports = [
     "g3dMark": 304
   },
   {
-    "gpuName": "GeForce GT 610",
+    "gpuName": "NVIDIA GT 610",
     "g3dMark": 303
   },
   {
@@ -6244,7 +6304,7 @@ module.exports = [
     "g3dMark": 300
   },
   {
-    "gpuName": "GeForce GT 520",
+    "gpuName": "NVIDIA GT 520",
     "g3dMark": 297
   },
   {
@@ -6256,11 +6316,11 @@ module.exports = [
     "g3dMark": 294
   },
   {
-    "gpuName": "GeForce 9600M GT / GeForce GT 220M",
+    "gpuName": "NVIDIA 9600M GT / NVIDIA GT 220M",
     "g3dMark": 293
   },
   {
-    "gpuName": "GeForce GT 520MX",
+    "gpuName": "NVIDIA GT 520MX",
     "g3dMark": 293
   },
   {
@@ -6268,7 +6328,7 @@ module.exports = [
     "g3dMark": 293
   },
   {
-    "gpuName": "GeForce 610M",
+    "gpuName": "NVIDIA 610M",
     "g3dMark": 292
   },
   {
@@ -6280,7 +6340,7 @@ module.exports = [
     "g3dMark": 292
   },
   {
-    "gpuName": "GeForce 7800 GTX",
+    "gpuName": "NVIDIA 7800 GTX",
     "g3dMark": 291
   },
   {
@@ -6288,11 +6348,11 @@ module.exports = [
     "g3dMark": 291
   },
   {
-    "gpuName": "GeForce 7950 Xtreme",
+    "gpuName": "NVIDIA 7950 Xtreme",
     "g3dMark": 288
   },
   {
-    "gpuName": "GeForce GT 520M",
+    "gpuName": "NVIDIA GT 520M",
     "g3dMark": 288
   },
   {
@@ -6300,7 +6360,7 @@ module.exports = [
     "g3dMark": 288
   },
   {
-    "gpuName": "GeForce GT 415M",
+    "gpuName": "NVIDIA GT 415M",
     "g3dMark": 286
   },
   {
@@ -6328,7 +6388,7 @@ module.exports = [
     "g3dMark": 280
   },
   {
-    "gpuName": "GeForce 9600 GS",
+    "gpuName": "NVIDIA 9600 GS",
     "g3dMark": 279
   },
   {
@@ -6340,11 +6400,11 @@ module.exports = [
     "g3dMark": 273
   },
   {
-    "gpuName": "GeForce 9650M GS",
+    "gpuName": "NVIDIA 9650M GS",
     "g3dMark": 270
   },
   {
-    "gpuName": "GeForce Go 7900 GTX",
+    "gpuName": "NVIDIA Go 7900 GTX",
     "g3dMark": 270
   },
   {
@@ -6364,7 +6424,7 @@ module.exports = [
     "g3dMark": 267
   },
   {
-    "gpuName": "GeForce GT 120M",
+    "gpuName": "NVIDIA GT 120M",
     "g3dMark": 266
   },
   {
@@ -6376,7 +6436,7 @@ module.exports = [
     "g3dMark": 265
   },
   {
-    "gpuName": "GeForce Go 7950 GTX",
+    "gpuName": "NVIDIA Go 7950 GTX",
     "g3dMark": 264
   },
   {
@@ -6388,7 +6448,7 @@ module.exports = [
     "g3dMark": 259
   },
   {
-    "gpuName": "GeForce 7900 GT",
+    "gpuName": "NVIDIA 7900 GT",
     "g3dMark": 258
   },
   {
@@ -6396,7 +6456,7 @@ module.exports = [
     "g3dMark": 258
   },
   {
-    "gpuName": "GeForce 510",
+    "gpuName": "NVIDIA 510",
     "g3dMark": 257
   },
   {
@@ -6412,7 +6472,7 @@ module.exports = [
     "g3dMark": 257
   },
   {
-    "gpuName": "GeForce 7900 GS",
+    "gpuName": "NVIDIA 7900 GS",
     "g3dMark": 254
   },
   {
@@ -6428,7 +6488,7 @@ module.exports = [
     "g3dMark": 252
   },
   {
-    "gpuName": "GeForce 410M",
+    "gpuName": "NVIDIA 410M",
     "g3dMark": 250
   },
   {
@@ -6436,7 +6496,7 @@ module.exports = [
     "g3dMark": 250
   },
   {
-    "gpuName": "GeForce GT 415",
+    "gpuName": "NVIDIA GT 415",
     "g3dMark": 248
   },
   {
@@ -6444,11 +6504,11 @@ module.exports = [
     "g3dMark": 247
   },
   {
-    "gpuName": "GeForce 7900 GT/GTO",
+    "gpuName": "NVIDIA 7900 GT/GTO",
     "g3dMark": 247
   },
   {
-    "gpuName": "GeForce 7800 GT",
+    "gpuName": "NVIDIA 7800 GT",
     "g3dMark": 244
   },
   {
@@ -6544,7 +6604,7 @@ module.exports = [
     "g3dMark": 220
   },
   {
-    "gpuName": "GeForce 320M",
+    "gpuName": "NVIDIA 320M",
     "g3dMark": 219
   },
   {
@@ -6564,7 +6624,7 @@ module.exports = [
     "g3dMark": 218
   },
   {
-    "gpuName": "GeForce 9700M GT",
+    "gpuName": "NVIDIA 9700M GT",
     "g3dMark": 217
   },
   {
@@ -6592,7 +6652,7 @@ module.exports = [
     "g3dMark": 212
   },
   {
-    "gpuName": "GeForce GT 220",
+    "gpuName": "NVIDIA GT 220",
     "g3dMark": 211
   },
   {
@@ -6600,15 +6660,15 @@ module.exports = [
     "g3dMark": 211
   },
   {
-    "gpuName": "GeForce Go 7600 GT",
+    "gpuName": "NVIDIA Go 7600 GT",
     "g3dMark": 210
   },
   {
-    "gpuName": "GeForce Go 7800 GTX",
+    "gpuName": "NVIDIA Go 7800 GTX",
     "g3dMark": 210
   },
   {
-    "gpuName": "GeForce GT 330M",
+    "gpuName": "NVIDIA GT 330M",
     "g3dMark": 209
   },
   {
@@ -6632,7 +6692,7 @@ module.exports = [
     "g3dMark": 206
   },
   {
-    "gpuName": "GeForce GT 240M",
+    "gpuName": "NVIDIA GT 240M",
     "g3dMark": 205
   },
   {
@@ -6644,7 +6704,7 @@ module.exports = [
     "g3dMark": 205
   },
   {
-    "gpuName": "GeForce 7600 GT",
+    "gpuName": "NVIDIA 7600 GT",
     "g3dMark": 204
   },
   {
@@ -6652,15 +6712,15 @@ module.exports = [
     "g3dMark": 204
   },
   {
-    "gpuName": "GeForce 7950 GX2",
+    "gpuName": "NVIDIA 7950 GX2",
     "g3dMark": 202
   },
   {
-    "gpuName": "GeForce GT 230M",
+    "gpuName": "NVIDIA GT 230M",
     "g3dMark": 201
   },
   {
-    "gpuName": "GeForce G200",
+    "gpuName": "NVIDIA G200",
     "g3dMark": 200
   },
   {
@@ -6688,7 +6748,7 @@ module.exports = [
     "g3dMark": 196
   },
   {
-    "gpuName": "GeForce 6800 GS",
+    "gpuName": "NVIDIA 6800 GS",
     "g3dMark": 195
   },
   {
@@ -6732,7 +6792,7 @@ module.exports = [
     "g3dMark": 188
   },
   {
-    "gpuName": "GeForce 505",
+    "gpuName": "NVIDIA 505",
     "g3dMark": 187
   },
   {
@@ -6772,15 +6832,15 @@ module.exports = [
     "g3dMark": 179
   },
   {
-    "gpuName": "GeForce 7800 GS",
+    "gpuName": "NVIDIA 7800 GS",
     "g3dMark": 177
   },
   {
-    "gpuName": "GeForce Go 7900 GS",
+    "gpuName": "NVIDIA Go 7900 GS",
     "g3dMark": 176
   },
   {
-    "gpuName": "GeForce GT 120",
+    "gpuName": "NVIDIA GT 120",
     "g3dMark": 175
   },
   {
@@ -6796,11 +6856,11 @@ module.exports = [
     "g3dMark": 173
   },
   {
-    "gpuName": "GeForce 9200",
+    "gpuName": "NVIDIA 9200",
     "g3dMark": 171
   },
   {
-    "gpuName": "GeForce GT 325M",
+    "gpuName": "NVIDIA GT 325M",
     "g3dMark": 171
   },
   {
@@ -6836,23 +6896,23 @@ module.exports = [
     "g3dMark": 163
   },
   {
-    "gpuName": "GeForce 8600 GTS",
+    "gpuName": "NVIDIA 8600 GTS",
     "g3dMark": 161
   },
   {
-    "gpuName": "GeForce 315",
+    "gpuName": "NVIDIA 315",
     "g3dMark": 159
   },
   {
-    "gpuName": "GeForce 7600 GS",
+    "gpuName": "NVIDIA 7600 GS",
     "g3dMark": 158
   },
   {
-    "gpuName": "GeForce 9200M GE",
+    "gpuName": "NVIDIA 9200M GE",
     "g3dMark": 157
   },
   {
-    "gpuName": "GeForce 9500 GS",
+    "gpuName": "NVIDIA 9500 GS",
     "g3dMark": 157
   },
   {
@@ -6872,7 +6932,7 @@ module.exports = [
     "g3dMark": 155
   },
   {
-    "gpuName": "GeForce 8200",
+    "gpuName": "NVIDIA 8200",
     "g3dMark": 153
   },
   {
@@ -6880,7 +6940,7 @@ module.exports = [
     "g3dMark": 152
   },
   {
-    "gpuName": "GeForce 305M",
+    "gpuName": "NVIDIA 305M",
     "g3dMark": 151
   },
   {
@@ -6900,7 +6960,7 @@ module.exports = [
     "g3dMark": 149
   },
   {
-    "gpuName": "GeForce Go 7700",
+    "gpuName": "NVIDIA Go 7700",
     "g3dMark": 148
   },
   {
@@ -6916,7 +6976,7 @@ module.exports = [
     "g3dMark": 147
   },
   {
-    "gpuName": "GeForce G100",
+    "gpuName": "NVIDIA G100",
     "g3dMark": 147
   },
   {
@@ -6924,7 +6984,7 @@ module.exports = [
     "g3dMark": 147
   },
   {
-    "gpuName": "GeForce GT 130M",
+    "gpuName": "NVIDIA GT 130M",
     "g3dMark": 146
   },
   {
@@ -6944,7 +7004,7 @@ module.exports = [
     "g3dMark": 143
   },
   {
-    "gpuName": "GeForce 6800 GT",
+    "gpuName": "NVIDIA 6800 GT",
     "g3dMark": 142
   },
   {
@@ -6980,7 +7040,7 @@ module.exports = [
     "g3dMark": 140
   },
   {
-    "gpuName": "GeForce 6800 Ultra",
+    "gpuName": "NVIDIA 6800 Ultra",
     "g3dMark": 139
   },
   {
@@ -6992,7 +7052,7 @@ module.exports = [
     "g3dMark": 139
   },
   {
-    "gpuName": "GeForce Go 6800 Ultra",
+    "gpuName": "NVIDIA Go 6800 Ultra",
     "g3dMark": 138
   },
   {
@@ -7000,11 +7060,11 @@ module.exports = [
     "g3dMark": 138
   },
   {
-    "gpuName": "GeForce 6600 GT",
+    "gpuName": "NVIDIA 6600 GT",
     "g3dMark": 137
   },
   {
-    "gpuName": "GeForce 9650M GT",
+    "gpuName": "NVIDIA 9650M GT",
     "g3dMark": 137
   },
   {
@@ -7016,11 +7076,11 @@ module.exports = [
     "g3dMark": 136
   },
   {
-    "gpuName": "GeForce 7300 GT",
+    "gpuName": "NVIDIA 7300 GT",
     "g3dMark": 135
   },
   {
-    "gpuName": "GeForce 9500 GT",
+    "gpuName": "NVIDIA 9500 GT",
     "g3dMark": 135
   },
   {
@@ -7044,19 +7104,19 @@ module.exports = [
     "g3dMark": 134
   },
   {
-    "gpuName": "GeForce 7650 GS",
+    "gpuName": "NVIDIA 7650 GS",
     "g3dMark": 134
   },
   {
-    "gpuName": "GeForce 9800 GT 1024MB",
+    "gpuName": "NVIDIA 9800 GT 1024MB",
     "g3dMark": 134
   },
   {
-    "gpuName": "GeForce G102M",
+    "gpuName": "NVIDIA G102M",
     "g3dMark": 134
   },
   {
-    "gpuName": "GeForce 9600M GT",
+    "gpuName": "NVIDIA 9600M GT",
     "g3dMark": 132
   },
   {
@@ -7080,7 +7140,7 @@ module.exports = [
     "g3dMark": 130
   },
   {
-    "gpuName": "GeForce 9300 / nForce 730i",
+    "gpuName": "NVIDIA 9300 / nForce 730i",
     "g3dMark": 129
   },
   {
@@ -7088,15 +7148,15 @@ module.exports = [
     "g3dMark": 128
   },
   {
-    "gpuName": "GeForce 6800 XT",
+    "gpuName": "NVIDIA 6800 XT",
     "g3dMark": 128
   },
   {
-    "gpuName": "GeForce 8400 GS",
+    "gpuName": "NVIDIA 8400 GS",
     "g3dMark": 128
   },
   {
-    "gpuName": "GeForce Go 7600",
+    "gpuName": "NVIDIA Go 7600",
     "g3dMark": 128
   },
   {
@@ -7108,7 +7168,7 @@ module.exports = [
     "g3dMark": 127
   },
   {
-    "gpuName": "GeForce 9300",
+    "gpuName": "NVIDIA 9300",
     "g3dMark": 127
   },
   {
@@ -7116,7 +7176,7 @@ module.exports = [
     "g3dMark": 127
   },
   {
-    "gpuName": "GeForce 205",
+    "gpuName": "NVIDIA 205",
     "g3dMark": 126
   },
   {
@@ -7124,7 +7184,7 @@ module.exports = [
     "g3dMark": 125
   },
   {
-    "gpuName": "GeForce 8700M GT",
+    "gpuName": "NVIDIA 8700M GT",
     "g3dMark": 124
   },
   {
@@ -7160,23 +7220,23 @@ module.exports = [
     "g3dMark": 123
   },
   {
-    "gpuName": "GeForce 310",
+    "gpuName": "NVIDIA 310",
     "g3dMark": 122
   },
   {
-    "gpuName": "GeForce 405",
+    "gpuName": "NVIDIA 405",
     "g3dMark": 122
   },
   {
-    "gpuName": "GeForce 9500M G",
+    "gpuName": "NVIDIA 9500M G",
     "g3dMark": 122
   },
   {
-    "gpuName": "GeForce G210M",
+    "gpuName": "NVIDIA G210M",
     "g3dMark": 122
   },
   {
-    "gpuName": "GeForce GT 220M",
+    "gpuName": "NVIDIA GT 220M",
     "g3dMark": 121
   },
   {
@@ -7196,7 +7256,7 @@ module.exports = [
     "g3dMark": 120
   },
   {
-    "gpuName": "GeForce 9600M GS",
+    "gpuName": "NVIDIA 9600M GS",
     "g3dMark": 119
   },
   {
@@ -7220,7 +7280,7 @@ module.exports = [
     "g3dMark": 117
   },
   {
-    "gpuName": "GeForce 8600 GT",
+    "gpuName": "NVIDIA 8600 GT",
     "g3dMark": 117
   },
   {
@@ -7240,7 +7300,7 @@ module.exports = [
     "g3dMark": 116
   },
   {
-    "gpuName": "GeForce 315M",
+    "gpuName": "NVIDIA 315M",
     "g3dMark": 116
   },
   {
@@ -7252,11 +7312,11 @@ module.exports = [
     "g3dMark": 115
   },
   {
-    "gpuName": "GeForce 8500 GT",
+    "gpuName": "NVIDIA 8500 GT",
     "g3dMark": 115
   },
   {
-    "gpuName": "GeForce Go 7800",
+    "gpuName": "NVIDIA Go 7800",
     "g3dMark": 115
   },
   {
@@ -7288,7 +7348,7 @@ module.exports = [
     "g3dMark": 113
   },
   {
-    "gpuName": "GeForce 6800",
+    "gpuName": "NVIDIA 6800",
     "g3dMark": 113
   },
   {
@@ -7300,7 +7360,7 @@ module.exports = [
     "g3dMark": 113
   },
   {
-    "gpuName": "GeForce 9400",
+    "gpuName": "NVIDIA 9400",
     "g3dMark": 112
   },
   {
@@ -7316,15 +7376,15 @@ module.exports = [
     "g3dMark": 111
   },
   {
-    "gpuName": "GeForce 310M",
+    "gpuName": "NVIDIA 310M",
     "g3dMark": 111
   },
   {
-    "gpuName": "GeForce 9200M GS",
+    "gpuName": "NVIDIA 9200M GS",
     "g3dMark": 111
   },
   {
-    "gpuName": "GeForce 9300 GS",
+    "gpuName": "NVIDIA 9300 GS",
     "g3dMark": 111
   },
   {
@@ -7336,7 +7396,7 @@ module.exports = [
     "g3dMark": 111
   },
   {
-    "gpuName": "GeForce 6800 LE",
+    "gpuName": "NVIDIA 6800 LE",
     "g3dMark": 110
   },
   {
@@ -7364,7 +7424,7 @@ module.exports = [
     "g3dMark": 109
   },
   {
-    "gpuName": "GeForce G105M",
+    "gpuName": "NVIDIA G105M",
     "g3dMark": 108
   },
   {
@@ -7372,7 +7432,7 @@ module.exports = [
     "g3dMark": 108
   },
   {
-    "gpuName": "GeForce GT 320M",
+    "gpuName": "NVIDIA GT 320M",
     "g3dMark": 107
   },
   {
@@ -7380,11 +7440,11 @@ module.exports = [
     "g3dMark": 107
   },
   {
-    "gpuName": "GeForce Go 6800",
+    "gpuName": "NVIDIA Go 6800",
     "g3dMark": 106
   },
   {
-    "gpuName": "GeForce9400M",
+    "gpuName": "NVIDIA9400M",
     "g3dMark": 106
   },
   {
@@ -7392,11 +7452,11 @@ module.exports = [
     "g3dMark": 106
   },
   {
-    "gpuName": "GeForce 9400 GT",
+    "gpuName": "NVIDIA 9400 GT",
     "g3dMark": 105
   },
   {
-    "gpuName": "GeForce 9450",
+    "gpuName": "NVIDIA 9450",
     "g3dMark": 105
   },
   {
@@ -7404,11 +7464,11 @@ module.exports = [
     "g3dMark": 105
   },
   {
-    "gpuName": "GeForce 9500M",
+    "gpuName": "NVIDIA 9500M",
     "g3dMark": 104
   },
   {
-    "gpuName": "GeForce 9500M GS",
+    "gpuName": "NVIDIA 9500M GS",
     "g3dMark": 104
   },
   {
@@ -7424,11 +7484,11 @@ module.exports = [
     "g3dMark": 103
   },
   {
-    "gpuName": "GeForce 6800 GS/XT",
+    "gpuName": "NVIDIA 6800 GS/XT",
     "g3dMark": 103
   },
   {
-    "gpuName": "GeForce G210",
+    "gpuName": "NVIDIA G210",
     "g3dMark": 103
   },
   {
@@ -7440,7 +7500,7 @@ module.exports = [
     "g3dMark": 103
   },
   {
-    "gpuName": "GeForce 8300",
+    "gpuName": "NVIDIA 8300",
     "g3dMark": 102
   },
   {
@@ -7464,11 +7524,11 @@ module.exports = [
     "g3dMark": 99
   },
   {
-    "gpuName": "GeForce 8400M GS",
+    "gpuName": "NVIDIA 8400M GS",
     "g3dMark": 98
   },
   {
-    "gpuName": "GeForce 9300GE",
+    "gpuName": "NVIDIA 9300GE",
     "g3dMark": 98
   },
   {
@@ -7492,7 +7552,7 @@ module.exports = [
     "g3dMark": 98
   },
   {
-    "gpuName": "GeForce 210",
+    "gpuName": "NVIDIA 210",
     "g3dMark": 97
   },
   {
@@ -7508,7 +7568,7 @@ module.exports = [
     "g3dMark": 96
   },
   {
-    "gpuName": "GeForce 6700 XL",
+    "gpuName": "NVIDIA 6700 XL",
     "g3dMark": 95
   },
   {
@@ -7552,15 +7612,15 @@ module.exports = [
     "g3dMark": 93
   },
   {
-    "gpuName": "GeForce 8600 GS",
+    "gpuName": "NVIDIA 8600 GS",
     "g3dMark": 92
   },
   {
-    "gpuName": "GeForce 9300M GS",
+    "gpuName": "NVIDIA 9300M GS",
     "g3dMark": 92
   },
   {
-    "gpuName": "GeForce G205M",
+    "gpuName": "NVIDIA G205M",
     "g3dMark": 92
   },
   {
@@ -7592,19 +7652,19 @@ module.exports = [
     "g3dMark": 90
   },
   {
-    "gpuName": "GeForce 6610 XL",
+    "gpuName": "NVIDIA 6610 XL",
     "g3dMark": 89
   },
   {
-    "gpuName": "GeForce 8600M GT",
+    "gpuName": "NVIDIA 8600M GT",
     "g3dMark": 89
   },
   {
-    "gpuName": "GeForce 6600",
+    "gpuName": "NVIDIA 6600",
     "g3dMark": 88
   },
   {
-    "gpuName": "GeForce 7500 LE",
+    "gpuName": "NVIDIA 7500 LE",
     "g3dMark": 87
   },
   {
@@ -7628,7 +7688,7 @@ module.exports = [
     "g3dMark": 85
   },
   {
-    "gpuName": "GeForce 9300M G",
+    "gpuName": "NVIDIA 9300M G",
     "g3dMark": 85
   },
   {
@@ -7640,11 +7700,11 @@ module.exports = [
     "g3dMark": 84
   },
   {
-    "gpuName": "GeForce 9300 GE",
+    "gpuName": "NVIDIA 9300 GE",
     "g3dMark": 84
   },
   {
-    "gpuName": "GeForce 999 GTX",
+    "gpuName": "NVIDIA 999 GTX",
     "g3dMark": 84
   },
   {
@@ -7668,15 +7728,15 @@ module.exports = [
     "g3dMark": 83
   },
   {
-    "gpuName": "GeForce 7300 GS",
+    "gpuName": "NVIDIA 7300 GS",
     "g3dMark": 82
   },
   {
-    "gpuName": "GeForce 9100",
+    "gpuName": "NVIDIA 9100",
     "g3dMark": 82
   },
   {
-    "gpuName": "GeForce 9300 SE",
+    "gpuName": "NVIDIA 9300 SE",
     "g3dMark": 82
   },
   {
@@ -7700,7 +7760,7 @@ module.exports = [
     "g3dMark": 82
   },
   {
-    "gpuName": "GeForce 8400",
+    "gpuName": "NVIDIA 8400",
     "g3dMark": 81
   },
   {
@@ -7724,11 +7784,11 @@ module.exports = [
     "g3dMark": 80
   },
   {
-    "gpuName": "GeForce 8100 / nForce 720a",
+    "gpuName": "NVIDIA 8100 / nForce 720a",
     "g3dMark": 79
   },
   {
-    "gpuName": "GeForce 7300 LE",
+    "gpuName": "NVIDIA 7300 LE",
     "g3dMark": 78
   },
   {
@@ -7748,7 +7808,7 @@ module.exports = [
     "g3dMark": 76
   },
   {
-    "gpuName": "GeForce 9400M",
+    "gpuName": "NVIDIA 9400M",
     "g3dMark": 75
   },
   {
@@ -7768,7 +7828,7 @@ module.exports = [
     "g3dMark": 74
   },
   {
-    "gpuName": "GeForce 7350 LE",
+    "gpuName": "NVIDIA 7350 LE",
     "g3dMark": 74
   },
   {
@@ -7776,7 +7836,7 @@ module.exports = [
     "g3dMark": 74
   },
   {
-    "gpuName": "GeForce 8600M GS",
+    "gpuName": "NVIDIA 8600M GS",
     "g3dMark": 73
   },
   {
@@ -7800,7 +7860,7 @@ module.exports = [
     "g3dMark": 72
   },
   {
-    "gpuName": "GeForce 8200M G",
+    "gpuName": "NVIDIA 8200M G",
     "g3dMark": 72
   },
   {
@@ -7836,7 +7896,7 @@ module.exports = [
     "g3dMark": 70
   },
   {
-    "gpuName": "GeForce 9100M G",
+    "gpuName": "NVIDIA 9100M G",
     "g3dMark": 70
   },
   {
@@ -7848,7 +7908,7 @@ module.exports = [
     "g3dMark": 69
   },
   {
-    "gpuName": "GeForce Go 6600",
+    "gpuName": "NVIDIA Go 6600",
     "g3dMark": 69
   },
   {
@@ -7864,11 +7924,11 @@ module.exports = [
     "g3dMark": 69
   },
   {
-    "gpuName": "GeForce 8400 SE",
+    "gpuName": "NVIDIA 8400 SE",
     "g3dMark": 68
   },
   {
-    "gpuName": "GeForce 9400M G",
+    "gpuName": "NVIDIA 9400M G",
     "g3dMark": 68
   },
   {
@@ -7888,7 +7948,7 @@ module.exports = [
     "g3dMark": 67
   },
   {
-    "gpuName": "GeForce 8300 GS",
+    "gpuName": "NVIDIA 8300 GS",
     "g3dMark": 67
   },
   {
@@ -7908,7 +7968,7 @@ module.exports = [
     "g3dMark": 66
   },
   {
-    "gpuName": "GeForce Go 7400",
+    "gpuName": "NVIDIA Go 7400",
     "g3dMark": 66
   },
   {
@@ -7916,7 +7976,7 @@ module.exports = [
     "g3dMark": 66
   },
   {
-    "gpuName": "GeForce G 105M",
+    "gpuName": "NVIDIA G 105M",
     "g3dMark": 65
   },
   {
@@ -7924,7 +7984,7 @@ module.exports = [
     "g3dMark": 65
   },
   {
-    "gpuName": "GeForce 8400M GT",
+    "gpuName": "NVIDIA 8400M GT",
     "g3dMark": 64
   },
   {
@@ -7956,7 +8016,7 @@ module.exports = [
     "g3dMark": 62
   },
   {
-    "gpuName": "GeForce G 103M",
+    "gpuName": "NVIDIA G 103M",
     "g3dMark": 61
   },
   {
@@ -7976,15 +8036,15 @@ module.exports = [
     "g3dMark": 59
   },
   {
-    "gpuName": "GeForce 6800 XE",
+    "gpuName": "NVIDIA 6800 XE",
     "g3dMark": 59
   },
   {
-    "gpuName": "GeForce 8400M G",
+    "gpuName": "NVIDIA 8400M G",
     "g3dMark": 59
   },
   {
-    "gpuName": "GeForce FX 5950 Ultra",
+    "gpuName": "NVIDIA FX 5950 Ultra",
     "g3dMark": 59
   },
   {
@@ -8044,11 +8104,11 @@ module.exports = [
     "g3dMark": 53
   },
   {
-    "gpuName": "GeForce 7100 GS",
+    "gpuName": "NVIDIA 7100 GS",
     "g3dMark": 52
   },
   {
-    "gpuName": "GeForce Go 7300",
+    "gpuName": "NVIDIA Go 7300",
     "g3dMark": 52
   },
   {
@@ -8068,11 +8128,11 @@ module.exports = [
     "g3dMark": 51
   },
   {
-    "gpuName": "GeForce 6600 LE",
+    "gpuName": "NVIDIA 6600 LE",
     "g3dMark": 51
   },
   {
-    "gpuName": "GeForce FX Go5700",
+    "gpuName": "NVIDIA FX Go5700",
     "g3dMark": 51
   },
   {
@@ -8096,7 +8156,7 @@ module.exports = [
     "g3dMark": 49
   },
   {
-    "gpuName": "GeForce 7300 SE/7200 GS",
+    "gpuName": "NVIDIA 7300 SE/7200 GS",
     "g3dMark": 49
   },
   {
@@ -8144,7 +8204,7 @@ module.exports = [
     "g3dMark": 46
   },
   {
-    "gpuName": "GeForce 6200 TurboCache",
+    "gpuName": "NVIDIA 6200 TurboCache",
     "g3dMark": 46
   },
   {
@@ -8152,11 +8212,11 @@ module.exports = [
     "g3dMark": 46
   },
   {
-    "gpuName": "GeForce Go 6600 TE/6200 TE",
+    "gpuName": "NVIDIA Go 6600 TE/6200 TE",
     "g3dMark": 45
   },
   {
-    "gpuName": "GeForce Go 7200",
+    "gpuName": "NVIDIA Go 7200",
     "g3dMark": 45
   },
   {
@@ -8212,11 +8272,11 @@ module.exports = [
     "g3dMark": 42
   },
   {
-    "gpuName": "GeForce FX 5700",
+    "gpuName": "NVIDIA FX 5700",
     "g3dMark": 41
   },
   {
-    "gpuName": "GeForce FX 5900 Ultra",
+    "gpuName": "NVIDIA FX 5900 Ultra",
     "g3dMark": 41
   },
   {
@@ -8232,7 +8292,7 @@ module.exports = [
     "g3dMark": 41
   },
   {
-    "gpuName": "GeForce FX 5900XT",
+    "gpuName": "NVIDIA FX 5900XT",
     "g3dMark": 40
   },
   {
@@ -8256,11 +8316,11 @@ module.exports = [
     "g3dMark": 40
   },
   {
-    "gpuName": "GeForce 7050 / nForce 620i",
+    "gpuName": "NVIDIA 7050 / nForce 620i",
     "g3dMark": 39
   },
   {
-    "gpuName": "GeForce 7300 SE",
+    "gpuName": "NVIDIA 7300 SE",
     "g3dMark": 39
   },
   {
@@ -8284,11 +8344,11 @@ module.exports = [
     "g3dMark": 38
   },
   {
-    "gpuName": "GeForce 6500",
+    "gpuName": "NVIDIA 6500",
     "g3dMark": 38
   },
   {
-    "gpuName": "GeForce 7050 / nForce 630i",
+    "gpuName": "NVIDIA 7050 / nForce 630i",
     "g3dMark": 38
   },
   {
@@ -8304,7 +8364,7 @@ module.exports = [
     "g3dMark": 38
   },
   {
-    "gpuName": "GeForce 6200SE TurboCache",
+    "gpuName": "NVIDIA 6200SE TurboCache",
     "g3dMark": 37
   },
   {
@@ -8340,19 +8400,19 @@ module.exports = [
     "g3dMark": 36
   },
   {
-    "gpuName": "GeForce 6200",
+    "gpuName": "NVIDIA 6200",
     "g3dMark": 35
   },
   {
-    "gpuName": "GeForce 7100 / nForce 630i",
+    "gpuName": "NVIDIA 7100 / nForce 630i",
     "g3dMark": 35
   },
   {
-    "gpuName": "GeForce FX 5900",
+    "gpuName": "NVIDIA FX 5900",
     "g3dMark": 35
   },
   {
-    "gpuName": "GeForce PCX 5750",
+    "gpuName": "NVIDIA PCX 5750",
     "g3dMark": 35
   },
   {
@@ -8364,15 +8424,15 @@ module.exports = [
     "g3dMark": 35
   },
   {
-    "gpuName": "GeForce 7025 / nForce 630a",
+    "gpuName": "NVIDIA 7025 / nForce 630a",
     "g3dMark": 34
   },
   {
-    "gpuName": "GeForce FX 5700 Ultra",
+    "gpuName": "NVIDIA FX 5700 Ultra",
     "g3dMark": 34
   },
   {
-    "gpuName": "GeForce PCX 5900",
+    "gpuName": "NVIDIA PCX 5900",
     "g3dMark": 34
   },
   {
@@ -8396,19 +8456,19 @@ module.exports = [
     "g3dMark": 34
   },
   {
-    "gpuName": "GeForce 6150 LE",
+    "gpuName": "NVIDIA 6150 LE",
     "g3dMark": 33
   },
   {
-    "gpuName": "GeForce 7150 / nForce 630i",
+    "gpuName": "NVIDIA 7150 / nForce 630i",
     "g3dMark": 33
   },
   {
-    "gpuName": "GeForce FX 5700VE",
+    "gpuName": "NVIDIA FX 5700VE",
     "g3dMark": 33
   },
   {
-    "gpuName": "GeForce FX 5900ZT",
+    "gpuName": "NVIDIA FX 5900ZT",
     "g3dMark": 33
   },
   {
@@ -8428,7 +8488,7 @@ module.exports = [
     "g3dMark": 33
   },
   {
-    "gpuName": "GeForce 6200 A-LE",
+    "gpuName": "NVIDIA 6200 A-LE",
     "g3dMark": 32
   },
   {
@@ -8444,11 +8504,11 @@ module.exports = [
     "g3dMark": 31
   },
   {
-    "gpuName": "GeForce 6200 LE",
+    "gpuName": "NVIDIA 6200 LE",
     "g3dMark": 31
   },
   {
-    "gpuName": "GeForce 7050 PV / nForce 630a",
+    "gpuName": "NVIDIA 7050 PV / nForce 630a",
     "g3dMark": 31
   },
   {
@@ -8464,7 +8524,7 @@ module.exports = [
     "g3dMark": 30
   },
   {
-    "gpuName": "GeForce 6150SE nForce 430",
+    "gpuName": "NVIDIA 6150SE nForce 430",
     "g3dMark": 30
   },
   {
@@ -8488,7 +8548,7 @@ module.exports = [
     "g3dMark": 29
   },
   {
-    "gpuName": "GeForce 6100",
+    "gpuName": "NVIDIA 6100",
     "g3dMark": 27
   },
   {
@@ -8516,7 +8576,7 @@ module.exports = [
     "g3dMark": 27
   },
   {
-    "gpuName": "GeForce 7100 / nForce 620i",
+    "gpuName": "NVIDIA 7100 / nForce 620i",
     "g3dMark": 26
   },
   {
@@ -8532,23 +8592,23 @@ module.exports = [
     "g3dMark": 26
   },
   {
-    "gpuName": "GeForce 6100 nForce 400",
+    "gpuName": "NVIDIA 6100 nForce 400",
     "g3dMark": 25
   },
   {
-    "gpuName": "GeForce 6100 nForce 405",
+    "gpuName": "NVIDIA 6100 nForce 405",
     "g3dMark": 25
   },
   {
-    "gpuName": "GeForce 6100 nForce 420",
+    "gpuName": "NVIDIA 6100 nForce 420",
     "g3dMark": 25
   },
   {
-    "gpuName": "GeForce 6150SE",
+    "gpuName": "NVIDIA 6150SE",
     "g3dMark": 25
   },
   {
-    "gpuName": "GeForce FX 5700LE",
+    "gpuName": "NVIDIA FX 5700LE",
     "g3dMark": 25
   },
   {
@@ -8564,11 +8624,11 @@ module.exports = [
     "g3dMark": 25
   },
   {
-    "gpuName": "GeForce 7050 / nForce 610i",
+    "gpuName": "NVIDIA 7050 / nForce 610i",
     "g3dMark": 24
   },
   {
-    "gpuName": "GeForce Go 6400",
+    "gpuName": "NVIDIA Go 6400",
     "g3dMark": 24
   },
   {
@@ -8588,11 +8648,11 @@ module.exports = [
     "g3dMark": 23
   },
   {
-    "gpuName": "GeForce 6100 nForce 430",
+    "gpuName": "NVIDIA 6100 nForce 430",
     "g3dMark": 23
   },
   {
-    "gpuName": "GeForce 7200 GS",
+    "gpuName": "NVIDIA 7200 GS",
     "g3dMark": 23
   },
   {
@@ -8612,11 +8672,11 @@ module.exports = [
     "g3dMark": 22
   },
   {
-    "gpuName": "GeForce 6150",
+    "gpuName": "NVIDIA 6150",
     "g3dMark": 22
   },
   {
-    "gpuName": "Quadro NVS 210S / GeForce 6150LE",
+    "gpuName": "Quadro NVS 210S / NVIDIA 6150LE",
     "g3dMark": 21
   },
   {
@@ -8628,7 +8688,7 @@ module.exports = [
     "g3dMark": 20
   },
   {
-    "gpuName": "GeForce Go 6150",
+    "gpuName": "NVIDIA Go 6150",
     "g3dMark": 19
   },
   {
@@ -8636,15 +8696,15 @@ module.exports = [
     "g3dMark": 19
   },
   {
-    "gpuName": "GeForce 7150M / nForce 630M",
+    "gpuName": "NVIDIA 7150M / nForce 630M",
     "g3dMark": 18
   },
   {
-    "gpuName": "GeForce FX Go 5600",
+    "gpuName": "NVIDIA FX Go 5600",
     "g3dMark": 18
   },
   {
-    "gpuName": "GeForce Go 6100",
+    "gpuName": "NVIDIA Go 6100",
     "g3dMark": 18
   },
   {
@@ -8668,11 +8728,11 @@ module.exports = [
     "g3dMark": 18
   },
   {
-    "gpuName": "GeForce FX 5600 Ultra",
+    "gpuName": "NVIDIA FX 5600 Ultra",
     "g3dMark": 17
   },
   {
-    "gpuName": "GeForce FX Go5650",
+    "gpuName": "NVIDIA FX Go5650",
     "g3dMark": 17
   },
   {
@@ -8680,7 +8740,7 @@ module.exports = [
     "g3dMark": 16
   },
   {
-    "gpuName": "GeForce Go 6200",
+    "gpuName": "NVIDIA Go 6200",
     "g3dMark": 15
   },
   {
@@ -8700,27 +8760,27 @@ module.exports = [
     "g3dMark": 14
   },
   {
-    "gpuName": "GeForce 7000M",
+    "gpuName": "NVIDIA 7000M",
     "g3dMark": 13
   },
   {
-    "gpuName": "GeForce 7000M / nForce 610M",
+    "gpuName": "NVIDIA 7000M / nForce 610M",
     "g3dMark": 13
   },
   {
-    "gpuName": "GeForce FX 5600",
+    "gpuName": "NVIDIA FX 5600",
     "g3dMark": 13
   },
   {
-    "gpuName": "GeForce FX Go5300",
+    "gpuName": "NVIDIA FX Go5300",
     "g3dMark": 13
   },
   {
-    "gpuName": "GeForce FX 5200 Ultra",
+    "gpuName": "NVIDIA FX 5200 Ultra",
     "g3dMark": 12
   },
   {
-    "gpuName": "GeForce FX 5200SE",
+    "gpuName": "NVIDIA FX 5200SE",
     "g3dMark": 12
   },
   {
@@ -8756,7 +8816,7 @@ module.exports = [
     "g3dMark": 9
   },
   {
-    "gpuName": "GeForce FX 5600XT",
+    "gpuName": "NVIDIA FX 5600XT",
     "g3dMark": 9
   },
   {
@@ -8772,19 +8832,19 @@ module.exports = [
     "g3dMark": 8
   },
   {
-    "gpuName": "GeForce FX 5100",
+    "gpuName": "NVIDIA FX 5100",
     "g3dMark": 8
   },
   {
-    "gpuName": "GeForce FX 5200",
+    "gpuName": "NVIDIA FX 5200",
     "g3dMark": 8
   },
   {
-    "gpuName": "GeForce FX 5500",
+    "gpuName": "NVIDIA FX 5500",
     "g3dMark": 8
   },
   {
-    "gpuName": "GeForce FX Go 5200",
+    "gpuName": "NVIDIA FX Go 5200",
     "g3dMark": 8
   },
   {
@@ -8816,19 +8876,19 @@ module.exports = [
     "g3dMark": 7
   },
   {
-    "gpuName": "GeForce FX 5200LE",
+    "gpuName": "NVIDIA FX 5200LE",
     "g3dMark": 7
   },
   {
-    "gpuName": "GeForce4 MX Integrated GPU",
+    "gpuName": "NVIDIA4 MX Integrated GPU",
     "g3dMark": 7
   },
   {
-    "gpuName": "GeForce4 Ti 4400",
+    "gpuName": "NVIDIA4 Ti 4400",
     "g3dMark": 7
   },
   {
-    "gpuName": "GeForce4 Ti 4800 SE",
+    "gpuName": "NVIDIA4 Ti 4800 SE",
     "g3dMark": 7
   },
   {
@@ -8852,7 +8912,7 @@ module.exports = [
     "g3dMark": 7
   },
   {
-    "gpuName": "64MB DDR GeForce3 Ti 200",
+    "gpuName": "64MB DDR NVIDIA3 Ti 200",
     "g3dMark": 6
   },
   {
@@ -8860,31 +8920,31 @@ module.exports = [
     "g3dMark": 6
   },
   {
-    "gpuName": "GeForce PCX 5300",
+    "gpuName": "NVIDIA PCX 5300",
     "g3dMark": 6
   },
   {
-    "gpuName": "GeForce2 Ultra",
+    "gpuName": "NVIDIA2 Ultra",
     "g3dMark": 6
   },
   {
-    "gpuName": "GeForce4 440 Go 64M",
+    "gpuName": "NVIDIA4 440 Go 64M",
     "g3dMark": 6
   },
   {
-    "gpuName": "GeForce4 448 Go",
+    "gpuName": "NVIDIA4 448 Go",
     "g3dMark": 6
   },
   {
-    "gpuName": "GeForce4 Ti 4200",
+    "gpuName": "NVIDIA4 Ti 4200",
     "g3dMark": 6
   },
   {
-    "gpuName": "GeForce4 Ti 4600",
+    "gpuName": "NVIDIA4 Ti 4600",
     "g3dMark": 6
   },
   {
-    "gpuName": "GeForce4 Ti 4800",
+    "gpuName": "NVIDIA4 Ti 4800",
     "g3dMark": 6
   },
   {
@@ -8940,47 +9000,47 @@ module.exports = [
     "g3dMark": 5
   },
   {
-    "gpuName": "GeForce 256",
+    "gpuName": "NVIDIA 256",
     "g3dMark": 5
   },
   {
-    "gpuName": "GeForce2 MX with DVI-D and TV-out",
+    "gpuName": "NVIDIA2 MX with DVI-D and TV-out",
     "g3dMark": 5
   },
   {
-    "gpuName": "GeForce2 Ti",
+    "gpuName": "NVIDIA2 Ti",
     "g3dMark": 5
   },
   {
-    "gpuName": "GeForce3",
+    "gpuName": "NVIDIA3",
     "g3dMark": 5
   },
   {
-    "gpuName": "GeForce4 420 Go 32M",
+    "gpuName": "NVIDIA4 420 Go 32M",
     "g3dMark": 5
   },
   {
-    "gpuName": "GeForce4 440",
+    "gpuName": "NVIDIA4 440",
     "g3dMark": 5
   },
   {
-    "gpuName": "GeForce4 MX 4000",
+    "gpuName": "NVIDIA4 MX 4000",
     "g3dMark": 5
   },
   {
-    "gpuName": "GeForce4 MX 420",
+    "gpuName": "NVIDIA4 MX 420",
     "g3dMark": 5
   },
   {
-    "gpuName": "GeForce4 MX 440",
+    "gpuName": "NVIDIA4 MX 440",
     "g3dMark": 5
   },
   {
-    "gpuName": "GeForce4 MX 440 with AGP8X",
+    "gpuName": "NVIDIA4 MX 440 with AGP8X",
     "g3dMark": 5
   },
   {
-    "gpuName": "GeForce4 MX 440SE",
+    "gpuName": "NVIDIA4 MX 440SE",
     "g3dMark": 5
   },
   {
@@ -9064,39 +9124,39 @@ module.exports = [
     "g3dMark": 4
   },
   {
-    "gpuName": "GeForce 6200A",
+    "gpuName": "NVIDIA 6200A",
     "g3dMark": 4
   },
   {
-    "gpuName": "GeForce2 Go",
+    "gpuName": "NVIDIA2 Go",
     "g3dMark": 4
   },
   {
-    "gpuName": "GeForce2 GTS/GeForce2 Pro",
+    "gpuName": "NVIDIA2 GTS/NVIDIA2 Pro",
     "g3dMark": 4
   },
   {
-    "gpuName": "GeForce2 Integrated GPU",
+    "gpuName": "NVIDIA2 Integrated GPU",
     "g3dMark": 4
   },
   {
-    "gpuName": "GeForce2 MX/MX 400",
+    "gpuName": "NVIDIA2 MX/MX 400",
     "g3dMark": 4
   },
   {
-    "gpuName": "GeForce3 Ti 200",
+    "gpuName": "NVIDIA3 Ti 200",
     "g3dMark": 4
   },
   {
-    "gpuName": "GeForce4 4200 Go",
+    "gpuName": "NVIDIA4 4200 Go",
     "g3dMark": 4
   },
   {
-    "gpuName": "GeForce4 440 Go",
+    "gpuName": "NVIDIA4 440 Go",
     "g3dMark": 4
   },
   {
-    "gpuName": "GeForce4 MX 460",
+    "gpuName": "NVIDIA4 MX 460",
     "g3dMark": 4
   },
   {
@@ -9164,7 +9224,7 @@ module.exports = [
     "g3dMark": 4
   },
   {
-    "gpuName": "64MB GeForce2 MX with TV Out",
+    "gpuName": "64MB NVIDIA2 MX with TV Out",
     "g3dMark": 3
   },
   {
@@ -9172,19 +9232,19 @@ module.exports = [
     "g3dMark": 3
   },
   {
-    "gpuName": "GeForce2 MX",
+    "gpuName": "NVIDIA2 MX",
     "g3dMark": 3
   },
   {
-    "gpuName": "GeForce2 MX 100/200",
+    "gpuName": "NVIDIA2 MX 100/200",
     "g3dMark": 3
   },
   {
-    "gpuName": "GeForce3 Ti 500",
+    "gpuName": "NVIDIA3 Ti 500",
     "g3dMark": 3
   },
   {
-    "gpuName": "GeForce4 420 Go",
+    "gpuName": "NVIDIA4 420 Go",
     "g3dMark": 3
   },
   {

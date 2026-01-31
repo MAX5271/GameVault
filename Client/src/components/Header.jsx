@@ -5,7 +5,7 @@ import styles from "./Header.module.css";
 
 function Header({ title }) {
   const navigate = useNavigate();
-  const { user } = useContext(DataContext);
+  const { user,setSearch } = useContext(DataContext);
 
   const handleProfileClick = () => {
     if (user?.accessToken) {
@@ -17,7 +17,7 @@ function Header({ title }) {
 
   return (
     <header className={styles.header}>
-      <h1 className={styles.title} onClick={() => navigate('/')}>
+      <h1 className={styles.title} onClick={() => {setSearch("");navigate('/');}}>
         {title}
       </h1>
 

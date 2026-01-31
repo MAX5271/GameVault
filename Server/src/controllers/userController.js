@@ -1,4 +1,5 @@
 const userService = require('../services/userService');
+const specsRepository = require("../repository/specsRepository");
 
 const createUser = async (req,res)=>{
     try {
@@ -205,6 +206,40 @@ const getPcSpecs = async (req,res) => {
     }
 }
 
+const searchCpu = (req,res) => {
+    try {
+        const cpuArray = specsRepository.searchCpu(req.body.cpu);
+        return res.status(200).json({
+            "message":"Data Fetched successfully",
+            "response": cpuArray,
+            "success": true
+        });
+    } catch (error) {
+        console.log(error.message);
+        return res.status(404).json({
+            "message": error.message,
+            "success": false
+        });
+    }
+}
+
+const searchGpu = (req,res) => {
+    try {
+        const gpuArray = specsRepository.searchGpu(req.body.gpu);
+        return res.status(200).json({
+            "message":"Data Fetched successfully",
+            "response": gpuArray,
+            "success": true
+        });
+    } catch (error) {
+        console.log(error.message);
+        return res.status(404).json({
+            "message": error.message,
+            "success": false
+        });
+    }
+}
+
 module.exports = {
     getUser,
     createUser,
@@ -216,5 +251,7 @@ module.exports = {
     updateStatus,
     removeGame,
     setPcSpecs,
-    getPcSpecs
+    getPcSpecs,
+    searchCpu,
+    searchGpu
 }

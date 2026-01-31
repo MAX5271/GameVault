@@ -25,6 +25,14 @@
   justify-content: center;
 }
 
+.contentBody {
+  padding: 0 50px 50px 50px;
+  margin-top: -80px;
+  position: relative;
+  z-index: 2;
+}
+
+
 .heroSection {
   position: relative;
   width: 100%;
@@ -49,12 +57,6 @@
   background: linear-gradient(to bottom, transparent 0%, rgba(21, 21, 21, 0.5) 100%);
 }
 
-.contentBody {
-  padding: 0 50px 50px 50px;
-  margin-top: -80px;
-  position: relative;
-  z-index: 2;
-}
 
 .headerRow {
   display: flex;
@@ -87,6 +89,47 @@
   height: fit-content;
   box-shadow: 0 0 15px rgba(102, 204, 51, 0.3);
 }
+
+
+.statusDropdown {
+  padding: 0.8rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  color: #e0e0e0;
+  font-family: inherit;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  outline: none;
+  min-width: 180px;
+  backdrop-filter: blur(5px);
+}
+
+.statusDropdown:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-color: #777;
+}
+
+.statusDropdown option {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 12px;
+}
+
+.statusActive {
+  background-color: #646cff;
+  border-color: #646cff;
+  color: white;
+  box-shadow: 0 0 20px rgba(100, 108, 255, 0.4);
+}
+
+.statusActive:hover {
+  background-color: #535bf2;
+  border-color: #535bf2;
+}
+
 
 .metaSection {
   display: flex;
@@ -128,6 +171,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+
 .descriptionSection h3 {
   font-size: 1.8rem;
   margin-bottom: 20px;
@@ -140,43 +184,69 @@
   font-size: 1.1rem;
 }
 
-.statusDropdown {
-  padding: 0.8rem 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  cursor: pointer;
-  font-weight: 700;
-  transition: all 0.2s ease;
-  color: #e0e0e0;
-  font-family: inherit;
+.requirementsSection {
+  margin-top: 50px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 40px;
+}
+
+.requirementsSection h3 {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.reqGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.reqColumn h4 {
+  margin-bottom: 1rem;
+  color: #aaa;
   font-size: 1rem;
-  background-color: rgba(0, 0, 0, 0.6);
-  outline: none;
-  min-width: 180px;
-  backdrop-filter: blur(5px);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.statusDropdown:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-  border-color: #777;
+.specItem {
+  background-color: rgba(255, 255, 255, 0.03);
+  margin-bottom: 10px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border-left: 4px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
 }
 
-.statusDropdown option {
-  background-color: #1a1a1a;
-  color: white;
-  padding: 12px;
+.specItem strong {
+  display: block;
+  font-size: 0.75rem;
+  color: #888;
+  margin-bottom: 4px;
+  text-transform: uppercase;
 }
 
-.statusActive {
-  background-color: #646cff;
-  border-color: #646cff;
-  color: white;
-  box-shadow: 0 0 20px rgba(100, 108, 255, 0.4);
+.specItem span {
+  font-size: 0.95rem;
+  color: #eee;
+  line-height: 1.4;
 }
 
-.statusActive:hover {
-  background-color: #535bf2;
-  border-color: #535bf2;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px); 
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.fadeInAnimation {
+  animation: fadeIn 1s ease-out forwards;
 }
 
 @media (max-width: 768px) {
@@ -203,5 +273,10 @@
   
   .contentBody {
     padding: 30px 20px;
+  }
+
+  .reqGrid {
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
 }
