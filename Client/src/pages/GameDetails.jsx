@@ -227,7 +227,7 @@ function GameDetails({ id, onLoaded }) {
           <p onClick={handleShowMore} style={{ cursor: gameData.description_raw?.length > 500 ? 'pointer' : 'default' }}>
             {gameData.description_raw?.length > 500
               ? !showMore
-                ? `${gameData.description_raw.slice(0, 500)}...`
+                ? `${gameData.description_raw.slice(0, 500)}...show more`
                 : gameData.description_raw
               : gameData.description_raw}
           </p>

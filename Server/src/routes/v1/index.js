@@ -15,10 +15,13 @@ router.post('/user/removeGame',verifyJWT,userController.removeGame);
 router.post('/user/setSpecs',verifyJWT,userController.setPcSpecs);
 router.post('/user/searchCpu',userController.searchCpu);
 router.post('/user/searchGpu',userController.searchGpu);
+router.post('/user/addReview',verifyJWT,userController.addReview);
+router.post('/user/updateReview',verifyJWT,userController.updateReview);
 
 router.get('/user/getSpecs',verifyJWT,userController.getPcSpecs);
-router.get('/user/:username',verifyJWT,userController.getUser);
 router.get('/user/games',verifyJWT,userController.getUserGames);
+router.get('/user/review',verifyJWT,userController.getReview);
+router.get('/user/:username',verifyJWT,userController.getUser);
 
 router.patch('/user',verifyJWT,userController.updateUserPassword);
 router.delete('/user',verifyJWT,userController.deleteUser);

@@ -240,6 +240,61 @@ const searchGpu = (req,res) => {
     }
 }
 
+const addReview = async (req,res) => {
+    try {
+        const username = req.user;
+        const result = await userService.addReview(username,req.body.gameId,req.body.rating);
+        return res.status(200).json({
+            "message":"Review added successfully",
+            "response": result,
+            "success": true
+        });
+    } catch (error) {
+        console.log(error.message);
+        return res.status(404).json({
+            "message": error.message,
+            "success": false
+        });
+    }
+}
+
+const updateReview = async (req,res) => {
+    try {
+        const username = req.user;
+        const result = await userService.updateReview(username,req.body.gameId,req.body.rating);
+        return res.status(200).json({
+            "message":"Review updated successfully",
+            "response": result,
+            "success": true
+        });
+    } catch (error) {
+        console.log(error.message);
+        return res.status(404).json({
+            "message": error.message,
+            "success": false
+        });
+    }
+}
+
+const getReview = async (req,res) => {
+    try {
+        const username = req.user;
+        const {gameId} = req.query;
+        const result = await userService.getReview(username,gameId);
+        return res.status(200).json({
+            "message":"Review fetched successfully",
+            "response": result,
+            "success": true
+        });
+    } catch (error) {
+        console.log(error.message);
+        return res.status(404).json({
+            "message": error.message,
+            "success": false
+        });
+    }
+}
+
 module.exports = {
     getUser,
     createUser,
@@ -253,5 +308,8 @@ module.exports = {
     setPcSpecs,
     getPcSpecs,
     searchCpu,
-    searchGpu
+    searchGpu,
+    addReview,
+    updateReview,
+    getReview
 }

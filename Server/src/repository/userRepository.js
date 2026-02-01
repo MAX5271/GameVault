@@ -61,6 +61,49 @@ const addStatus = async (username, gameId, status = "WANT_TO_PLAY") => {
   return { gameId, status };
 };
 
+const addReview = async (username,gameId,rating=0) => {
+  const exists = await User.findOne({username, "reviews.gameId":gameId});
+
+  if(exists){
+    throw new Error("Game already has a review");
+  }
+
+  const result = await User.updateOne({username},{
+    $push: {
+      reviews: {
+        gameId:gameId,
+        rating: rating
+      }
+    }
+  });
+
+  if(result.matchedCount === 0 ) throw new Error("User not found");
+
+  return {gameId,rating};
+}
+
+const updateReview = async (username, gameId, rating) =>{
+  const result = User.updateOne({username, "reviews.gameId": gameId},{
+    $set: {
+      "reviews.$.rating": rating
+    }
+  });
+  if (result.matchedCount === 0) {
+    throw new Error("User or game not found");
+  }
+
+  return { gameId, rating };
+
+}
+
+const getReview = async (username,gameId) => {
+  const user = await User.findOne({username}).exec();
+  if(!user) throw new Error("User not found");
+  const review = user.reviews.find((g) => g.gameId === gameId);
+  if(!review) throw new Error("Review not found");
+  return review;
+}
+
 const getStatus = async (username, gameId) => {
   const user = await User.findOne({ username }).exec();
   if (!user) throw new Error("User not found");
@@ -159,5 +202,8 @@ module.exports = {
   getUserGames,
   removeGame,
   setPcSpecs,
-  getPcSpecs
+  getPcSpecs,
+  addReview,
+  updateReview,
+  getReview
 };

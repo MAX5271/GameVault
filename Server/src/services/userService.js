@@ -59,6 +59,21 @@ const getPcSpecs = async (username) => {
   return res;
 }
 
+const addReview = async (username,gameId,rating) => {
+  const res = await userRepository.addReview(username,gameId,rating);
+  return res;
+}
+
+const updateReview = async (username,gameId,rating) => {
+  const res = await userRepository.updateReview(username,gameId,rating);
+  return res;
+}
+
+const getReview = async (username,gameId) => {
+  const res = await userRepository.getReview(username,gameId);
+  return res;
+}
+
 module.exports = {
   createUser,
   updateUserPassword,
@@ -70,5 +85,8 @@ module.exports = {
   getUserGames,
   removeGame,
   setPcSpecs,
-  getPcSpecs
+  getPcSpecs,
+  addReview,
+  updateReview,
+  getReview
 };
