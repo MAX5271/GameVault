@@ -12,6 +12,7 @@ function GameDetails({ id, onLoaded }) {
   const [currentStatus, setCurrentStatus] = useState(""); 
   const [loadingStatus, setLoadingStatus] = useState(true);
   const [requirements, setRequirements] = useState({});
+  const [review,setReview] =useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,6 +40,33 @@ function GameDetails({ id, onLoaded }) {
     fetchGame();
     return () => controller.abort();
   }, [id, onLoaded]);
+
+  useEffect(()=>{
+    if (!user || !id) return;
+
+    const controller = new AbortController();
+    const fetchReview = async () => {
+      try {
+        const response = await axios.get('/api/v1/user/review',{
+          params: {gameId:id},
+          headers:{
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.accessToken}`
+          },
+          withCredentials: true,
+          signal: controller.signal
+        });
+
+        console.log(response);
+        setReview(response.data.response);
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+
+    fetchReview();
+    return  ()=>controller.abort();
+  },[]);
 
   useEffect(() => {
     if (!user || !id) return;
