@@ -3,6 +3,24 @@ import styles from "./Register.module.css";
 import axios from "../api/axios";
 import { Link, useNavigate } from "react-router-dom";
 import DataContext from "../context/DataContext";
+import { motion } from "framer-motion";
+
+const loginVariants = {
+  hidden:{
+    opacity:0,
+    scale:0.6
+  },
+  visible:{
+    opacity:1,
+    scale:1,
+    transition:{
+      type:"spring",
+      duration:0.1,
+      stiffness:300,
+      damping:15
+    }
+  }
+}
 
 function Login() {
   const { setUser } = useContext(DataContext);
@@ -58,7 +76,7 @@ function Login() {
 
   return (
     <div className={styles.registerPage}>
-      <form onSubmit={handleSubmit} className={styles.container}>
+      <motion.form variants={loginVariants} initial="hidden" animate="visible" onSubmit={handleSubmit} className={styles.container}>
         {err ? <p className={styles.errorMessage}>{err}</p> : null}
         <h1 className={styles.title}>Login</h1>
         
@@ -125,7 +143,7 @@ function Login() {
             </p>
           </>
         )}
-      </form>
+      </motion.form>
     </div>
   );
 }

@@ -2,9 +2,27 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./Register.module.css";
 import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
+import {motion} from "framer-motion"
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{2,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+
+const registerVariants = {
+  hidden:{
+    opacity:0,
+    scale:0.6
+  },
+  visible:{
+    opacity:1,
+    scale:1,
+    transition:{
+      type:"spring",
+      duration:0.1,
+      stiffness:300,
+      damping:15
+    }
+  }
+}
 
 function Register() {
   const userRef = useRef();
@@ -72,7 +90,7 @@ function Register() {
 
   return (
     <div className={styles.registerPage}>
-      <form onSubmit={handleSubmit} className={styles.container}>
+      <motion.form variants={registerVariants} initial="hidden" animate="visible" onSubmit={handleSubmit} className={styles.container}>
         {err ? <p className={styles.errorMessage}>{err}</p> : null}
         <h1 className={styles.title}>Register</h1>
         <>
@@ -183,7 +201,7 @@ function Register() {
             </>
           )}
         </>
-      </form>
+      </motion.form>
     </div>
   );
 }

@@ -1,19 +1,48 @@
 import axios from "../api/axios";
-import { useContext, useEffect, useState } from "react";
+import {  useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DataContext from "../context/DataContext";
 import styles from "./GameDetails.module.css";
+import { motion } from "framer-motion";
+import debounce from 'lodash.debounce';
+import BtnSlider from "../components/BtnSlider";
+
+const modalVariants = {
+  hidden: {
+    y: "100vh",
+    opacity: 0,
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      damping: 25,
+      stiffness: 300,
+    },
+  },
+  exit: {
+    y: "100vh",
+    opacity: 0,
+    transition: {
+      duration: 0.3,
+      ease: "easeInOut",
+    },
+  },
+};
 
 function GameDetails({ id, onLoaded }) {
   const { user } = useContext(DataContext);
-  
   const [gameData, setGameData] = useState(null);
   const [showMore, setShowMore] = useState(false);
-  const [currentStatus, setCurrentStatus] = useState(""); 
+  const [currentStatus, setCurrentStatus] = useState("");
   const [loadingStatus, setLoadingStatus] = useState(true);
   const [requirements, setRequirements] = useState({});
-  const [review,setReview] =useState(null);
+  const [review, setReview] = useState(0);
+  const [error,setError] = useState("");
   const navigate = useNavigate();
+
+  const exists = useRef(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -23,14 +52,15 @@ function GameDetails({ id, onLoaded }) {
           params: { id: id },
           signal: controller.signal,
         });
-        
+
         if (res.data && res.data.success) {
-            setGameData(res.data.response);
-            if (onLoaded) onLoaded();
+          setGameData(res.data.response);
+          if (onLoaded) onLoaded();
         } else {
-            throw new Error("Failed to retrieve game data");
+          throw new Error("Failed to retrieve game data");
         }
       } catch (error) {
+        if(error.status===404) setError(error.message);
         if (error.name !== "CanceledError") {
           console.error(error);
         }
@@ -41,32 +71,40 @@ function GameDetails({ id, onLoaded }) {
     return () => controller.abort();
   }, [id, onLoaded]);
 
-  useEffect(()=>{
+  useEffect(() => {
     if (!user || !id) return;
 
     const controller = new AbortController();
+
     const fetchReview = async () => {
       try {
-        const response = await axios.get('/api/v1/user/review',{
-          params: {gameId:id},
-          headers:{
+        const response = await axios.get("/api/v1/user/review", {
+          params: { gameId: id },
+
+          headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.accessToken}`
+
+            Authorization: `Bearer ${user.accessToken}`,
           },
+
           withCredentials: true,
-          signal: controller.signal
+
+          signal: controller.signal,
         });
 
         console.log(response);
-        setReview(response.data.response);
+        setReview(response.data.response.rating);
+        if(response.status===200) exists.current = true;
+        
       } catch (error) {
+        if(error.status===404) setError(error.message);
         console.log(error.message);
       }
-    }
+    };
 
     fetchReview();
-    return  ()=>controller.abort();
-  },[]);
+    return () => controller.abort();
+  }, []);
 
   useEffect(() => {
     if (!user || !id) return;
@@ -77,12 +115,13 @@ function GameDetails({ id, onLoaded }) {
           params: { id: id },
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.accessToken}`
+            Authorization: `Bearer ${user.accessToken}`,
           },
-          withCredentials: true
+          withCredentials: true,
         });
         setRequirements(res.data.response);
       } catch (err) {
+        if(error.status===404) setError(error.message);
         console.log(err.message);
       }
     };
@@ -92,7 +131,7 @@ function GameDetails({ id, onLoaded }) {
 
   useEffect(() => {
     let isMounted = true;
-    
+
     const fetchUserGameStatus = async () => {
       if (!user?.username || !user?.accessToken) {
         if (isMounted) setLoadingStatus(false);
@@ -100,7 +139,8 @@ function GameDetails({ id, onLoaded }) {
       }
 
       try {
-        const response = await axios.post(`/api/v1/user/game`, 
+        const response = await axios.post(
+          `/api/v1/user/game`,
           { gameId: id },
           {
             headers: {
@@ -108,17 +148,17 @@ function GameDetails({ id, onLoaded }) {
               Authorization: `Bearer ${user.accessToken}`,
             },
             withCredentials: true,
-          }
+          },
         );
-
         if (isMounted) {
-            if (response.data && response.data.success) {
-                setCurrentStatus(response.data.response?.status || "");
-            } else {
-                setCurrentStatus("");
-            }
+          if (response.data && response.data.success) {
+            setCurrentStatus(response.data.response?.status || "");
+          } else {
+            setCurrentStatus("");
+          }
         }
       } catch (err) {
+        if(error.status===404) setError(error.message);
         console.log(err);
         if (isMounted) setCurrentStatus("");
       } finally {
@@ -128,14 +168,16 @@ function GameDetails({ id, onLoaded }) {
 
     fetchUserGameStatus();
 
-    return () => { isMounted = false; };
+    return () => {
+      isMounted = false;
+    };
   }, [id, user]);
 
   const handleStatusChange = async (e) => {
     const newStatus = e.target.value;
-
+    
     if (!user?.accessToken) {
-      navigate('/login');
+      navigate("/login");
       return;
     }
 
@@ -143,56 +185,107 @@ function GameDetails({ id, onLoaded }) {
     setCurrentStatus(newStatus);
 
     try {
-        const config = {
-            headers: { Authorization: `Bearer ${user.accessToken}` },
-            withCredentials: true
-        };
+      const config = {
+        headers: { Authorization: `Bearer ${user.accessToken}` },
+        withCredentials: true,
+      };
 
-        let res;
-        if (newStatus === "") {
-            res = await axios.post('/api/v1/user/removeGame', { gameId: id }, config);
-        } else if (previousStatus === "") {
-            res = await axios.post('/api/v1/user/game/add', { gameId: id, status: newStatus }, config);
-        } else {
-            res = await axios.post('/api/v1/user/updateGame', { gameId: id, status: newStatus }, config);
-        }
+      let res;
+      if (newStatus === "") {
+        res = await axios.post(
+          "/api/v1/user/removeGame",
+          { gameId: id },
+          config,
+        );
+      } else if (previousStatus === "") {
+        res = await axios.post(
+          "/api/v1/user/game/add",
+          { gameId: id, status: newStatus },
+          config,
+        );
+      } else {
+        res = await axios.post(
+          "/api/v1/user/updateGame",
+          { gameId: id, status: newStatus },
+          config,
+        );
+      }
 
-        if (!res.data || !res.data.success) {
-            throw new Error("API reported failure");
-        }
-
+      if (!res.data || !res.data.success) {
+        throw new Error("API reported failure");
+      }
     } catch (error) {
+        if(error.status===404) setError(error.message);
       console.error(error);
       setCurrentStatus(previousStatus);
     }
   };
+  
+  const saveToDb = useMemo(
+  () =>
+    debounce(async (val) => {
+      const endpoint = exists.current ? 'updateReview' : 'addReview';
 
+      try {
+        const response = await axios.post(
+          `api/v1/user/${endpoint}`,
+          { gameId: id, rating: val },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${user.accessToken}`,
+            },
+            withCredentials: true,
+          }
+        );
+        console.log(response);
+        if(endpoint==='addReview')  exists.current=true;
+      } catch (error) {
+        console.error(error);
+      }
+    }, 500),
+  [id, user.accessToken]
+);
+
+  const handleChange = (newValue)=> {
+    setReview(newValue);
+    saveToDb(newValue)
+  }
+  
   const handleShowMore = () => {
     if (gameData?.description_raw?.length > 500) setShowMore(!showMore);
   };
 
   const getStatusStyle = (status) => {
     if (status === true) {
-        return { 
-            borderLeft: "4px solid #4ade80", 
-            backgroundColor: "rgba(74, 222, 128, 0.25)",
-            boxShadow: "inset 10px 0 20px -10px rgba(74, 222, 128, 0.3)"
-        };
+      return {
+        borderLeft: "4px solid #4ade80",
+        backgroundColor: "rgba(74, 222, 128, 0.25)",
+        boxShadow: "inset 10px 0 20px -10px rgba(74, 222, 128, 0.3)",
+      };
     }
     if (status === false) {
-        return { 
-            borderLeft: "4px solid #f87171", 
-            backgroundColor: "rgba(248, 113, 113, 0.25)",
-            boxShadow: "inset 10px 0 20px -10px rgba(248, 113, 113, 0.3)"
-        };
+      return {
+        borderLeft: "4px solid #f87171",
+        backgroundColor: "rgba(248, 113, 113, 0.25)",
+        boxShadow: "inset 10px 0 20px -10px rgba(248, 113, 113, 0.3)",
+      };
     }
     return {};
   };
 
   if (!gameData) return <div className={styles.loading}>Loading...</div>;
 
+
   return (
-    <div className={`${styles.gameDetailsContainer} ${styles.fadeInAnimation} ${styles.fadeOutAnimation}`}>
+    <motion.div
+      variants={modalVariants}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      className={styles.gameDetailsContainer}
+      onClick={(e) => e.stopPropagation()}
+    >
       <div className={styles.heroSection}>
         <img
           src={gameData.background_image}
@@ -201,16 +294,16 @@ function GameDetails({ id, onLoaded }) {
         />
         <div className={styles.heroOverlay}></div>
       </div>
-
+      {review?JSON.stringify(review.rating):null}
       <div className={styles.contentBody}>
         <div className={styles.headerRow}>
           <h1 className={styles.gameTitle}>{gameData.name}</h1>
-          
-          <select 
-            value={currentStatus} 
+
+          <select
+            value={currentStatus}
             onChange={handleStatusChange}
             disabled={loadingStatus}
-            className={`${styles.statusDropdown} ${currentStatus ? styles.statusActive : ''}`}
+            className={`${styles.statusDropdown} ${currentStatus ? styles.statusActive : ""}`}
           >
             <option value="">Add to Library</option>
             <option value="WANT_TO_PLAY">Want to Play</option>
@@ -242,7 +335,10 @@ function GameDetails({ id, onLoaded }) {
             <h3>Platforms</h3>
             <div className={styles.tagsList}>
               {gameData.platforms?.map((p) => (
-                <span key={p.platform.id} className={`${styles.tag} ${styles.platformTag}`}>
+                <span
+                  key={p.platform.id}
+                  className={`${styles.tag} ${styles.platformTag}`}
+                >
                   {p.platform.name}
                 </span>
               ))}
@@ -252,7 +348,13 @@ function GameDetails({ id, onLoaded }) {
 
         <div className={styles.descriptionSection}>
           <h3>About</h3>
-          <p onClick={handleShowMore} style={{ cursor: gameData.description_raw?.length > 500 ? 'pointer' : 'default' }}>
+          <p
+            onClick={handleShowMore}
+            style={{
+              cursor:
+                gameData.description_raw?.length > 500 ? "pointer" : "default",
+            }}
+          >
             {gameData.description_raw?.length > 500
               ? !showMore
                 ? `${gameData.description_raw.slice(0, 500)}...show more`
@@ -261,54 +363,80 @@ function GameDetails({ id, onLoaded }) {
           </p>
         </div>
 
+        <BtnSlider value={review} handleChange = {handleChange} />
+
         {gameData.req && (gameData.req.min?.cpu || gameData.req.rec?.cpu) && (
-            <div className={styles.requirementsSection}>
-                <h3>System Requirements (PC)</h3>
-                <div className={styles.reqGrid}>
-                    
-                    <div className={styles.reqColumn}>
-                        <h4>Minimum</h4>
-                        
-                        <div className={styles.specItem} style={getStatusStyle(requirements?.minReq?.cpu)}>
-                            <strong>CPU</strong>
-                            <span>{gameData.req.min.cpu || "N/A"}</span>
-                        </div>
+          <div className={styles.requirementsSection}>
+            <h3>System Requirements (PC)</h3>
+            <div className={styles.reqGrid}>
+              <div className={styles.reqColumn}>
+                <h4>Minimum</h4>
 
-                        <div className={styles.specItem} style={getStatusStyle(requirements?.minReq?.gpu)}>
-                            <strong>GPU</strong>
-                            <span>{gameData.req.min.gpu || "N/A"}</span>
-                        </div>
-
-                        <div className={styles.specItem} style={getStatusStyle(requirements?.minReq?.ram)}>
-                            <strong>RAM</strong>
-                            <span>{gameData.req.min.ram ? `${gameData.req.min.ram} GB` : "N/A"}</span>
-                        </div>
-                    </div>
-
-                    <div className={styles.reqColumn}>
-                        <h4>Recommended</h4>
-                        
-                        <div className={styles.specItem} style={getStatusStyle(requirements?.recReq?.cpu)}>
-                            <strong>CPU</strong>
-                            <span>{gameData.req.rec.cpu || "N/A"}</span>
-                        </div>
-
-                        <div className={styles.specItem} style={getStatusStyle(requirements?.recReq?.gpu)}>
-                            <strong>GPU</strong>
-                            <span>{gameData.req.rec.gpu || "N/A"}</span>
-                        </div>
-
-                        <div className={styles.specItem} style={getStatusStyle(requirements?.recReq?.ram)}>
-                            <strong>RAM</strong>
-                            <span>{gameData.req.rec.ram ? `${gameData.req.rec.ram} GB` : "N/A"}</span>
-                        </div>
-                    </div>
-
+                <div
+                  className={styles.specItem}
+                  style={getStatusStyle(requirements?.minReq?.cpu)}
+                >
+                  <strong>CPU</strong>
+                  <span>{gameData.req.min.cpu || "N/A"}</span>
                 </div>
+
+                <div
+                  className={styles.specItem}
+                  style={getStatusStyle(requirements?.minReq?.gpu)}
+                >
+                  <strong>GPU</strong>
+                  <span>{gameData.req.min.gpu || "N/A"}</span>
+                </div>
+
+                <div
+                  className={styles.specItem}
+                  style={getStatusStyle(requirements?.minReq?.ram)}
+                >
+                  <strong>RAM</strong>
+                  <span>
+                    {gameData.req.min.ram
+                      ? `${gameData.req.min.ram} GB`
+                      : "N/A"}
+                  </span>
+                </div>
+              </div>
+
+              <div className={styles.reqColumn}>
+                <h4>Recommended</h4>
+
+                <div
+                  className={styles.specItem}
+                  style={getStatusStyle(requirements?.recReq?.cpu)}
+                >
+                  <strong>CPU</strong>
+                  <span>{gameData.req.rec.cpu || "N/A"}</span>
+                </div>
+
+                <div
+                  className={styles.specItem}
+                  style={getStatusStyle(requirements?.recReq?.gpu)}
+                >
+                  <strong>GPU</strong>
+                  <span>{gameData.req.rec.gpu || "N/A"}</span>
+                </div>
+
+                <div
+                  className={styles.specItem}
+                  style={getStatusStyle(requirements?.recReq?.ram)}
+                >
+                  <strong>RAM</strong>
+                  <span>
+                    {gameData.req.rec.ram
+                      ? `${gameData.req.rec.ram} GB`
+                      : "N/A"}
+                  </span>
+                </div>
+              </div>
             </div>
+          </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }
 

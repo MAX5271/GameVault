@@ -5,6 +5,36 @@ import GameCard from "../components/GameCard";
 import DataContext from "../context/DataContext";
 import Modal from "../components/Modal";
 import styles from "./Home.module.css";
+import { AnimatePresence, motion } from "framer-motion";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: {
+    scale: 0.8,
+    opacity: 0,
+    y: 20,
+  },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 12,
+    },
+  },
+};
 
 function Home() {
   const { searchResult, setSearchResult, search } = useContext(DataContext);
@@ -94,7 +124,12 @@ function Home() {
 
   return (
     <>
-      <div className={styles.home}>
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className={styles.home}
+      >
         {searchResult?.map((game) => (
           <GameCard
             key={game.id}
@@ -103,10 +138,13 @@ function Home() {
             metacritic={game.metacritic}
             id={game.id}
             onClick={() => handleOpenModal(game.id)}
+            cardVariants={cardVariants}
           />
         ))}
-      </div>
-      {isOpen && <Modal activeId={activeId} onClose={handleCloseModal} />}
+      </motion.div>
+      <AnimatePresence>
+        {isOpen && <Modal activeId={activeId} onClose={handleCloseModal} />}
+      </AnimatePresence>
     </>
   );
 }

@@ -1,7 +1,8 @@
 import styles from "./GameCard.module.css";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
-function GameCard({ imgSrc, gameName, metacritic, onClick }) {
+function GameCard({ imgSrc, gameName, metacritic, onClick, cardVariants }) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const getScoreColor = (score) => {
@@ -12,23 +13,29 @@ function GameCard({ imgSrc, gameName, metacritic, onClick }) {
   };
 
   return (
-    <div className={styles.card} onClick={onClick}>
-      {!isLoaded && <div className={styles.placeholder} />}
-      
+    <motion.div
+      variants={cardVariants}
+      initial="hidden"
+      className={styles.card}
+      onClick={onClick}
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      {!isLoaded && <motion.div className={styles.placeholder} />}
+
       <img
         src={imgSrc}
-        alt={gameName}
+        alt="../assets/ghostStock.eps"
         className={styles.image}
         style={isLoaded ? {} : { display: "none" }}
         onLoad={() => setIsLoaded(true)}
       />
-
       {metacritic && (
-        <div 
+        <div
           className={styles.metacriticBadge}
-          style={{ 
+          style={{
             borderColor: getScoreColor(metacritic),
-            color: getScoreColor(metacritic)
+            color: getScoreColor(metacritic),
           }}
         >
           {metacritic}
@@ -36,7 +43,7 @@ function GameCard({ imgSrc, gameName, metacritic, onClick }) {
       )}
 
       <p className={styles.name}>{gameName}</p>
-    </div>
+    </motion.div>
   );
 }
 

@@ -83,7 +83,7 @@ const addReview = async (username,gameId,rating=0) => {
 }
 
 const updateReview = async (username, gameId, rating) =>{
-  const result = User.updateOne({username, "reviews.gameId": gameId},{
+  const result = await User.updateOne({username, "reviews.gameId": gameId},{
     $set: {
       "reviews.$.rating": rating
     }
@@ -93,7 +93,6 @@ const updateReview = async (username, gameId, rating) =>{
   }
 
   return { gameId, rating };
-
 }
 
 const getReview = async (username,gameId) => {

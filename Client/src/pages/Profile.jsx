@@ -5,6 +5,12 @@ import axios from "../api/axios";
 import GameListItem from "../components/GameListItem";
 import Modal from "../components/Modal";
 import styles from "./Profile.module.css";
+import {animate, motion, scale} from "framer-motion"
+
+const logOutVariants = {
+  animate: {z:5,y:-5,scale:1.05},
+  whileTap: {z:0,y:0,scale:0.9}
+}
 
 function Profile() {
   const { username } = useParams();
@@ -125,7 +131,7 @@ function Profile() {
 
   const renderSection = (title, games) => (
     <>
-        <h3 className={styles.sectionTitle}>{title}</h3>
+        <motion.h3 initial={{opacity:0,y:-5}} animate={{opacity:1,y:0}} transition={{duration:0.5, type:"spring", stiffness:300,damping:12}} className={styles.sectionTitle}>{title}</motion.h3>
         {games.length > 0 ? (
             <div className={styles.list}>
                 {games.map((game) => (
@@ -147,10 +153,15 @@ function Profile() {
   return (
     <div className={styles.profileContainer}>
       <div className={styles.header}>
-        <h1 className={styles.title}>{username}</h1>
-        <button className={styles.logoutBtn} onClick={handleLogout}>
+        <motion.h1 initial={{opacity:0,y:-5}} animate={{opacity:1,y:0}} transition={{duration:0.5, type:"spring", stiffness:300,damping:12}} className={styles.title}>{username}</motion.h1>
+        <motion.button
+         variants={logOutVariants}
+         whileHover="animate"
+         whileTap="whileTap"
+         transition={{duration:0.01}}
+         className={styles.logoutBtn} onClick={handleLogout}>
           Logout
-        </button>
+        </motion.button>
       </div>
 
       {loading ? (
