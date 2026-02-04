@@ -1,10 +1,10 @@
 import axios from "../api/axios";
-import {  useContext, useEffect, useMemo, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DataContext from "../context/DataContext";
 import styles from "./GameDetails.module.css";
 import { motion } from "framer-motion";
-import debounce from 'lodash.debounce';
+import debounce from "lodash.debounce";
 import BtnSlider from "../components/BtnSlider";
 
 const modalVariants = {
@@ -39,7 +39,7 @@ function GameDetails({ id, onLoaded }) {
   const [loadingStatus, setLoadingStatus] = useState(true);
   const [requirements, setRequirements] = useState({});
   const [review, setReview] = useState(0);
-  const [error,setError] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const exists = useRef(null);
@@ -60,7 +60,7 @@ function GameDetails({ id, onLoaded }) {
           throw new Error("Failed to retrieve game data");
         }
       } catch (error) {
-        if(error.status===404) setError(error.message);
+        if (error.status === 404) setError(error.message);
         if (error.name !== "CanceledError") {
           console.error(error);
         }
@@ -91,13 +91,10 @@ function GameDetails({ id, onLoaded }) {
 
           signal: controller.signal,
         });
-
-        console.log(response);
         setReview(response.data.response.rating);
-        if(response.status===200) exists.current = true;
-        
+        if (response.status === 200) exists.current = true;
       } catch (error) {
-        if(error.status===404) setError(error.message);
+        if (error.status === 404) setError(error.message);
         console.log(error.message);
       }
     };
@@ -121,7 +118,7 @@ function GameDetails({ id, onLoaded }) {
         });
         setRequirements(res.data.response);
       } catch (err) {
-        if(error.status===404) setError(error.message);
+        if (error.status === 404) setError(error.message);
         console.log(err.message);
       }
     };
@@ -158,7 +155,7 @@ function GameDetails({ id, onLoaded }) {
           }
         }
       } catch (err) {
-        if(error.status===404) setError(error.message);
+        if (error.status === 404) setError(error.message);
         console.log(err);
         if (isMounted) setCurrentStatus("");
       } finally {
@@ -175,7 +172,7 @@ function GameDetails({ id, onLoaded }) {
 
   const handleStatusChange = async (e) => {
     const newStatus = e.target.value;
-    
+
     if (!user?.accessToken) {
       navigate("/login");
       return;
@@ -215,43 +212,44 @@ function GameDetails({ id, onLoaded }) {
         throw new Error("API reported failure");
       }
     } catch (error) {
-        if(error.status===404) setError(error.message);
+      if (error.status === 404) setError(error.message);
       console.error(error);
       setCurrentStatus(previousStatus);
     }
   };
-  
+
   const saveToDb = useMemo(
-  () =>
-    debounce(async (val) => {
-      const endpoint = exists.current ? 'updateReview' : 'addReview';
+    () =>
+      debounce(async (val) => {
+        const endpoint = exists.current ? "updateReview" : "addReview";
 
-      try {
-        const response = await axios.post(
-          `api/v1/user/${endpoint}`,
-          { gameId: id, rating: val },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${user.accessToken}`,
+        try {
+          const response = await axios.post(
+            `api/v1/user/${endpoint}`,
+            { gameId: id, rating: val },
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${user.accessToken}`,
+              },
+              withCredentials: true,
             },
-            withCredentials: true,
-          }
-        );
-        console.log(response);
-        if(endpoint==='addReview')  exists.current=true;
-      } catch (error) {
-        console.error(error);
-      }
-    }, 500),
-  [id, user.accessToken]
-);
+          );
+          if (response.status != 200)
+            throw new Error("Rating updation or addition failed");
+          if (endpoint === "addReview") exists.current = true;
+        } catch (error) {
+          console.error(error);
+        }
+      }, 500),
+    [id, user.accessToken],
+  );
 
-  const handleChange = (newValue)=> {
+  const handleChange = (newValue) => {
     setReview(newValue);
-    saveToDb(newValue)
-  }
-  
+    saveToDb(newValue);
+  };
+
   const handleShowMore = () => {
     if (gameData?.description_raw?.length > 500) setShowMore(!showMore);
   };
@@ -276,7 +274,6 @@ function GameDetails({ id, onLoaded }) {
 
   if (!gameData) return <div className={styles.loading}>Loading...</div>;
 
-
   return (
     <motion.div
       variants={modalVariants}
@@ -294,7 +291,6 @@ function GameDetails({ id, onLoaded }) {
         />
         <div className={styles.heroOverlay}></div>
       </div>
-      {review?JSON.stringify(review.rating):null}
       <div className={styles.contentBody}>
         <div className={styles.headerRow}>
           <h1 className={styles.gameTitle}>{gameData.name}</h1>
@@ -363,7 +359,14 @@ function GameDetails({ id, onLoaded }) {
           </p>
         </div>
 
-        <BtnSlider value={review} handleChange = {handleChange} />
+        {user.accessToken ? (
+          <>
+            <div className={styles.descriptionSection}>
+              <h3 style={{ marginTop: "25px" }}>Rating</h3>
+            </div>
+            <BtnSlider value={review} size={100} handleChange={handleChange} />
+          </>
+        ) : null}
 
         {gameData.req && (gameData.req.min?.cpu || gameData.req.rec?.cpu) && (
           <div className={styles.requirementsSection}>

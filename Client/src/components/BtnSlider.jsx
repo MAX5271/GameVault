@@ -1,38 +1,44 @@
 import Slider from "rc-slider";
-import styles from "./BtnSlider.module.css";
 import "rc-slider/assets/index.css";
+import styles from "./BtnSlider.module.css";
 import { useEffect, useState } from "react";
+import CinemaFace from "./CinemaFace";
 
-const BtnSlider = ({value,handleChange}) => {
-    const [num,setNum] = useState(value);
+const BtnSlider = ({ value, handleChange,size }) => {
+  const [num, setNum] = useState(value);
 
-    useEffect(()=>{
-        setNum(value);
-    },[value]);
+  useEffect(() => {
+    setNum(value);
+  }, [value]);
 
+  const handleLocalChange = (newValue) => {
+    setNum(newValue);
+  };
 
-    const handleLocalChange = (newValue)=>{
-        setNum(newValue);
-    }
-
-    const handleRelease = (finalValue) => {
-        handleChange(finalValue);
-    }
+  const handleRelease = (finalValue) => {
+    handleChange(finalValue);
+  };
 
   return (
-    <div className={styles.container}>
-      <Slider
-        min={0}
-        max={10}
-        value={num}
-        onChange={handleLocalChange}
-        onChangeComplete={handleRelease}
-        classNames={{
-          track: "my-track-class",
-          rail: "my-rail-class",
-          handle: "my-handle-class",
-        }}
-      />
+    <div className={styles.wrapper}>
+      <div className={styles.sliderContainer}>
+        <Slider
+          min={0}
+          max={100}
+          value={num}
+          onChange={handleLocalChange}
+          onChangeComplete={handleRelease}
+          classNames={{
+            track: styles.track,
+            rail: styles.rail,
+            handle: styles.handle,
+          }}
+        />
+      </div>
+
+      <div className={styles.emojiContainer}>
+        <CinemaFace rating={num} size={size} />
+      </div>
     </div>
   );
 };

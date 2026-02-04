@@ -5,11 +5,11 @@ import axios from "../api/axios";
 import GameListItem from "../components/GameListItem";
 import Modal from "../components/Modal";
 import styles from "./Profile.module.css";
-import {animate, motion, scale} from "framer-motion"
+import { motion } from "framer-motion";
 
 const logOutVariants = {
-  animate: {z:5,y:-5,scale:1.05},
-  whileTap: {z:0,y:0,scale:0.9}
+  animate: { z: 5, y: -5, scale: 1.05 },
+  whileTap: { z: 0, y: 0, scale: 0.9 }
 }
 
 function Profile() {
@@ -59,27 +59,20 @@ function Profile() {
           withCredentials: true,
         });
 
-        console.log(response);
-
         if (!isMounted) return;
 
-        const userGames = response.data.response.games;
-
+        const userGames = response.data.response;
         if (!userGames || userGames.length === 0) {
             setLoading(false);
             return;
         }
 
-        const detailsPromises = userGames.map(game => {
-
-          if(!game.gameId) return null;
-
-          return axios.get('/api/v1/game', { params: { id: game.gameId } })
-          .then(res => ({
-            ...game,
-            details: res.data.response
-          }))
-        }
+        const detailsPromises = userGames.map(game => 
+            axios.get('/api/v1/game', { params: { id: game.gameId } })
+                .then(res => ({
+                    ...game,
+                    details: res.data.response
+                }))
         );
 
         const gamesWithDetails = await Promise.all(detailsPromises);
@@ -131,7 +124,7 @@ function Profile() {
 
   const renderSection = (title, games) => (
     <>
-        <motion.h3 initial={{opacity:0,y:-5}} animate={{opacity:1,y:0}} transition={{duration:0.5, type:"spring", stiffness:300,damping:12}} className={styles.sectionTitle}>{title}</motion.h3>
+        <h3 className={styles.sectionTitle}>{title}</h3>
         {games.length > 0 ? (
             <div className={styles.list}>
                 {games.map((game) => (
@@ -153,13 +146,13 @@ function Profile() {
   return (
     <div className={styles.profileContainer}>
       <div className={styles.header}>
-        <motion.h1 initial={{opacity:0,y:-5}} animate={{opacity:1,y:0}} transition={{duration:0.5, type:"spring", stiffness:300,damping:12}} className={styles.title}>{username}</motion.h1>
+        <motion.h1 initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, type: "spring", stiffness: 300, damping: 12 }} className={styles.title}>{username}</motion.h1>
         <motion.button
-         variants={logOutVariants}
-         whileHover="animate"
-         whileTap="whileTap"
-         transition={{duration:0.01}}
-         className={styles.logoutBtn} onClick={handleLogout}>
+          variants={logOutVariants}
+          whileHover="animate"
+          whileTap="whileTap"
+          transition={{ duration: 0.01 }}
+          className={styles.logoutBtn} onClick={handleLogout}>
           Logout
         </motion.button>
       </div>
@@ -168,17 +161,17 @@ function Profile() {
         <div className={styles.emptyState}>Loading library...</div>
       ) : (
         <>
-            {renderSection("Want to Play", gameGroups["WANT_TO_PLAY"])}
-            {renderSection("Played", gameGroups["PLAYED"])}
-            {renderSection("On Hold", gameGroups["ON_HOLD"])}
-            {renderSection("Dropped", gameGroups["DROPPED"])}
+          {renderSection("Want to Play", gameGroups["WANT_TO_PLAY"])}
+          {renderSection("Played", gameGroups["PLAYED"])}
+          {renderSection("On Hold", gameGroups["ON_HOLD"])}
+          {renderSection("Dropped", gameGroups["DROPPED"])}
         </>
       )}
 
       {isOpen && (
-        <Modal 
-            activeId={activeId} 
-            onClose={handleCloseModal} 
+        <Modal
+          activeId={activeId}
+          onClose={handleCloseModal}
         />
       )}
     </div>

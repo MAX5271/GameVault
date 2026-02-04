@@ -106,7 +106,7 @@ const getReview = async (username,gameId) => {
 const getStatus = async (username, gameId) => {
   const user = await User.findOne({ username }).exec();
   if (!user) throw new Error("User not found");
-  const game = user.games.find((g) => g.gameId === gameId);
+  const game = user.games.find((g) => g.gameId === `${gameId}`);
   if (!game) throw new Error("Game not found");
   return game;
 };

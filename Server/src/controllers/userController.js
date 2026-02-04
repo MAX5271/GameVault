@@ -79,13 +79,13 @@ const getUserGames = async (req,res) => {
     try {
         const username = req.user;
         const response = await userService.getUserGames(username);
-          const result = {
-            username: response.username,
-            games: response.games,
-          };
+        //   const result = {
+        //     username: response.username,
+        //     games: response.games,
+        //   };
         return res.status(200).json({
             "message":"User's games fetched successfully",
-            "response": result,
+            "response": response,
             "success": true
         });
     } catch (error) {
@@ -119,6 +119,7 @@ const addStatus = async (req,res) => {
 const getStatus = async (req,res) => {
     try {
         const username = req.user;
+        console.log(req.body.gameId);
         const response = await userService.getStatus(username,req.body.gameId);
         return res.status(200).json({
             "message":"Games's status added successfully",
