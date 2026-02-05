@@ -26,53 +26,53 @@ const CinemaFace = ({ rating,size }) => {
   const cinemaScale = useTransform(ratingMv, [85, 100], [0.8, 1.2]);
 
   return (
-    <div style={{ position: "relative", width: 100, height: size }}>
-      
-      <motion.div
-        style={{
-          opacity: skullOpacity,
-          scale: skullScale,
-          position: "absolute", inset: 0,
-          display: "flex", justifyContent: "center", alignItems: "center"
-        }}
-      >
-        <SkullIcon width="100%" height="100%" />
-      </motion.div>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "auto" }}>
+      <div style={{ position: "relative", width: size, height: size }}>
+        <motion.div
+          style={{
+            opacity: skullOpacity,
+            scale: skullScale,
+            position: "absolute", inset: 0,
+            display: "flex", justifyContent: "center", alignItems: "center"
+          }}
+        >
+          <SkullIcon width="100%" height="100%" />
+        </motion.div>
 
-      <motion.div
-        style={{
-          opacity: neutralOpacity,
-          scale: neutralScale,
-          position: "absolute", inset: 0,
-          display: "flex", justifyContent: "center", alignItems: "center"
-        }}
-      >
-        <NeutralFace width="100%" height="100%" />
-      </motion.div>
+        <motion.div
+          style={{
+            opacity: neutralOpacity,
+            scale: neutralScale,
+            position: "absolute", inset: 0,
+            display: "flex", justifyContent: "center", alignItems: "center"
+          }}
+        >
+          <NeutralFace width="100%" height="100%" />
+        </motion.div>
 
-      <motion.div
-        style={{
-          opacity: happyOpacity,
-          scale: happyScale,
-          position: "absolute", inset: 0,
-          display: "flex", justifyContent: "center", alignItems: "center"
-        }}
-      >
-        <HappyFace width="100%" height="100%" />
-      </motion.div>
+        <motion.div
+          style={{
+            opacity: happyOpacity,
+            scale: happyScale,
+            position: "absolute", inset: 0,
+            display: "flex", justifyContent: "center", alignItems: "center"
+          }}
+        >
+          <HappyFace width="100%" height="100%" />
+        </motion.div>
 
-      <motion.div
-        style={{
-          opacity: cinemaOpacity,
-          scale: cinemaScale,
-          position: "absolute", inset: 0,
-          display: "flex", justifyContent: "center", alignItems: "center",
-          filter: "drop-shadow(0 0 10px rgba(245, 158, 11, 0.5))"
-        }}
-      >
-        <AbsoluteCinema width="100%" height="100%" />
-      </motion.div>
-
+        <motion.div
+          style={{
+            opacity: cinemaOpacity,
+            scale: cinemaScale,
+            position: "absolute", inset: 0,
+            display: "flex", justifyContent: "center", alignItems: "center",
+            filter: "drop-shadow(0 0 10px rgba(245, 158, 11, 0.5))"
+          }}
+        >
+          <AbsoluteCinema width="100%" height="100%" />
+        </motion.div>
+      </div>
     </div>
   );
 };

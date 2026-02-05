@@ -9,7 +9,6 @@ import DataContext, { DataProvider } from "./context/DataContext";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import PersistLogin from "./components/PersistLogin";
-import { useContext } from "react";
 import BackgroundVideo from "./components/BackgroundVideo";
 
 const LayoutWithNav = () => {
@@ -22,9 +21,6 @@ const LayoutWithNav = () => {
 };
 
 function App() {
-  const { user } = useContext(DataContext);
-  console.log(JSON.stringify(user));
-
   return (
     <div className="App">
         <BackgroundVideo/>

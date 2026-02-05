@@ -12,6 +12,12 @@
   align-items: center;
 }
 
+.rating {
+    width: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .emojiContainer {
   flex: 0 0 30%;
   display: flex;

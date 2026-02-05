@@ -358,9 +358,9 @@ function GameDetails({ id, onLoaded }) {
               : gameData.description_raw}
           </p>
         </div>
-
         {user.accessToken ? (
           <>
+          <div style={{backgroundColor:"gray",height:"1px",display:"flex",alignItems:"center", width:"90vh", opacity:0.25,marginTop:"25px"}}></div>
             <div className={styles.descriptionSection}>
               <h3 style={{ marginTop: "25px" }}>Rating</h3>
             </div>

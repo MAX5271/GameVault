@@ -21,7 +21,6 @@ const deleteUser = async (username, password) => {
   const user = await User.findOne({ username }).exec();
   if (user && (await user.comparePassword(password))) {
     await user.deleteOne().exec();
-    console.log(`User ${username} deleted successfully`);
   } else throw new Error("User not found or password is incorrect");
 };
 
