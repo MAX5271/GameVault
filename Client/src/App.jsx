@@ -5,13 +5,12 @@ import Home from "./pages/Home";
 import Nav from "./components/Nav";
 import GameDetails from "./pages/GameDetails";
 import Register from "./pages/Register";
-import DataContext, { DataProvider } from "./context/DataContext";
+import { DataProvider } from "./context/DataContext";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import PersistLogin from "./components/PersistLogin";
 import BackgroundVideo from "./components/BackgroundVideo";
-
-// vercel trigger
+import { SearchProvider } from "./context/SearchContext";
 
 const LayoutWithNav = () => {
   return (
@@ -27,6 +26,7 @@ function App() {
     <div className="App">
         <BackgroundVideo/>
       <DataProvider>
+          <SearchProvider>
         <Header title="GameVault" />
         <Routes>
           <Route element={<PersistLogin />}>
@@ -39,6 +39,7 @@ function App() {
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
         </Routes>
+          </SearchProvider>
       </DataProvider>
       <Footer />
     </div>

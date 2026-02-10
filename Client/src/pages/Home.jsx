@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState, useCallback } from "react";
+import { useContext, useEffect, useState, useCallback, useRef } from "react";
 import { isCancel } from "axios";
 import axiosInstance from "../api/axios";
 import GameCard from "../components/GameCard";
-import DataContext from "../context/DataContext";
 import Modal from "../components/Modal";
 import styles from "./Home.module.css";
 import { AnimatePresence, motion } from "framer-motion";
+import SearchContext from "../context/SearchContext";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -37,29 +37,36 @@ const cardVariants = {
 };
 
 function Home() {
-  const { searchResult, setSearchResult, search } = useContext(DataContext);
+  const { searchResult, setSearchResult, search } = useContext(SearchContext);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [activeId, setActiveId] = useState(null);
 
-  useEffect(() => {
-    setPage(1);
-    setSearchResult([]);
-    setHasMore(true);
-  }, [search, setSearchResult]);
+  const prevSearchRef = useRef(search);
 
   useEffect(() => {
     const controller = new AbortController();
 
     const fetchGames = async () => {
-      if (loading || (!hasMore && page !== 1)) return;
+      const isNewSearch = search !== prevSearchRef.current;
+      const currentPage = isNewSearch ? 1 : page;
+
+      if (!isNewSearch && (loading || !hasMore)) return;
 
       setLoading(true);
+
+      if (isNewSearch) {
+        setSearchResult([]);
+        setPage(1);
+        setHasMore(true);
+        prevSearchRef.current = search;
+      }
+
       try {
         const res = await axiosInstance.get("/api/v1/games", {
-          params: { search, page },
+          params: { search, page: currentPage },
           signal: controller.signal,
           withCredentials: true,
         });
@@ -67,7 +74,7 @@ function Home() {
         const newGames = res.data.response || [];
 
         setSearchResult((prev) => {
-          if (page === 1) return newGames;
+          if (currentPage === 1) return newGames;
           const existingIds = new Set(prev.map((g) => g.id));
           const uniqueNewGames = newGames.filter((g) => !existingIds.has(g.id));
           return [...prev, ...uniqueNewGames];
@@ -78,7 +85,9 @@ function Home() {
         if (isCancel(error)) return;
         console.error(error.message);
       } finally {
-        setLoading(false);
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
       }
     };
 

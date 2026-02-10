@@ -2,10 +2,12 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import DataContext from "../context/DataContext";
 import styles from "./Header.module.css";
+import SearchContext from "../context/SearchContext";
 
 function Header({ title }) {
   const navigate = useNavigate();
-  const { user,setSearch } = useContext(DataContext);
+  const { user } = useContext(DataContext);
+  const {setSearch} = useContext(SearchContext);
 
   const handleProfileClick = () => {
     if (user?.accessToken) {

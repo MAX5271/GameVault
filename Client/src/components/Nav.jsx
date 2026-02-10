@@ -1,9 +1,31 @@
-import { useContext } from "react";
-import DataContext from "../context/DataContext";
+import { useContext, useState, useMemo, useEffect } from "react";
+import debounce from "lodash.debounce";
 import styles from "./Nav.module.css";
+import SearchContext from "../context/SearchContext";
 
 function Nav() {
-  const { search, setSearch } = useContext(DataContext);
+  const { setSearch } = useContext(SearchContext);
+  const [localInput, setLocalInput] = useState("");
+
+  const debouncedUpdate = useMemo(
+    () =>
+      debounce((val) => {
+        setSearch(val);
+      }, 500),
+    [setSearch]
+  );
+
+  useEffect(() => {
+    return () => {
+      debouncedUpdate.cancel();
+    };
+  }, [debouncedUpdate]);
+
+  const handleChange = (e) => {
+    const val = e.target.value;
+    setLocalInput(val);
+    debouncedUpdate(val);
+  };
 
   return (
     <nav className={styles.navBar}>
@@ -14,9 +36,10 @@ function Nav() {
         <input
           id="Search"
           className={styles.input}
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          value={localInput}
+          onChange={handleChange}
           autoComplete="off"
+          placeholder="Search games..."
         />
       </form>
     </nav>
