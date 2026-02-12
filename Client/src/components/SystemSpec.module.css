@@ -1,0 +1,196 @@
+.container {
+  background-color: #0a0a0a;
+  color: #f0f0f0;
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  border: 1px solid #333;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.header {
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #333;
+  padding-bottom: 1rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 0;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-size: 0.75rem;
+  color: #888;
+  margin-top: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.inputGroup:nth-child(1) { z-index: 20; }
+.inputGroup:nth-child(2) { z-index: 10; }
+.inputGroup:nth-child(3) { z-index: 1; }
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.autocompleteWrapper {
+  position: relative;
+}
+
+.input {
+  background-color: #111;
+  border: 1px solid #444;
+  color: #fff;
+  width: 100%;
+  padding: 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+  border-radius: 0;
+}
+
+.input:focus {
+  border-color: #fff;
+  outline: none;
+}
+
+.resultsList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #000;
+  border: 1px solid #444;
+  border-top: none;
+  max-height: 200px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.resultItem {
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  color: #ccc;
+  transition: background 0.2s;
+  font-size: 0.9rem;
+}
+
+.resultItem:hover {
+  background-color: #222;
+  color: #fff;
+}
+
+.loadingItem, .noResults {
+  padding: 1rem;
+  color: #666;
+  font-style: italic;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.ramGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.ramButton {
+  background: #111;
+  border: 1px solid #333;
+  color: #888;
+  padding: 0.8rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.1rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 2px;
+  transition: all 0.2s ease;
+}
+
+.unit {
+  font-size: 0.7rem;
+  font-weight: normal;
+}
+
+.activeRam {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.cancelBtn {
+  flex: 1;
+  background: transparent;
+  border: 1px solid #333;
+  color: #888;
+  padding: 1rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+}
+
+.saveBtn {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #fff;
+  color: #000;
+  padding: 1rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.resultsList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.resultsList::-webkit-scrollbar-track {
+  background: #111;
+}
+
+.resultsList::-webkit-scrollbar-thumb {
+  background: #444;
+}
+
+.resultsList::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
