@@ -31,6 +31,7 @@ function Modal({ activeId, onClose }) {
         <GameDetails 
             id={activeId} 
             onLoaded={() => setIsLoaded(true)}
+            onClose={onClose}
         />
         
         {isLoaded && (

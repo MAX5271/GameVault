@@ -12,17 +12,17 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.2,
+      staggerChildren: 0.05,
+      delayChildren: 0.1,
     },
   },
 };
 
 const cardVariants = {
   hidden: {
-    scale: 0.8,
+    scale: 0.95,
     opacity: 0,
-    y: 20,
+    y: 15,
   },
   visible: {
     scale: 1,
@@ -30,8 +30,8 @@ const cardVariants = {
     y: 0,
     transition: {
       type: "spring",
-      stiffness: 300,
-      damping: 15,
+      stiffness: 150,
+      damping: 20,
     },
   },
 };
