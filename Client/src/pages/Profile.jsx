@@ -8,11 +8,6 @@ import styles from "./Profile.module.css";
 import { motion, AnimatePresence } from "framer-motion";
 import SystemSpecModal from "../components/SystemSpecModal";
 
-const logOutVariants = {
-  animate: { z: 5, y: -5, scale: 1.05 },
-  whileTap: { z: 0, y: 0, scale: 0.9 },
-};
-
 function Profile() {
   const { username } = useParams();
   const { user } = useContext(DataContext);
@@ -98,7 +93,7 @@ function Profile() {
           setLoading(false);
         }
       } catch (err) {
-        console.error(err);
+        console.debug(err);
         if (isMounted) setLoading(false);
       }
     };
@@ -135,7 +130,12 @@ function Profile() {
   };
 
   const renderSection = (title, games) => (
-    <>
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className={styles.sectionWrapper}
+    >
       <h3 className={styles.sectionTitle}>{title}</h3>
       {games.length > 0 ? (
         <div className={styles.list}>
@@ -152,75 +152,59 @@ function Profile() {
       ) : (
         <div className={styles.sectionEmpty}>No games in this category.</div>
       )}
-    </>
+    </motion.div>
   );
 
   return (
     <div className={styles.profileContainer}>
       <div className={styles.header}>
-        <motion.h1
-          initial={{ opacity: 0, y: -5 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.5,
-            type: "spring",
-            stiffness: 300,
-            damping: 12,
-          }}
-          className={styles.title}
-        >
-          {username}
-        </motion.h1>
+        <div className={styles.userInfo}>
+          <motion.h1 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className={styles.title}
+          >
+            {username}
+          </motion.h1>
+        </div>
         
-        <motion.button
-          whileHover={{ scale: 1.05, backgroundColor: "rgba(0, 0, 0, 0.8)" }}
-          whileTap={{ scale: 0.95 }}
-          onClick={handleOpenSpec}
-          style={{
-            background: "rgba(0, 0, 0, 0.6)",
-            backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
-            border: "1px solid rgba(255, 255, 255, 0.15)", 
-            borderRadius: "12px",
-            padding: "16px 24px",
-            color: "#e5e5e5", 
-            fontSize: "18px",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.4)",
-          }}
-        >
-          <span style={{ fontSize: "20px" }}>✍︎</span>
-          <span>Edit System Specs</span>
-        </motion.button>
+        <div className={styles.actions}>
+          <motion.button
+            className={styles.editSpecBtn}
+            whileHover={{ scale: 1.02, backgroundColor: "#fff", color: "#000" }}
+            whileTap={{ scale: 0.98 }}
+            onClick={handleOpenSpec}
+          >
+            <span className={styles.icon}>⚙</span>
+            <span>System Specs</span>
+          </motion.button>
 
-        <AnimatePresence>
-          {specIsOpen && <SystemSpecModal onClose={handleCloseSpec}/>}
-        </AnimatePresence>
-        
-        <motion.button
-          variants={logOutVariants}
-          whileHover="animate"
-          whileTap="whileTap"
-          transition={{ duration: 0.01 }}
-          className={styles.logoutBtn}
-          onClick={handleLogout}
-        >
-          Logout
-        </motion.button>
+          <motion.button
+            className={styles.logoutBtn}
+            whileHover={{ scale: 1.02, borderColor: "#ef4444", color: "#ef4444" }}
+            whileTap={{ scale: 0.98 }}
+            onClick={handleLogout}
+          >
+            Logout
+          </motion.button>
+        </div>
       </div>
 
+      <AnimatePresence>
+        {specIsOpen && <SystemSpecModal onClose={handleCloseSpec}/>}
+      </AnimatePresence>
+
       {loading ? (
-        <div className={styles.emptyState}>Loading library...</div>
+        <div className={styles.loadingState}>
+          <div className={styles.spinner}></div>
+        </div>
       ) : (
-        <>
+        <div className={styles.libraryGrid}>
           {renderSection("Want to Play", gameGroups["WANT_TO_PLAY"])}
           {renderSection("Played", gameGroups["PLAYED"])}
           {renderSection("On Hold", gameGroups["ON_HOLD"])}
           {renderSection("Dropped", gameGroups["DROPPED"])}
-        </>
+        </div>
       )}
 
       {isOpen && <Modal activeId={activeId} onClose={handleCloseModal} />}

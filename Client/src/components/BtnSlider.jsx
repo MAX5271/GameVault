@@ -19,10 +19,12 @@ const BtnSlider = ({ value, handleChange, size }) => {
     handleChange(finalValue);
   };
 
+  const faceSize = size && size > 60 ? size : 80;
+
   return (
     <div className={styles.wrapper}>
-      <div className={styles.rating} >
-        <h3 style={{ fontSize: 25,marginLeft:10, marginBottom: 10, margin: 0 }}>{num}</h3>
+      <div className={styles.rating}>
+        <h3 className={styles.ratingNumber}>{num}</h3>
         <div className={styles.sliderContainer}>
           <Slider
             min={0}
@@ -40,7 +42,7 @@ const BtnSlider = ({ value, handleChange, size }) => {
       </div>
 
       <div className={styles.emojiContainer}>
-        <CinemaFace rating={num} size={size} />
+        <CinemaFace rating={num} size={faceSize} />
       </div>
     </div>
   );

@@ -4,13 +4,20 @@ const api = axios.create({
   baseURL: `https://api.rawg.io/api`,
 });
 
-const fetchHomePageGames = async (search,page) => {
+const getCroppedImageUrl = (url) => {
+  if (!url) return "";
+  const target = "media/";
+  const index = url.indexOf(target) + target.length;
+  return url.slice(0, index) + "crop/600/400/" + url.slice(index);
+};
+
+const fetchHomePageGames = async (search, page) => {
   const res = await api.get("/games", {
     params: {
       key: apiKey,
       search: search,
       page: page,
-      page_size: 20
+      page_size: 20,
     },
   });
 
@@ -19,7 +26,7 @@ const fetchHomePageGames = async (search,page) => {
       id: game.id,
       metacritic: game.metacritic,
       name: game.name,
-      background_image: game.background_image,
+      background_image: getCroppedImageUrl(game.background_image),
     };
   });
   return gamesArray;

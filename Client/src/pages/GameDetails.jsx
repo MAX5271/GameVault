@@ -31,7 +31,7 @@ const modalVariants = {
   },
 };
 
-function GameDetails({ id, onLoaded }) {
+function GameDetails({ id, onLoaded, onClose }) {
   const { user } = useContext(DataContext);
   const [gameData, setGameData] = useState(null);
   const [showMore, setShowMore] = useState(false);
@@ -80,15 +80,11 @@ function GameDetails({ id, onLoaded }) {
       try {
         const response = await axios.get("/api/v1/user/review", {
           params: { gameId: id },
-
           headers: {
             "Content-Type": "application/json",
-
             Authorization: `Bearer ${user.accessToken}`,
           },
-
           withCredentials: true,
-
           signal: controller.signal,
         });
         setReview(response.data.response.rating);
@@ -235,7 +231,7 @@ function GameDetails({ id, onLoaded }) {
               withCredentials: true,
             },
           );
-          if (response.status != 200)
+          if (response.status !== 200)
             throw new Error("Rating updation or addition failed");
           if (endpoint === "addReview") exists.current = true;
         } catch (error) {
@@ -258,188 +254,217 @@ function GameDetails({ id, onLoaded }) {
     if (status === true) {
       return {
         borderLeft: "4px solid #4ade80",
-        backgroundColor: "rgba(74, 222, 128, 0.25)",
-        boxShadow: "inset 10px 0 20px -10px rgba(74, 222, 128, 0.3)",
+        backgroundColor: "rgba(74, 222, 128, 0.15)",
+        paddingLeft: "15px",
+        paddingRight: "15px"
       };
     }
     if (status === false) {
       return {
         borderLeft: "4px solid #f87171",
-        backgroundColor: "rgba(248, 113, 113, 0.25)",
-        boxShadow: "inset 10px 0 20px -10px rgba(248, 113, 113, 0.3)",
+        backgroundColor: "rgba(248, 113, 113, 0.15)",
+        paddingLeft: "15px",
+        paddingRight: "15px"
       };
     }
     return {};
   };
 
+  const getMetacriticColor = (score) => {
+    if (!score) return "#ccc";
+    if (score >= 75) return "#66cc33";
+    if (score >= 50) return "#ffcc33";
+    return "#ff0000";
+  };
+
   if (!gameData) return <div className={styles.loading}>Loading...</div>;
 
   return (
-    <motion.div
-      variants={modalVariants}
-      initial="hidden"
-      animate="visible"
-      exit="exit"
-      className={styles.gameDetailsContainer}
-      onClick={(e) => e.stopPropagation()}
-    >
-      <div className={styles.heroSection}>
-        <img
-          src={gameData.background_image}
-          alt={gameData.name}
-          className={styles.heroImage}
-        />
-        <div className={styles.heroOverlay}></div>
-      </div>
-      <div className={styles.contentBody}>
-        <div className={styles.headerRow}>
-          <h1 className={styles.gameTitle}>{gameData.name}</h1>
+    <>
+      <motion.div
+        variants={modalVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        className={styles.gameDetailsContainer}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className={styles.heroSection}>
+          <img
+            src={gameData.background_image}
+            alt={gameData.name}
+            className={styles.heroImage}
+          />
+          <div className={styles.heroOverlay}></div>
+          <div className={styles.heroContent}>
+            <h1 className={styles.gameTitle}>{gameData.name}</h1>
+          </div>
+        </div>
 
-          <select
-            value={currentStatus}
-            onChange={handleStatusChange}
-            disabled={loadingStatus}
-            className={`${styles.statusDropdown} ${currentStatus ? styles.statusActive : ""}`}
-          >
-            <option value="">Add to Library</option>
-            <option value="WANT_TO_PLAY">Want to Play</option>
-            <option value="PLAYED">Played</option>
-            <option value="ON_HOLD">On Hold</option>
-            <option value="DROPPED">Dropped</option>
-          </select>
+        <div className={styles.contentBody}>
+          <div className={styles.headerRow}>
+            <select
+              value={currentStatus}
+              onChange={handleStatusChange}
+              disabled={loadingStatus}
+              className={`${styles.statusDropdown} ${currentStatus ? styles.statusActive : ""}`}
+            >
+              <option value="">+ Add to Library</option>
+              <option value="WANT_TO_PLAY">Want to Play</option>
+              <option value="PLAYED">Played</option>
+              <option value="ON_HOLD">On Hold</option>
+              <option value="DROPPED">Dropped</option>
+            </select>
 
-          {gameData.metacritic && (
-            <div className={styles.metacriticBadge} title="Metacritic Score">
-              {gameData.metacritic}
+            {gameData.metacritic && (
+              <div 
+                className={styles.metacriticBadge} 
+                style={{ 
+                    color: getMetacriticColor(gameData.metacritic),
+                    borderColor: getMetacriticColor(gameData.metacritic),
+                    boxShadow: `0 0 10px ${getMetacriticColor(gameData.metacritic)}30`
+                }}
+                title="Metacritic Score"
+              >
+                {gameData.metacritic}
+              </div>
+            )}
+          </div>
+
+          <div className={styles.metaSection}>
+            <div className={styles.metaGroup}>
+              <h3>Genres</h3>
+              <div className={styles.tagsList}>
+                {gameData.genres?.map((g) => (
+                  <span key={g.id} className={`${styles.tag} ${styles.genreTag}`}>
+                    {g.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className={styles.metaGroup}>
+              <h3>Platforms</h3>
+              <div className={styles.tagsList}>
+                {gameData.platforms?.map((p) => (
+                  <span
+                    key={p.platform.id}
+                    className={`${styles.tag} ${styles.platformTag}`}
+                  >
+                    {p.platform.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.descriptionSection}>
+            <h3>About</h3>
+            <p
+              onClick={handleShowMore}
+              className={styles.descriptionText}
+              style={{
+                cursor:
+                  gameData.description_raw?.length > 500 ? "pointer" : "default",
+              }}
+            >
+              {gameData.description_raw?.length > 500
+                ? !showMore
+                  ? `${gameData.description_raw.slice(0, 500)}...`
+                  : gameData.description_raw
+                : gameData.description_raw}
+              
+              {gameData.description_raw?.length > 500 && (
+                 <span className={styles.readMoreLink}>
+                   {showMore ? " Show Less" : " Read More"}
+                 </span>
+              )}
+            </p>
+          </div>
+
+          {user.accessToken && (
+            <>
+              <div className={styles.divider}></div>
+              <div className={styles.descriptionSection}>
+                <h3>Rating</h3>
+              </div>
+              <BtnSlider value={review} size={100} handleChange={handleChange} />
+            </>
+          )}
+
+          {gameData.req && (gameData.req.min?.cpu || gameData.req.rec?.cpu) && (
+            <div className={styles.requirementsSection}>
+              <h3>System Requirements</h3>
+              <div className={styles.reqGrid}>
+                <div className={styles.reqColumn}>
+                  <h4>Minimum</h4>
+
+                  <div
+                    className={styles.specItem}
+                    style={getStatusStyle(requirements?.minReq?.cpu)}
+                  >
+                    <strong>CPU</strong>
+                    <span>{gameData.req.min.cpu || "N/A"}</span>
+                  </div>
+
+                  <div
+                    className={styles.specItem}
+                    style={getStatusStyle(requirements?.minReq?.gpu)}
+                  >
+                    <strong>GPU</strong>
+                    <span>{gameData.req.min.gpu || "N/A"}</span>
+                  </div>
+
+                  <div
+                    className={styles.specItem}
+                    style={getStatusStyle(requirements?.minReq?.ram)}
+                  >
+                    <strong>RAM</strong>
+                    <span>
+                      {gameData.req.min.ram
+                        ? `${gameData.req.min.ram} GB`
+                        : "N/A"}
+                    </span>
+                  </div>
+                </div>
+
+                <div className={styles.reqColumn}>
+                  <h4>Recommended</h4>
+
+                  <div
+                    className={styles.specItem}
+                    style={getStatusStyle(requirements?.recReq?.cpu)}
+                  >
+                    <strong>CPU</strong>
+                    <span>{gameData.req.rec.cpu || "N/A"}</span>
+                  </div>
+
+                  <div
+                    className={styles.specItem}
+                    style={getStatusStyle(requirements?.recReq?.gpu)}
+                  >
+                    <strong>GPU</strong>
+                    <span>{gameData.req.rec.gpu || "N/A"}</span>
+                  </div>
+
+                  <div
+                    className={styles.specItem}
+                    style={getStatusStyle(requirements?.recReq?.ram)}
+                  >
+                    <strong>RAM</strong>
+                    <span>
+                      {gameData.req.rec.ram
+                        ? `${gameData.req.rec.ram} GB`
+                        : "N/A"}
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </div>
-
-        <div className={styles.metaSection}>
-          <div className={styles.metaGroup}>
-            <h3>Genres</h3>
-            <div className={styles.tagsList}>
-              {gameData.genres?.map((g) => (
-                <span key={g.id} className={`${styles.tag} ${styles.genreTag}`}>
-                  {g.name}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className={styles.metaGroup}>
-            <h3>Platforms</h3>
-            <div className={styles.tagsList}>
-              {gameData.platforms?.map((p) => (
-                <span
-                  key={p.platform.id}
-                  className={`${styles.tag} ${styles.platformTag}`}
-                >
-                  {p.platform.name}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.descriptionSection}>
-          <h3>About</h3>
-          <p
-            onClick={handleShowMore}
-            style={{
-              cursor:
-                gameData.description_raw?.length > 500 ? "pointer" : "default",
-            }}
-          >
-            {gameData.description_raw?.length > 500
-              ? !showMore
-                ? `${gameData.description_raw.slice(0, 500)}...show more`
-                : gameData.description_raw
-              : gameData.description_raw}
-          </p>
-        </div>
-        {user.accessToken ? (
-          <>
-          <div style={{backgroundColor:"gray",height:"1px",display:"flex",alignItems:"center", width:"90vh", opacity:0.25,marginTop:"25px"}}></div>
-            <div className={styles.descriptionSection}>
-              <h3 style={{ marginTop: "25px" }}>Rating</h3>
-            </div>
-            <BtnSlider value={review} size={100} handleChange={handleChange} />
-          </>
-        ) : null}
-
-        {gameData.req && (gameData.req.min?.cpu || gameData.req.rec?.cpu) && (
-          <div className={styles.requirementsSection}>
-            <h3>System Requirements (PC)</h3>
-            <div className={styles.reqGrid}>
-              <div className={styles.reqColumn}>
-                <h4>Minimum</h4>
-
-                <div
-                  className={styles.specItem}
-                  style={getStatusStyle(requirements?.minReq?.cpu)}
-                >
-                  <strong>CPU</strong>
-                  <span>{gameData.req.min.cpu || "N/A"}</span>
-                </div>
-
-                <div
-                  className={styles.specItem}
-                  style={getStatusStyle(requirements?.minReq?.gpu)}
-                >
-                  <strong>GPU</strong>
-                  <span>{gameData.req.min.gpu || "N/A"}</span>
-                </div>
-
-                <div
-                  className={styles.specItem}
-                  style={getStatusStyle(requirements?.minReq?.ram)}
-                >
-                  <strong>RAM</strong>
-                  <span>
-                    {gameData.req.min.ram
-                      ? `${gameData.req.min.ram} GB`
-                      : "N/A"}
-                  </span>
-                </div>
-              </div>
-
-              <div className={styles.reqColumn}>
-                <h4>Recommended</h4>
-
-                <div
-                  className={styles.specItem}
-                  style={getStatusStyle(requirements?.recReq?.cpu)}
-                >
-                  <strong>CPU</strong>
-                  <span>{gameData.req.rec.cpu || "N/A"}</span>
-                </div>
-
-                <div
-                  className={styles.specItem}
-                  style={getStatusStyle(requirements?.recReq?.gpu)}
-                >
-                  <strong>GPU</strong>
-                  <span>{gameData.req.rec.gpu || "N/A"}</span>
-                </div>
-
-                <div
-                  className={styles.specItem}
-                  style={getStatusStyle(requirements?.recReq?.ram)}
-                >
-                  <strong>RAM</strong>
-                  <span>
-                    {gameData.req.rec.ram
-                      ? `${gameData.req.rec.ram} GB`
-                      : "N/A"}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-    </motion.div>
+      </motion.div>
+    </>
   );
 }
 

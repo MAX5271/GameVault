@@ -66,7 +66,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!USER_REGEX.test(username) || !PWD_REGEX.test(password)) {
-      console.log("Invalid entry");
+      console.debug("Invalid entry");
       return;
     }
 

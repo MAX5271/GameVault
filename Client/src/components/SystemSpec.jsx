@@ -32,7 +32,7 @@ const SpecAutocomplete = ({ label, value, apiEndpoint, payloadKey, onSelect }) =
           });
           setResults(response.data.response || []);
         } catch (error) {
-          console.error(`Error fetching ${label}:`, error);
+          console.debug(`Error fetching ${label}:`, error);
           setResults([]);
         } finally {
           setIsLoading(false);
@@ -144,7 +144,7 @@ export default function SystemSpec({ onLoaded }) {
           });
         }
       } catch (error) {
-        console.error("Failed to load specs:", error);
+        console.debug("Failed to load specs:", error);
         if(isMounted) setFetchError("Could not load current specs.");
       } finally {
         if(isMounted && onLoaded) onLoaded();
@@ -172,7 +172,7 @@ export default function SystemSpec({ onLoaded }) {
       });
       setIsSaving(false);
     } catch (error) {
-      console.error("Failed to save specs:", error);
+      console.debug("Failed to save specs:", error);
       setIsSaving(false);
     }
   };

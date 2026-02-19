@@ -67,7 +67,7 @@ function Login() {
       setErr("");
       navigate(`/profile/${response.data.username}`);
     } catch (error) {
-      console.log(error.message);
+      console.debug(error.message);
       if (!error.response) setErr("No response from server");
       else if (error.response.status === 401) setErr("Incorrect username or password");
       else setErr("Login Failed");

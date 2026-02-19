@@ -83,7 +83,7 @@ function Home() {
         if (newGames.length === 0) setHasMore(false);
       } catch (error) {
         if (isCancel(error)) return;
-        console.error(error.message);
+        console.debug(error.message);
       } finally {
         if (!controller.signal.aborted) {
           setLoading(false);

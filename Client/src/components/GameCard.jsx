@@ -1,48 +1,94 @@
-import styles from "./GameCard.module.css";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import styles from "./GameCard.module.css";
 
-function GameCard({ imgSrc, gameName, metacritic, onClick, cardVariants }) {
+function GameCard({ imgSrc, gameName, metacritic, onClick }) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const getScoreColor = (score) => {
-    if (!score) return "#ccc";
+    if (!score) return "#888";
     if (score >= 75) return "#66cc33";
     if (score >= 50) return "#ffcc33";
-    return "#ff0000";
+    return "#ff4d4d";
   };
+
+  const badgeColor = getScoreColor(metacritic);
 
   return (
     <motion.div
-      variants={cardVariants}
-      initial="hidden"
       className={styles.card}
       onClick={onClick}
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      whileHover="hover"
+      transition={{ duration: 0.3, ease: "easeOut" }}
     >
-      {!isLoaded && <motion.div className={styles.placeholder} />}
+      <div className={styles.imageContainer}>
+        <AnimatePresence>
+          {!isLoaded && (
+            <motion.div
+              className={styles.skeleton}
+              initial={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            />
+          )}
+        </AnimatePresence>
 
-      <img
-        src={imgSrc}
-        alt="../assets/ghostStock.eps"
-        className={styles.image}
-        style={isLoaded ? {} : { display: "none" }}
-        onLoad={() => setIsLoaded(true)}
-      />
-      {metacritic && (
-        <div
-          className={styles.metacriticBadge}
-          style={{
-            borderColor: getScoreColor(metacritic),
-            color: getScoreColor(metacritic),
+        <motion.img
+          src={imgSrc}
+          alt={gameName}
+          className={styles.image}
+          loading="lazy"
+          onLoad={() => setIsLoaded(true)}
+          variants={{
+            hover: { scale: 1.1 },
           }}
-        >
-          {metacritic}
-        </div>
-      )}
+          transition={{ duration: 0.4 }}
+        />
 
-      <p className={styles.name}>{gameName}</p>
+        <div className={styles.overlay} />
+      </div>
+
+      <div className={styles.content}>
+        <div className={styles.header}>
+          {metacritic && (
+            <motion.span
+              className={styles.metacriticBadge}
+              style={{
+                borderColor: badgeColor,
+                color: badgeColor,
+                boxShadow: `0 0 10px ${badgeColor}40`,
+              }}
+              whileHover={{ scale: 1.1, backgroundColor: `${badgeColor}20` }}
+            >
+              {metacritic}
+            </motion.span>
+          )}
+        </div>
+
+        <div className={styles.info}>
+          <motion.h3
+            className={styles.name}
+            variants={{
+              hover: { y: -5 },
+            }}
+          >
+            {gameName}
+          </motion.h3>
+          
+          <motion.div 
+            className={styles.cta}
+            variants={{
+                hover: { opacity: 1, y: 0 }
+            }}
+            initial={{ opacity: 0, y: 10 }}
+          >
+            View Details
+          </motion.div>
+        </div>
+      </div>
     </motion.div>
   );
 }
