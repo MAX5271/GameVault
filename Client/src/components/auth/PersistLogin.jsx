@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
-import useRefreshToken from '../hooks/useRefreshToken';
-import DataContext from "../context/DataContext";
+import useRefreshToken from '../../hooks/useRefreshToken';
+import DataContext from "../../context/DataContext";
 
 const PersistLogin = () => {
     const [isLoading, setIsLoading] = useState(true);

@@ -1,11 +1,11 @@
-import axios from "../api/axios";
+import axios from "../../api/axios";
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DataContext from "../context/DataContext";
+import DataContext from "../../context/DataContext";
 import styles from "./GameDetails.module.css";
 import { motion } from "framer-motion";
 import debounce from "lodash.debounce";
-import BtnSlider from "../components/BtnSlider";
+import BtnSlider from "../../components/ui/BtnSlider";
 
 const modalVariants = {
   hidden: {

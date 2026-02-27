@@ -1,15 +1,15 @@
 import { Outlet, Route, Routes } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-import Nav from "./components/Nav";
-import GameDetails from "./pages/GameDetails";
-import Register from "./pages/Register";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
+import Nav from "./components/layout/Nav";
+import PersistLogin from "./components/auth/PersistLogin";
+import BackgroundVideo from "./components/ui/BackgroundVideo";
+import Home from "./pages/main/Home";
+import GameDetails from "./pages/game/GameDetails";
+import Register from "./pages/auth/Register";
 import { DataProvider } from "./context/DataContext";
-import Login from "./pages/Login";
-import Profile from "./pages/Profile";
-import PersistLogin from "./components/PersistLogin";
-import BackgroundVideo from "./components/BackgroundVideo";
+import Login from "./pages/auth/Login";
+import Profile from "./pages/user/Profile";
 import { SearchProvider } from "./context/SearchContext";
 
 const LayoutWithNav = () => {
@@ -38,6 +38,7 @@ function App() {
           </Route>
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
+          <Route path="*" element={<h1>404 Not Found</h1>} />
         </Routes>
           </SearchProvider>
       </DataProvider>

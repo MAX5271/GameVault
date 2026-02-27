@@ -2,7 +2,7 @@ import { useContext, useState, useMemo, useEffect, useRef } from "react";
 import debounce from "lodash.debounce";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Nav.module.css";
-import SearchContext from "../context/SearchContext";
+import SearchContext from "../../context/SearchContext";
 
 function Nav() {
   const { setSearch } = useContext(SearchContext);

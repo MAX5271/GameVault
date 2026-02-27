@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./Register.module.css";
-import axios from "../api/axios";
+import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import {motion} from "framer-motion"
 

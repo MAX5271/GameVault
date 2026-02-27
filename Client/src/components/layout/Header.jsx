@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import DataContext from "../context/DataContext";
 import styles from "./Header.module.css";
-import SearchContext from "../context/SearchContext";
+import DataContext from "../../context/DataContext";
+import SearchContext from "../../context/SearchContext";
 
 function Header({ title }) {
   const navigate = useNavigate();

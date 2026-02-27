@@ -1,8 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import styles from "./Register.module.css";
-import axios from "../api/axios";
+import axios from "../../api/axios";
 import { Link, useNavigate } from "react-router-dom";
-import DataContext from "../context/DataContext";
+import DataContext from "../../context/DataContext";
 import { motion } from "framer-motion";
 
 const loginVariants = {

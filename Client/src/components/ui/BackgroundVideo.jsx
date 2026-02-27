@@ -1,5 +1,5 @@
 import styles from "./BackgroundVideo.module.css";
-import videoBg from "../assets/background.mp4"; 
+import videoBg from "../../assets/background.mp4"; 
 
 function BackgroundVideo() {
   return (

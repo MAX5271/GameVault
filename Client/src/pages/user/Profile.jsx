@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import DataContext from "../context/DataContext";
-import axios from "../api/axios";
-import GameListItem from "../components/GameListItem";
-import Modal from "../components/Modal";
+import DataContext from "../../context/DataContext";
+import axios from "../../api/axios";
+import GameListItem from "../../components/game/GameListItem";
+import SystemSpecModal from "../../components/system/SystemSpecModal";
+import Modal from "../../components/ui/Modal";
 import styles from "./Profile.module.css";
 import { motion, AnimatePresence } from "framer-motion";
-import SystemSpecModal from "../components/SystemSpecModal";
 
 function Profile() {
   const { username } = useParams();

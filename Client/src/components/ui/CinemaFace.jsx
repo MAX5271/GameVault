@@ -1,9 +1,9 @@
 import  { useEffect } from "react";
 import { motion, useTransform, useMotionValue } from "framer-motion";
-import SkullIcon from "../assets/icons/SkullIcon";
-import NeutralFace from "../assets/icons/NeutralFace";
-import HappyFace from "../assets/icons/HappyFace";
-import AbsoluteCinema from "../assets/icons/AbsoluteCinema";
+import SkullIcon from "../../assets/icons/SkullIcon";
+import NeutralFace from "../../assets/icons/NeutralFace";
+import HappyFace from "../../assets/icons/HappyFace";
+import AbsoluteCinema from "../../assets/icons/AbsoluteCinema";
 
 
 const CinemaFace = ({ rating,size }) => {

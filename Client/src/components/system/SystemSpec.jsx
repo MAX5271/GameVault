@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, useMemo, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import debounce from 'lodash.debounce';
-import axios from '../api/axios';
-import DataContext from '../context/DataContext';
+import axios from '../../api/axios';
+import DataContext from '../../context/DataContext';
 import styles from './SystemSpec.module.css';
 
 const RAM_OPTIONS = [4, 8, 16, 32, 64, 128];

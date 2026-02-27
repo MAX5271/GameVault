@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import styles from './Modal.module.css';
+import styles from './SystemSpecModal.module.css';
 import SystemSpec from './SystemSpec';
 
 const overlayVariants = {

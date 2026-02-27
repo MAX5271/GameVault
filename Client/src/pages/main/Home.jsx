@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState, useCallback, useRef } from "react";
 import { isCancel } from "axios";
-import axiosInstance from "../api/axios";
-import GameCard from "../components/GameCard";
-import Modal from "../components/Modal";
+import axiosInstance from "../../api/axios";
+import GameCard from "../../components/game/GameCard";
+import Modal from "../../components/ui/Modal";
 import styles from "./Home.module.css";
 import { AnimatePresence, motion } from "framer-motion";
-import SearchContext from "../context/SearchContext";
+import SearchContext from "../../context/SearchContext";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -45,6 +45,23 @@ function Home() {
   const [activeId, setActiveId] = useState(null);
 
   const prevSearchRef = useRef(search);
+  const observer = useRef();
+
+  const lastGameElementRef = useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPage((prevPage) => prevPage + 1);
+        }
+      });
+
+      if (node) observer.current.observe(node);
+    },
+    [loading, hasMore]
+  );
 
   useEffect(() => {
     const controller = new AbortController();
@@ -95,22 +112,6 @@ function Home() {
     return () => controller.abort();
   }, [page, search, setSearchResult]);
 
-  const handleScroll = useCallback(() => {
-    if (loading || !hasMore) return;
-
-    if (
-      window.innerHeight + document.documentElement.scrollTop >=
-      document.documentElement.scrollHeight - 300
-    ) {
-      setPage((prev) => prev + 1);
-    }
-  }, [loading, hasMore]);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
-
   const handleOpenModal = (id) => {
     setActiveId(id);
     setIsOpen(true);
@@ -150,7 +151,13 @@ function Home() {
             cardVariants={cardVariants}
           />
         ))}
+        <div ref={lastGameElementRef} style={{ height: "1px", width: "100%" }} />
       </motion.div>
+      {loading && searchResult.length > 0 && (
+        <div className={styles.loadingContainer}>
+          <div className={styles.spinner}></div>
+        </div>
+      )}
       <AnimatePresence>
         {isOpen && <Modal activeId={activeId} onClose={handleCloseModal} />}
       </AnimatePresence>
