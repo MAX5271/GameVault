@@ -5,6 +5,24 @@ GameVault is a full-stack web application designed for gamers to discover, track
 ## 🌐 Live Demo
 * **Frontend:** https://game-vault-cyan.vercel.app/
 
+## 📸 Screenshots
+
+### Home Page
+<img src="images/HomePage.png" width="800" alt="GameVault Home Page">
+
+### Game Details
+<img src="images/GameDetails_1.png" width="800" alt="Game Details View 1">
+<img src="images/GameDetails_2.png" width="800" alt="Game Details View 2">
+
+### System Configuration Comparison
+<img src="images/SystemConfig.png" width="800" alt="System Spec Configuration">
+
+### User Profile & Library
+<img src="images/ProfilePage.png" width="800" alt="User Profile and Library">
+
+### Authentication
+<img src="images/LoginScreen.png" width="800" alt="GameVault Login Screen">
+
 ## ✨ Features
 
 ### Core Functionality
