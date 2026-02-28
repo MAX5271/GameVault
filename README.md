@@ -3,8 +3,7 @@
 GameVault is a full-stack web application designed for gamers to discover, track, and manage their video game collections. Built with the MERN stack and powered by the RAWG API, it provides a comprehensive database of games, personalized library management, and a unique system requirement comparison tool. 
 
 ## 🌐 Live Demo
-* **Frontend:** [Your Vercel URL Here]
-* **Backend API:** [Your Render URL Here]
+* **Frontend:** https://game-vault-cyan.vercel.app/
 
 ## ✨ Features
 
@@ -46,7 +45,7 @@ GameVault is a full-stack web application designed for gamers to discover, track
 
 ### 1. Clone the repository
 ```bash
-git clone [https://github.com/MAX5271/GameVault.git](https://github.com/MAX5271/GameVault.git)
+git clone https://github.com/MAX5271/GameVault.git
 cd GameVault
 
 ```
