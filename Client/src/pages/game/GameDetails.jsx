@@ -31,7 +31,7 @@ const modalVariants = {
   },
 };
 
-function GameDetails({ id, onLoaded, onClose }) {
+function GameDetails({ id, onLoaded }) {
   const { user } = useContext(DataContext);
   const [gameData, setGameData] = useState(null);
   const [showMore, setShowMore] = useState(false);
