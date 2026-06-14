@@ -46,6 +46,7 @@ function GameDetails({ id, onLoaded }) {
 
   useEffect(() => {
     const controller = new AbortController();
+    
     const fetchGame = async () => {
       try {
         const res = await axios.get(`/api/v1/game`, {
@@ -60,7 +61,7 @@ function GameDetails({ id, onLoaded }) {
           throw new Error("Failed to retrieve game data");
         }
       } catch (error) {
-        if (error.status === 404) setError(error.message);
+        if (error.response?.status === 404) setError(error.message);
         if (error.name !== "CanceledError") {
           console.error(error);
         }
@@ -69,10 +70,10 @@ function GameDetails({ id, onLoaded }) {
 
     fetchGame();
     return () => controller.abort();
-  }, [id, onLoaded]);
+  }, [id]); 
 
   useEffect(() => {
-    if (!user || !id) return;
+    if (!user?.accessToken || !id) return;
 
     const controller = new AbortController();
 
@@ -90,17 +91,17 @@ function GameDetails({ id, onLoaded }) {
         setReview(response.data.response.rating);
         if (response.status === 200) exists.current = true;
       } catch (error) {
-        if (error.status === 404) setError(error.message);
+        if (error.response?.status === 404) setError(error.message);
         console.log(error.message);
       }
     };
 
     fetchReview();
     return () => controller.abort();
-  }, []);
+  }, [id, user?.accessToken]);
 
   useEffect(() => {
-    if (!user || !id) return;
+    if (!user?.accessToken || !id) return;
 
     const fetchRequirements = async () => {
       try {
@@ -114,7 +115,7 @@ function GameDetails({ id, onLoaded }) {
         });
         setRequirements(res.data.response);
       } catch (err) {
-        if (error.status === 404) setError(error.message);
+        if (err.response?.status === 404) setError(err.message);
         console.log(err.message);
       }
     };
@@ -126,7 +127,7 @@ function GameDetails({ id, onLoaded }) {
     let isMounted = true;
 
     const fetchUserGameStatus = async () => {
-      if (!user?.username || !user?.accessToken) {
+      if (!user?.accessToken || !id) {
         if (isMounted) setLoadingStatus(false);
         return;
       }
@@ -151,7 +152,7 @@ function GameDetails({ id, onLoaded }) {
           }
         }
       } catch (err) {
-        if (error.status === 404) setError(error.message);
+        if (err.response?.status === 404) setError(err.message);
         console.log(err);
         if (isMounted) setCurrentStatus("");
       } finally {
@@ -164,7 +165,7 @@ function GameDetails({ id, onLoaded }) {
     return () => {
       isMounted = false;
     };
-  }, [id, user]);
+  }, [id, user?.accessToken]);
 
   const handleStatusChange = async (e) => {
     const newStatus = e.target.value;
@@ -208,7 +209,7 @@ function GameDetails({ id, onLoaded }) {
         throw new Error("API reported failure");
       }
     } catch (error) {
-      if (error.status === 404) setError(error.message);
+      if (error.response?.status === 404) setError(error.message);
       console.error(error);
       setCurrentStatus(previousStatus);
     }
@@ -217,6 +218,7 @@ function GameDetails({ id, onLoaded }) {
   const saveToDb = useMemo(
     () =>
       debounce(async (val) => {
+        if (!user?.accessToken) return;
         const endpoint = exists.current ? "updateReview" : "addReview";
 
         try {
@@ -238,7 +240,7 @@ function GameDetails({ id, onLoaded }) {
           console.error(error);
         }
       }, 500),
-    [id, user.accessToken],
+    [id, user?.accessToken],
   );
 
   const handleChange = (newValue) => {
@@ -382,7 +384,7 @@ function GameDetails({ id, onLoaded }) {
             </p>
           </div>
 
-          {user.accessToken && (
+          {user?.accessToken && (
             <>
               <div className={styles.divider}></div>
               <div className={styles.descriptionSection}>

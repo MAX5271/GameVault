@@ -76,7 +76,6 @@ function Home() {
 
       if (isNewSearch) {
         setSearchResult([]);
-        setPage(1);
         setHasMore(true);
         prevSearchRef.current = search;
       }
@@ -101,6 +100,7 @@ function Home() {
       } catch (error) {
         if (isCancel(error)) return;
         console.debug(error.message);
+        setHasMore(false);
       } finally {
         if (!controller.signal.aborted) {
           setLoading(false);
@@ -151,7 +151,9 @@ function Home() {
             cardVariants={cardVariants}
           />
         ))}
-        <div ref={lastGameElementRef} style={{ height: "1px", width: "100%" }} />
+        {searchResult.length > 0 && (
+          <div ref={lastGameElementRef} style={{ height: "1px", width: "100%" }} />
+        )}
       </motion.div>
       {loading && searchResult.length > 0 && (
         <div className={styles.loadingContainer}>
