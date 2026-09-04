@@ -30,18 +30,74 @@
   color: var(--color-red);
 }
 
+.searchWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
 .searchForm {
   position: relative;
   display: flex;
   align-items: center;
   gap: var(--spacing-8);
   width: 100%;
-  max-width: 420px;
   height: 36px;
-  margin: 0 auto;
   background-color: var(--color-surface);
   border: var(--border-width) solid var(--color-border);
   padding: 0 var(--spacing-12);
+}
+
+.suggestionsList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--color-surface-alt);
+  border: var(--border-width) solid var(--color-border);
+  border-top: none;
+  max-height: 240px;
+  overflow-y: auto;
+  z-index: 1001;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.suggestionItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-12);
+  padding: var(--spacing-12) var(--spacing-16);
+  cursor: pointer;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--text-body);
+  transition: background 0.1s ease;
+}
+
+.suggestionItem:hover {
+  background-color: var(--color-red);
+  color: var(--color-paper);
+}
+
+.suggestionScore {
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.suggestionLoading,
+.suggestionEmpty {
+  padding: var(--spacing-16);
+  color: var(--color-ink-muted);
+  font-style: italic;
+  font-size: var(--text-caption);
+  text-align: center;
 }
 
 .iconWrapper {

@@ -35,6 +35,23 @@
   }
 }
 
+.emptyState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 100%;
+  padding: var(--spacing-32);
+  text-align: center;
+}
+
+.emptyStateText {
+  font-family: var(--font-heading);
+  font-size: var(--text-heading-sm);
+  color: var(--color-ink-muted);
+  text-transform: uppercase;
+}
+
 @media (max-width: 768px) {
   .home {
     padding: var(--spacing-16);

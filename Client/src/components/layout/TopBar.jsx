@@ -1,10 +1,12 @@
 import { useContext, useState, useMemo, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import debounce from "lodash.debounce";
+import axiosInstance from "../../api/axios";
 import DataContext from "../../context/DataContext";
 import SearchContext from "../../context/SearchContext";
 import ThemeContext from "../../context/ThemeContext";
 import styles from "./TopBar.module.css";
+import { AnimatePresence, motion } from "framer-motion";
 
 function TopBar() {
   const { user } = useContext(DataContext);
@@ -14,7 +16,11 @@ function TopBar() {
 
   const [localInput, setLocalInput] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+  const [suggestions, setSuggestions] = useState([]);
+  const [loadingSuggestions, setLoadingSuggestions] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const inputRef = useRef(null);
+  const wrapperRef = useRef(null);
 
   const debouncedUpdate = useMemo(
     () =>
@@ -24,11 +30,35 @@ function TopBar() {
     [setSearch]
   );
 
+  const debouncedFetchSuggestions = useMemo(
+    () =>
+      debounce(async (val) => {
+        if (!val) {
+          setSuggestions([]);
+          setLoadingSuggestions(false);
+          return;
+        }
+        setLoadingSuggestions(true);
+        try {
+          const res = await axiosInstance.get("/api/v1/games", {
+            params: { search: val, page: 1, page_size: 5 },
+          });
+          setSuggestions(res.data.response || []);
+        } catch {
+          setSuggestions([]);
+        } finally {
+          setLoadingSuggestions(false);
+        }
+      }, 300),
+    []
+  );
+
   useEffect(() => {
     return () => {
       debouncedUpdate.cancel();
+      debouncedFetchSuggestions.cancel();
     };
-  }, [debouncedUpdate]);
+  }, [debouncedUpdate, debouncedFetchSuggestions]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -36,20 +66,44 @@ function TopBar() {
         e.preventDefault();
         inputRef.current?.focus();
       }
+      if (e.key === "Escape") {
+        setShowSuggestions(false);
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setShowSuggestions(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const handleChange = (e) => {
     const val = e.target.value;
     setLocalInput(val);
+    setShowSuggestions(true);
     debouncedUpdate(val);
+    debouncedFetchSuggestions(val);
+  };
+
+  const handleSuggestionClick = (game) => {
+    setLocalInput(game.name);
+    setSearch(game.name);
+    setShowSuggestions(false);
+    navigate("/");
   };
 
   const handleClear = () => {
     setLocalInput("");
     setSearch("");
+    setSuggestions([]);
+    setShowSuggestions(false);
     inputRef.current?.focus();
   };
 
@@ -72,42 +126,73 @@ function TopBar() {
         GameVault
       </button>
 
-      <form className={styles.searchForm} onSubmit={(e) => e.preventDefault()}>
-        <span className={styles.iconWrapper}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-        </span>
-
-        <input
-          ref={inputRef}
-          id="Search"
-          className={styles.input}
-          value={localInput}
-          onChange={handleChange}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          autoComplete="off"
-          placeholder="Search games..."
-        />
-
-        {localInput && (
-          <button
-            type="button"
-            className={styles.clearBtn}
-            onClick={handleClear}
-            aria-label="Clear search"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
+      <div className={styles.searchWrapper} ref={wrapperRef}>
+        <form className={styles.searchForm} onSubmit={(e) => e.preventDefault()}>
+          <span className={styles.iconWrapper}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
-          </button>
-        )}
+          </span>
 
-        {!localInput && !isFocused && <span className={styles.shortcutHint}>⌘K</span>}
-      </form>
+          <input
+            ref={inputRef}
+            id="Search"
+            className={styles.input}
+            value={localInput}
+            onChange={handleChange}
+            onFocus={() => { setIsFocused(true); setShowSuggestions(true); }}
+            onBlur={() => setIsFocused(false)}
+            autoComplete="off"
+            placeholder="Search games..."
+          />
+
+          {localInput && (
+            <button
+              type="button"
+              className={styles.clearBtn}
+              onClick={handleClear}
+              aria-label="Clear search"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          )}
+
+          {!localInput && !isFocused && <span className={styles.shortcutHint}>⌘K</span>}
+        </form>
+
+        <AnimatePresence>
+          {showSuggestions && localInput && (
+            <motion.ul
+              className={styles.suggestionsList}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.15 }}
+            >
+              {loadingSuggestions ? (
+                <li className={styles.suggestionLoading}>Searching...</li>
+              ) : suggestions.length > 0 ? (
+                suggestions.map((game) => (
+                  <li
+                    key={game.id}
+                    className={styles.suggestionItem}
+                    onMouseDown={() => handleSuggestionClick(game)}
+                  >
+                    <span>{game.name}</span>
+                    {game.metacritic && <span className={styles.suggestionScore}>{game.metacritic}</span>}
+                  </li>
+                ))
+              ) : (
+                <li className={styles.suggestionEmpty}>No games found</li>
+              )}
+            </motion.ul>
+          )}
+        </AnimatePresence>
+      </div>
 
       <div className={styles.rightCluster}>
         <button

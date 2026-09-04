@@ -3,6 +3,9 @@ const compareSpecs = require("../utils/compareSpecs");
 const userService = require("../services/userService");
 const compareService = require('../services/compareService');
 
+const ALLOWED_ORDERINGS = ['-rating', 'rating', '-released', 'released', 'name', '-name', '-added', 'added'];
+const SLUG_LIST_REGEX = /^[a-z0-9,-]+$/i;
+
 const getPcRequirements = (game) => {
     const pcPlatform = game?.platforms?.find((p) => p.platform.name === "PC");
     return {
@@ -13,8 +16,16 @@ const getPcRequirements = (game) => {
 
 const fetchHomePageGames = async (req,res) => {
     try {
-        const {search,page} = req.query;
-        const result = await gameService.fetchHomePageGames(search,page);
+        const {search,page,ordering,genres,platforms,page_size} = req.query;
+
+        const options = {
+            ordering: ALLOWED_ORDERINGS.includes(ordering) ? ordering : undefined,
+            genres: SLUG_LIST_REGEX.test(genres || '') ? genres : undefined,
+            platforms: SLUG_LIST_REGEX.test(platforms || '') ? platforms : undefined,
+            page_size: Math.min(Math.max(Number(page_size) || 20, 1), 20),
+        };
+
+        const result = await gameService.fetchHomePageGames(search,page,options);
         return res.status(200).json({
             response: result,
             message: "Home Page Games Fetched Successfully",

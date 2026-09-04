@@ -11,13 +11,16 @@ const getCroppedImageUrl = (url) => {
   return url.slice(0, index) + "crop/600/400/" + url.slice(index);
 };
 
-const fetchHomePageGames = async (search, page) => {
+const fetchHomePageGames = async (search, page, { ordering, genres, platforms, page_size } = {}) => {
   const res = await api.get("/games", {
     params: {
       key: apiKey,
       search: search,
       page: page,
-      page_size: 20,
+      page_size: page_size || 20,
+      ordering,
+      genres,
+      platforms,
     },
   });
 

@@ -1,0 +1,32 @@
+.strip {
+  width: 100%;
+  padding: var(--spacing-32) var(--spacing-32) 0;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: var(--text-heading-sm);
+  color: var(--color-ink);
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-16);
+}
+
+.row {
+  display: flex;
+  gap: var(--spacing-16);
+  overflow-x: auto;
+  padding-bottom: var(--spacing-16);
+}
+
+.item {
+  flex: 0 0 160px;
+}
+
+@media (max-width: 768px) {
+  .strip {
+    padding: var(--spacing-16) var(--spacing-16) 0;
+  }
+  .item {
+    flex-basis: 140px;
+  }
+}
