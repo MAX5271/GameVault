@@ -48,7 +48,7 @@
 .emptyStateText {
   font-family: var(--font-heading);
   font-size: var(--text-heading-sm);
-  color: var(--color-ink-muted);
+  color: var(--color-canvas-muted);
   text-transform: uppercase;
 }
 

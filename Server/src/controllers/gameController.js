@@ -92,10 +92,24 @@ const fetchRequirements = async (req,res) =>{
 const fetchGameDetails = async (req,res) =>{
     try {
     const {id} = req.query;
-    const result = await gameService.fetchGameDetails(id);
+    const [result, screenshots, storesRaw] = await Promise.all([
+        gameService.fetchGameDetails(id),
+        gameService.fetchGameScreenshots(id).catch(() => []),
+        gameService.fetchGameStores(id).catch(() => []),
+    ]);
     const pcRequirements = getPcRequirements(result);
     const minReq = compareSpecs.parseRequirements(pcRequirements.minimum);
     const recReq = compareSpecs.parseRequirements(pcRequirements.recommended);
+
+    const storeMetaById = new Map((result.stores || []).map((s) => [s.store.id, s.store]));
+    const stores = storesRaw
+        .filter((s) => s.url && storeMetaById.has(s.store_id))
+        .map((s) => ({
+            id: s.store_id,
+            name: storeMetaById.get(s.store_id).name,
+            domain: storeMetaById.get(s.store_id).domain,
+            url: s.url,
+        }));
 
     const response = {
                 id: id,
@@ -116,7 +130,12 @@ const fetchGameDetails = async (req,res) =>{
                 background_image: result.background_image,
                 metacritic: result.metacritic,
                 genres: result.genres,
-                platforms: result.platforms
+                platforms: result.platforms,
+                released: result.released,
+                developers: (result.developers || []).map((d) => d.name),
+                publishers: (result.publishers || []).map((p) => p.name),
+                stores,
+                screenshots: screenshots.map((s) => ({ id: s.id, image: s.image })),
             };
     return res.status(200).json({
             response: response,

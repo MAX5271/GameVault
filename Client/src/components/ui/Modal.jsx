@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import GameDetails from '../../pages/game/GameDetails';
 import useModalA11y from '../../hooks/useModalA11y';
@@ -16,9 +16,13 @@ const overlayVariants = {
   }
 };
 
-function Modal({ activeId, onClose }) {
+function Modal({ activeId, onClose, onNavigate }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const containerRef = useModalA11y(onClose);
+
+  useEffect(() => {
+    containerRef.current?.scrollTo({ top: 0 });
+  }, [activeId, containerRef]);
 
   return (
     <motion.div
@@ -42,6 +46,7 @@ function Modal({ activeId, onClose }) {
             id={activeId}
             onLoaded={() => setIsLoaded(true)}
             onClose={onClose}
+            onNavigate={onNavigate}
         />
 
         {isLoaded && (

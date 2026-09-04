@@ -8,6 +8,7 @@
   --color-ink-muted: #55524a;
   --color-border: #0a0a0a;
   --color-red-deep: #c4001a;
+  --color-green-deep: #1b7a2f;
 
   flex-grow: 1;
   width: 100%;
@@ -29,6 +30,7 @@
   --color-ink-muted: #a8a6a0;
   --color-border: #ffffff;
   --color-red-deep: #ff1b2d;
+  --color-green-deep: #2fbf5a;
 }
 
 .loading {
@@ -102,6 +104,105 @@
   padding: 0 12px;
   box-shadow: var(--shadow-brutal-sm);
   transform: skew(-3deg);
+}
+
+.rowWrapper {
+  position: relative;
+  margin-bottom: var(--spacing-32);
+}
+
+.similarSection .rowWrapper {
+  margin-bottom: 0;
+}
+
+.scrollBtn {
+  position: absolute;
+  top: calc(50% - var(--spacing-16));
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-red);
+  border: var(--border-width) solid var(--color-border);
+  color: var(--color-paper);
+  cursor: pointer;
+  box-shadow: var(--shadow-brutal-sm);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.scrollBtn:hover {
+  transform: translate(-2px, -2px) translateY(-50%);
+  box-shadow: var(--shadow-brutal);
+}
+
+.scrollBtnLeft {
+  left: var(--spacing-8);
+}
+
+.scrollBtnRight {
+  right: var(--spacing-8);
+}
+
+.screenshotsRow {
+  display: flex;
+  gap: var(--spacing-12);
+  overflow-x: auto;
+  padding-bottom: var(--spacing-4);
+}
+
+.screenshotImage {
+  flex: 0 0 280px;
+  height: 158px;
+  object-fit: cover;
+  border: var(--border-width) solid var(--color-border);
+}
+
+.storesSection {
+  margin-bottom: var(--spacing-32);
+}
+
+.storesSection h3 {
+  color: var(--color-ink-muted);
+  font-family: var(--font-heading);
+  font-size: var(--text-caption);
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-16);
+  letter-spacing: 1.5px;
+}
+
+.metaValue {
+  color: var(--color-ink);
+  font-size: var(--text-body);
+  font-weight: 600;
+}
+
+.similarSection {
+  margin-top: var(--spacing-48);
+  border-top: var(--border-width) solid var(--color-border);
+  padding-top: var(--spacing-32);
+}
+
+.similarSection h3 {
+  font-family: var(--font-heading);
+  font-size: var(--text-heading-sm);
+  margin-bottom: var(--spacing-24);
+  color: var(--color-ink);
+  text-transform: uppercase;
+}
+
+.similarRow {
+  display: flex;
+  gap: var(--spacing-16);
+  overflow-x: auto;
+  padding-bottom: var(--spacing-16);
+}
+
+.similarItem {
+  flex: 0 0 160px;
+  min-width: 0;
 }
 
 .headerRow {
@@ -326,6 +427,15 @@
   .reqGrid {
     grid-template-columns: 1fr;
     gap: var(--spacing-24);
+  }
+
+  .screenshotImage {
+    flex-basis: 220px;
+    height: 124px;
+  }
+
+  .similarItem {
+    flex-basis: 140px;
   }
 }
 

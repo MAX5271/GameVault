@@ -44,7 +44,23 @@ const fetchGameDetails = async (id) => {
   return res.data;
 };
 
+const fetchGameScreenshots = async (id) => {
+  const res = await api.get(`/games/${id}/screenshots`, {
+    params: { key: apiKey },
+  });
+  return res.data.results;
+};
+
+const fetchGameStores = async (id) => {
+  const res = await api.get(`/games/${id}/stores`, {
+    params: { key: apiKey },
+  });
+  return res.data.results;
+};
+
 module.exports = {
   fetchHomePageGames,
   fetchGameDetails,
+  fetchGameScreenshots,
+  fetchGameStores,
 };

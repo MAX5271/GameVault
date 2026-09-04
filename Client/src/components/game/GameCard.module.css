@@ -1,4 +1,13 @@
 .card {
+  /* Keeps its own dark-mode-aware surface, like the game-details panel,
+     independent of the rest of the app's constant light "paper" card. */
+  --color-surface: #f5f1e8;
+  --color-surface-alt: #ffffff;
+  --color-ink: #0a0a0a;
+  --color-ink-muted: #55524a;
+  --color-border: #0a0a0a;
+  --color-red-deep: #c4001a;
+
   position: relative;
   width: 100%;
   background-color: var(--color-surface);
@@ -12,6 +21,15 @@
   color: inherit;
   display: block;
   transition: box-shadow 0.12s ease;
+}
+
+:root[data-theme="dark"] .card {
+  --color-surface: #101010;
+  --color-surface-alt: #1c1c1c;
+  --color-ink: #ffffff;
+  --color-ink-muted: #a8a6a0;
+  --color-border: #ffffff;
+  --color-red-deep: #ff1b2d;
 }
 
 .card:hover {

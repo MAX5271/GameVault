@@ -1,5 +1,5 @@
 import { useContext, useState, useMemo, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import debounce from "lodash.debounce";
 import axiosInstance from "../../api/axios";
 import DataContext from "../../context/DataContext";
@@ -13,6 +13,8 @@ function TopBar() {
   const { setSearch } = useContext(SearchContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const showSearch = location.pathname !== "/login" && location.pathname !== "/register";
 
   const [localInput, setLocalInput] = useState("");
   const [isFocused, setIsFocused] = useState(false);
@@ -127,6 +129,8 @@ function TopBar() {
       </button>
 
       <div className={styles.searchWrapper} ref={wrapperRef}>
+        {showSearch && (
+        <>
         <form className={styles.searchForm} onSubmit={(e) => e.preventDefault()}>
           <span className={styles.iconWrapper}>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -192,6 +196,8 @@ function TopBar() {
             </motion.ul>
           )}
         </AnimatePresence>
+        </>
+        )}
       </div>
 
       <div className={styles.rightCluster}>

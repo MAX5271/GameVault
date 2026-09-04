@@ -240,7 +240,7 @@ function Home() {
       )}
 
       <AnimatePresence>
-        {isOpen && <Modal activeId={activeId} onClose={handleCloseModal} />}
+        {isOpen && <Modal activeId={activeId} onClose={handleCloseModal} onNavigate={handleOpenModal} />}
       </AnimatePresence>
     </>
   );

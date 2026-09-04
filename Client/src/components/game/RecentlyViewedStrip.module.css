@@ -6,9 +6,13 @@
 .heading {
   font-family: var(--font-heading);
   font-size: var(--text-heading-sm);
-  color: var(--color-ink);
+  color: var(--color-canvas-text);
   text-transform: uppercase;
   margin-bottom: var(--spacing-16);
+}
+
+.rowWrapper {
+  position: relative;
 }
 
 .row {
@@ -20,6 +24,38 @@
 
 .item {
   flex: 0 0 160px;
+  min-width: 0;
+}
+
+.scrollBtn {
+  position: absolute;
+  top: calc(50% - var(--spacing-16));
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-red);
+  border: var(--border-width) solid var(--color-border);
+  color: var(--color-paper);
+  cursor: pointer;
+  box-shadow: var(--shadow-brutal-sm);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.scrollBtn:hover {
+  transform: translate(-2px, -2px) translateY(-50%);
+  box-shadow: var(--shadow-brutal);
+}
+
+.scrollBtnLeft {
+  left: var(--spacing-8);
+}
+
+.scrollBtnRight {
+  right: var(--spacing-8);
 }
 
 @media (max-width: 768px) {

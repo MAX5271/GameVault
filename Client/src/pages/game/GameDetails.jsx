@@ -6,6 +6,8 @@ import styles from "./GameDetails.module.css";
 import { motion, useReducedMotion } from "framer-motion";
 import debounce from "lodash.debounce";
 import BtnSlider from "../../components/ui/BtnSlider";
+import GameCard from "../../components/game/GameCard";
+import useHorizontalScroll from "../../hooks/useHorizontalScroll";
 import { useToast } from "../../context/ToastContext";
 
 const modalVariants = {
@@ -38,7 +40,7 @@ const reducedModalVariants = {
   exit: { opacity: 0, transition: { duration: 0.1 } },
 };
 
-function GameDetails({ id, onLoaded }) {
+function GameDetails({ id, onLoaded, onNavigate }) {
   const { user } = useContext(DataContext);
   const prefersReducedMotion = useReducedMotion();
   const [gameData, setGameData] = useState(null);
@@ -48,6 +50,7 @@ function GameDetails({ id, onLoaded }) {
   const [requirements, setRequirements] = useState({});
   const [review, setReview] = useState(0);
   const [error, setError] = useState("");
+  const [similarGames, setSimilarGames] = useState([]);
   const navigate = useNavigate();
   const showToast = useToast();
 
@@ -79,7 +82,36 @@ function GameDetails({ id, onLoaded }) {
 
     fetchGame();
     return () => controller.abort();
-  }, [id]); 
+  }, [id]);
+
+  useEffect(() => {
+    if (!gameData?.genres?.length) {
+      setSimilarGames([]);
+      return;
+    }
+
+    const controller = new AbortController();
+
+    const fetchSimilarGames = async () => {
+      try {
+        const res = await axios.get("/api/v1/games", {
+          params: {
+            genres: gameData.genres.map((g) => g.slug).join(","),
+            ordering: "-rating",
+            page_size: 9,
+          },
+          signal: controller.signal,
+        });
+        const results = res.data.response || [];
+        setSimilarGames(results.filter((g) => String(g.id) !== String(id)).slice(0, 8));
+      } catch (error) {
+        if (error.name !== "CanceledError") console.debug(error.message);
+      }
+    };
+
+    fetchSimilarGames();
+    return () => controller.abort();
+  }, [id, gameData?.genres]);
 
   useEffect(() => {
     if (!user?.accessToken || !id) return;
@@ -266,14 +298,14 @@ function GameDetails({ id, onLoaded }) {
   const getStatusStyle = (status) => {
     if (status === true) {
       return {
-        borderLeft: "4px solid var(--color-ink)",
-        backgroundColor: "color-mix(in srgb, var(--color-ink) 5%, transparent)",
+        borderLeft: "4px solid var(--color-green-deep)",
+        backgroundColor: "color-mix(in srgb, var(--color-green-deep) 10%, transparent)",
       };
     }
     if (status === false) {
       return {
         borderLeft: "4px solid var(--color-red-deep)",
-        backgroundColor: "color-mix(in srgb, var(--color-red) 10%, transparent)",
+        backgroundColor: "color-mix(in srgb, var(--color-red-deep) 10%, transparent)",
       };
     }
     return {};
@@ -285,6 +317,9 @@ function GameDetails({ id, onLoaded }) {
     if (score >= 50) return "var(--color-ink-muted)";
     return "var(--color-red-deep)";
   };
+
+  const screenshotsScroll = useHorizontalScroll([gameData?.screenshots?.length]);
+  const similarScroll = useHorizontalScroll([similarGames.length]);
 
   if (!gameData) return <div className={styles.loading}>Loading...</div>;
 
@@ -311,6 +346,32 @@ function GameDetails({ id, onLoaded }) {
         </div>
 
         <div className={styles.contentBody}>
+          {gameData.screenshots?.length > 0 && (
+            <div className={styles.rowWrapper}>
+              {screenshotsScroll.canScrollLeft && (
+                <button type="button" className={`${styles.scrollBtn} ${styles.scrollBtnLeft}`} onClick={screenshotsScroll.scrollLeft} aria-label="Scroll left">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+              )}
+              <div className={`${styles.screenshotsRow} ${styles.hideScrollbar}`} ref={screenshotsScroll.ref}>
+                {gameData.screenshots.map((shot) => (
+                  <img
+                    key={shot.id}
+                    src={shot.image}
+                    alt={`${gameData.name} screenshot`}
+                    className={styles.screenshotImage}
+                    loading="lazy"
+                  />
+                ))}
+              </div>
+              {screenshotsScroll.canScrollRight && (
+                <button type="button" className={`${styles.scrollBtn} ${styles.scrollBtnRight}`} onClick={screenshotsScroll.scrollRight} aria-label="Scroll right">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+              )}
+            </div>
+          )}
+
           <div className={styles.headerRow}>
             <select
               value={currentStatus}
@@ -339,6 +400,25 @@ function GameDetails({ id, onLoaded }) {
             )}
           </div>
 
+          {gameData.stores?.length > 0 && (
+            <div className={styles.storesSection}>
+              <h3>Available On</h3>
+              <div className={styles.tagsList}>
+                {gameData.stores.map((store) => (
+                  <a
+                    key={store.id}
+                    href={store.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${styles.tag} ${styles.platformTag}`}
+                  >
+                    {store.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
           <div className={styles.metaSection}>
             <div className={styles.metaGroup}>
               <h3>Genres</h3>
@@ -364,6 +444,33 @@ function GameDetails({ id, onLoaded }) {
                 ))}
               </div>
             </div>
+
+            {gameData.released && (
+              <div className={styles.metaGroup}>
+                <h3>Released</h3>
+                <p className={styles.metaValue}>
+                  {new Date(gameData.released).toLocaleDateString(undefined, {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </p>
+              </div>
+            )}
+
+            {gameData.developers?.length > 0 && (
+              <div className={styles.metaGroup}>
+                <h3>Developer</h3>
+                <p className={styles.metaValue}>{gameData.developers.join(", ")}</p>
+              </div>
+            )}
+
+            {gameData.publishers?.length > 0 && (
+              <div className={styles.metaGroup}>
+                <h3>Publisher</h3>
+                <p className={styles.metaValue}>{gameData.publishers.join(", ")}</p>
+              </div>
+            )}
           </div>
 
           <div className={styles.descriptionSection}>
@@ -464,6 +571,36 @@ function GameDetails({ id, onLoaded }) {
                     </span>
                   </div>
                 </div>
+              </div>
+            </div>
+          )}
+
+          {similarGames.length > 0 && (
+            <div className={styles.similarSection}>
+              <h3>More Like This</h3>
+              <div className={styles.rowWrapper}>
+                {similarScroll.canScrollLeft && (
+                  <button type="button" className={`${styles.scrollBtn} ${styles.scrollBtnLeft}`} onClick={similarScroll.scrollLeft} aria-label="Scroll left">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  </button>
+                )}
+                <div className={`${styles.similarRow} ${styles.hideScrollbar}`} ref={similarScroll.ref}>
+                  {similarGames.map((game) => (
+                    <div key={game.id} className={styles.similarItem}>
+                      <GameCard
+                        imgSrc={game.background_image}
+                        gameName={game.name}
+                        metacritic={game.metacritic}
+                        onClick={() => onNavigate?.(game.id)}
+                      />
+                    </div>
+                  ))}
+                </div>
+                {similarScroll.canScrollRight && (
+                  <button type="button" className={`${styles.scrollBtn} ${styles.scrollBtnRight}`} onClick={similarScroll.scrollRight} aria-label="Scroll right">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </button>
+                )}
               </div>
             </div>
           )}
