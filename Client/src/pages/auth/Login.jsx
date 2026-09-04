@@ -4,6 +4,7 @@ import axios from "../../api/axios";
 import { Link, useNavigate } from "react-router-dom";
 import DataContext from "../../context/DataContext";
 import { motion } from "framer-motion";
+import GoogleSignInButton from "../../components/auth/GoogleSignInButton";
 
 const loginVariants = {
   hidden:{
@@ -138,6 +139,8 @@ function Login() {
             >
               Sign in
             </button>
+            <div className={styles.orDivider}>OR</div>
+            <GoogleSignInButton onError={setErr} />
             <p className={styles.registerOption}>
               Don't have an account? <Link to="/register">Sign Up</Link>
             </p>

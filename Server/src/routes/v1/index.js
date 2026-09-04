@@ -32,6 +32,7 @@ router.patch('/user',verifyJWT,userController.updateUserPassword);
 router.delete('/user',verifyJWT,userController.deleteUser);
 
 router.post('/login',authLimiter,authController.handleLogin);
+router.post('/auth/google',authLimiter,authController.handleGoogleLogin);
 router.get('/logout',authController.handleLogout);
 router.get('/refresh',authLimiter,authController.handleRefreshToken);
 

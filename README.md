@@ -36,7 +36,7 @@ GameVault is a full-stack web application designed for gamers to discover, track
 * **Stylized Aesthetics:** Clean, minimalist design with a high-contrast art style inspired by modern RPGs, featuring smooth animations powered by Framer Motion.
 * **Optimized Performance:** Implements infinite scrolling and React Query for seamless data caching and fetching.
 * **Smart Search:** Fast, responsive search functionality utilizing debouncing on the client and fuzzy matching on the server.
-* **Secure Authentication:** User registration and login protected by bcrypt password hashing, short-lived JWT access tokens, and httpOnly refresh cookies.
+* **Secure Authentication:** User registration and login protected by bcrypt password hashing, short-lived JWT access tokens, and httpOnly refresh cookies. Optional one-click **Google sign-in** issues the same JWT pair via server-side ID token verification.
 * **Accessible by Design:** All interactive elements (cards, modals, nav) are keyboard-operable, modals trap focus and close on `Esc`, and errors surface as visible toast notifications instead of failing silently.
 
 ## 🔒 Security
@@ -95,10 +95,11 @@ DATABASE_URI=<your_mongodb_uri_here>
 ACCESS_TOKEN_SECRET=<your_access_token_secret_here>
 REFRESH_TOKEN_SECRET=<your_refresh_token_secret_here>
 RAWG_API_KEY=<your_rawg_api_key_here>
+GOOGLE_CLIENT_ID=<your_google_oauth_client_id_here>
 
 ```
 
-All five variables are required — the server checks for them on startup and exits with an error if any are missing.
+The first five variables are required — the server checks for them on startup and exits with an error if any are missing. `GOOGLE_CLIENT_ID` is optional: without it the server still starts normally, but Google sign-in requests will fail. See [Google OAuth setup](#-google-oauth-setup) below.
 
 Start the backend server:
 
@@ -119,8 +120,11 @@ Create a `.env` file in the `Client` directory. For local development, point it 
 
 ```env
 VITE_API_URL="http://localhost:3000"
+VITE_GOOGLE_CLIENT_ID=<your_google_oauth_client_id_here>
 
 ```
+
+`VITE_GOOGLE_CLIENT_ID` is optional — if it's unset, the Google sign-in button simply doesn't render and the rest of the app works normally.
 
 Start the frontend development server:
 
@@ -129,16 +133,28 @@ npm run dev
 
 ```
 
+### 4. 🔑 Google OAuth setup
+
+Google sign-in is optional but, if you want to enable it:
+
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/) → **APIs & Services → Credentials**.
+2. Click **Create Credentials → OAuth client ID**, choosing **Web application** as the application type.
+3. Under **Authorized JavaScript origins**, add `http://localhost:5173` for local development, plus your deployed frontend URL (e.g. your Vercel domain) for production.
+4. Copy the generated **Client ID** and set it as:
+   * `GOOGLE_CLIENT_ID` in the `Server/.env` file
+   * `VITE_GOOGLE_CLIENT_ID` in the `Client/.env` file
+5. Restart both the backend and frontend dev servers. A "Sign in with Google" button will now appear on the Login and Register pages.
+
 ## ☁️ Deployment Notes
 
 This project is configured for split deployment:
 
 * **Frontend (Vercel):** Ensure your build command is set to `npm run build` and the output directory is `dist`. Add `VITE_API_URL` to your Vercel environment variables, pointing to your live Render backend URL.
 * **Backend (Render):** Set up as a Web Service. Ensure the Build Command is `npm install` and the Start Command is `npm start` (runs `node index.js`). Add all backend `.env` variables to the Render dashboard. Make sure to configure CORS in your Express app to accept requests from your specific Vercel domain.
+* **Google OAuth:** If using Google sign-in in production, add your deployed frontend URL to the OAuth client's Authorized JavaScript origins in the Google Cloud Console (see [Google OAuth setup](#-google-oauth-setup)).
 
 ## 🗺️ Future Implementations
 
-* **OAuth Integration:** Simplified user login.
 * **Advanced Filtering:** Genre-based filtering across libraries and searches.
 * **Recommendation Engine:** Personalized game suggestions based on user rating history.
 

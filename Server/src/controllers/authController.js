@@ -21,6 +21,27 @@ const handleLogin = async (req, res) => {
   }
 };
 
+const handleGoogleLogin = async (req, res) => {
+  try {
+    const { username, accessToken, refreshToken } = await authServices.loginWithGoogle(
+      req.body.credential
+    );
+    res.cookie("jwt", refreshToken, {
+      httpOnly: true,
+      sameSite: "None",
+      secure: true,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
+    res.status(200).json({ username, accessToken });
+  } catch (error) {
+    console.log(error.message);
+    res.status(401).json({
+      Message: error.message,
+    });
+  }
+};
+
 const handleRefreshToken = async (req, res) => {
   try {
     const cookies = req.cookies;
@@ -64,6 +85,7 @@ const handleLogout = async (req, res) => {
 
 module.exports = {
   handleLogin,
+  handleGoogleLogin,
   handleRefreshToken,
   handleLogout,
 };

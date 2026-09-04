@@ -39,6 +39,24 @@
   --color-red-deep: #ff1b2d;
 }
 
+.orDivider {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-12);
+  color: var(--color-ink-muted);
+  font-family: var(--font-heading);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.orDivider::before,
+.orDivider::after {
+  content: "";
+  flex: 1;
+  height: var(--border-width);
+  background-color: var(--color-border);
+}
+
 .title {
   color: var(--color-ink);
   font-family: var(--font-display);

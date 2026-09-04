@@ -1,0 +1,12 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.buttonSlot {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  justify-content: center;
+}

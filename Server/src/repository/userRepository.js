@@ -30,6 +30,26 @@ const getUser = async (username) => {
   return res;
 };
 
+const getUserByGoogleId = async (googleId) => {
+  return await User.findOne({ googleId }).exec();
+};
+
+const isUsernameTaken = async (username) => {
+  const existing = await User.findOne({ username }).exec();
+  return !!existing;
+};
+
+const createGoogleUser = async ({ username, email, googleId }) => {
+  const newUser = await User.create({
+    username,
+    email,
+    googleId,
+    authProvider: "GOOGLE",
+    isVerified: true,
+  });
+  return newUser;
+};
+
 const addStatus = async (username, gameId, status = "WANT_TO_PLAY") => {
   const exists = await User.findOne({
     username,
@@ -192,6 +212,9 @@ module.exports = {
   updateUserPassword,
   deleteUser,
   getUser,
+  getUserByGoogleId,
+  isUsernameTaken,
+  createGoogleUser,
   updateRefreshToken,
   removeRefreshToken,
   addStatus,

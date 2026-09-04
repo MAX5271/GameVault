@@ -4,6 +4,7 @@ import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import {motion} from "framer-motion"
 import DataContext from "../../context/DataContext";
+import GoogleSignInButton from "../../components/auth/GoogleSignInButton";
 
 const USER_REGEX = /^[A-Za-z][A-Za-z0-9_-]{2,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -213,6 +214,9 @@ function Register() {
               <button type="submit" className={styles.button} disabled={submitting || !validMatch || !validUsername || !validPass}>
                 {submitting ? "Signing Up..." : "Sign Up"}
               </button>
+
+              <div className={styles.orDivider}>OR</div>
+              <GoogleSignInButton onError={setErr} />
 
               <div className={styles.loginRedirect}>
                 <span className={styles.loginLinkText}>Already have an account?</span>
