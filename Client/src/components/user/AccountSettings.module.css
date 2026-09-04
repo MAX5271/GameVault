@@ -1,0 +1,168 @@
+.container {
+  background-color: #0a0a0a;
+  color: #f0f0f0;
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  border: 1px solid #333;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.header {
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #333;
+  padding-bottom: 1rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 0;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-size: 0.75rem;
+  color: #888;
+  margin-top: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #222;
+}
+
+.section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.sectionTitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ccc;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+.dangerTitle {
+  color: #f87171;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.input {
+  background-color: #111;
+  border: 1px solid #444;
+  color: #fff;
+  width: 100%;
+  padding: 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  border-color: #fff;
+  outline: none;
+}
+
+.dangerInput:focus {
+  border-color: #f87171;
+}
+
+.hint {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.errorText {
+  font-size: 0.8rem;
+  color: #f87171;
+}
+
+.successText {
+  font-size: 0.8rem;
+  color: #4ade80;
+}
+
+.saveBtn {
+  background: #fff;
+  border: 1px solid #fff;
+  color: #000;
+  padding: 1rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.saveBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dangerBtn {
+  background: transparent;
+  border: 1px solid #f87171;
+  color: #f87171;
+  padding: 1rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.dangerBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dangerBtnConfirm {
+  background: #f87171;
+  color: #000;
+}
+
+.dangerActions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.cancelBtn {
+  flex: 1;
+  background: transparent;
+  border: 1px solid #333;
+  color: #888;
+  padding: 1rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: all 0.2s;
+}

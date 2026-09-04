@@ -9,6 +9,11 @@
   cursor: pointer;
   transform: translateZ(0);
   border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  color: inherit;
+  display: block;
 }
 
 .imageContainer {

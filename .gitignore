@@ -1,17 +1,17 @@
 # Logs
-./Client/logs
-./Client/*.log
-./Client/npm-debug.log*
-./Client/yarn-debug.log*
-./Client/yarn-error.log*
-./Client/pnpm-debug.log*
-./Client/lerna-debug.log*
+Client/logs
+Client/*.log
+Client/npm-debug.log*
+Client/yarn-debug.log*
+Client/yarn-error.log*
+Client/pnpm-debug.log*
+Client/lerna-debug.log*
 
-./Client/node_modules
-./Client/dist
-./Client/dist-ssr
-./Client/*.local
-./Client/.env
+Client/node_modules
+Client/dist
+Client/dist-ssr
+Client/*.local
+Client/.env
 
 # Editor directories and files
 .vscode/*
@@ -25,8 +25,8 @@
 *.sw?
 
 #Server
-./Server/.env
-./Server/node_modules
+Server/.env
+Server/node_modules
 
 # --- SAFETY NET (Catches files in the root folder too) ---
 node_modules/

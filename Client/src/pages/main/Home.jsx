@@ -6,6 +6,7 @@ import Modal from "../../components/ui/Modal";
 import styles from "./Home.module.css";
 import { AnimatePresence, motion } from "framer-motion";
 import SearchContext from "../../context/SearchContext";
+import { useToast } from "../../context/ToastContext";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -46,6 +47,7 @@ function Home() {
 
   const prevSearchRef = useRef(search);
   const observer = useRef();
+  const showToast = useToast();
 
   const lastGameElementRef = useCallback(
     (node) => {
@@ -101,6 +103,7 @@ function Home() {
         if (isCancel(error)) return;
         console.debug(error.message);
         setHasMore(false);
+        showToast("Couldn't load games. Please check your connection and try again.");
       } finally {
         if (!controller.signal.aborted) {
           setLoading(false);
@@ -115,13 +118,11 @@ function Home() {
   const handleOpenModal = (id) => {
     setActiveId(id);
     setIsOpen(true);
-    document.body.style.overflow = "hidden";
   };
 
   const handleCloseModal = () => {
     setIsOpen(false);
     setActiveId(null);
-    document.body.style.overflow = "unset";
   };
 
   if (loading && searchResult.length === 0) {

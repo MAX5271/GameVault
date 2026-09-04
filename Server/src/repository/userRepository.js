@@ -74,7 +74,7 @@ const addReview = async (username,gameId,rating=0) => {
         rating: rating
       }
     }
-  });
+  }, { runValidators: true });
 
   if(result.matchedCount === 0 ) throw new Error("User not found");
 
@@ -86,7 +86,7 @@ const updateReview = async (username, gameId, rating) =>{
     $set: {
       "reviews.$.rating": rating
     }
-  });
+  }, { runValidators: true });
   if (result.matchedCount === 0) {
     throw new Error("User or game not found");
   }

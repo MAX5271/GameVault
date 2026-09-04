@@ -6,12 +6,13 @@ const authController = require('../../controllers/authController');
 const gameController = require('../../controllers/gameController');
 const scoreController = require('../../controllers/scoreController');
 const { verifyJWT } = require('../../middlewares/verifyJWT');
+const { authLimiter } = require('../../middlewares/rateLimiter');
 
 router.get('/health', (req, res) => {
     res.status(200).json({ status: 'active', message: 'GameVault server is awake' });
 });
 
-router.post('/register',userController.createUser);
+router.post('/register',authLimiter,userController.createUser);
 router.post('/user/game/add',verifyJWT,userController.addStatus);
 router.post('/user/game',verifyJWT,userController.getStatus);
 router.post('/user/updateGame',verifyJWT,userController.updateStatus);
@@ -30,9 +31,9 @@ router.get('/user/:username',verifyJWT,userController.getUser);
 router.patch('/user',verifyJWT,userController.updateUserPassword);
 router.delete('/user',verifyJWT,userController.deleteUser);
 
-router.post('/login',authController.handleLogin);
+router.post('/login',authLimiter,authController.handleLogin);
 router.get('/logout',authController.handleLogout);
-router.get('/refresh',authController.handleRefreshToken);
+router.get('/refresh',authLimiter,authController.handleRefreshToken);
 
 router.get('/games',gameController.fetchHomePageGames);
 router.get('/game',gameController.fetchGameDetails);

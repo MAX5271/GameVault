@@ -3,6 +3,14 @@ const compareSpecs = require("../utils/compareSpecs");
 const userService = require("../services/userService");
 const compareService = require('../services/compareService');
 
+const getPcRequirements = (game) => {
+    const pcPlatform = game?.platforms?.find((p) => p.platform.name === "PC");
+    return {
+        minimum: pcPlatform?.requirements?.minimum || "",
+        recommended: pcPlatform?.requirements?.recommended || "",
+    };
+};
+
 const fetchHomePageGames = async (req,res) => {
     try {
         const {search,page} = req.query;
@@ -14,6 +22,10 @@ const fetchHomePageGames = async (req,res) => {
         });
     } catch (error) {
         console.log(error.message);
+        return res.status(502).json({
+            message: "Failed to fetch games",
+            success: false
+        });
     }
 }
 
@@ -23,8 +35,9 @@ const fetchRequirements = async (req,res) =>{
     const {id} = req.query;
     const pcSpecs = await userService.getPcSpecs(username);
     const result = await gameService.fetchGameDetails(id);
-    const minReq = compareSpecs.parseRequirements(result.platforms.filter((p)=>p.platform.name=="PC")[0].requirements.minimum);
-    const recReq = compareSpecs.parseRequirements(result.platforms.filter((p)=>p.platform.name=="PC")[0].requirements.recommended);
+    const pcRequirements = getPcRequirements(result);
+    const minReq = compareSpecs.parseRequirements(pcRequirements.minimum);
+    const recReq = compareSpecs.parseRequirements(pcRequirements.recommended);
 
     const response = {
                 id: id,
@@ -57,7 +70,11 @@ const fetchRequirements = async (req,res) =>{
             success: true
     });
     } catch (error) {
-       console.log(error.message); 
+       console.log(error.message);
+       return res.status(502).json({
+           message: "Failed to fetch game requirements",
+           success: false
+       });
     }
 }
 
@@ -65,8 +82,9 @@ const fetchGameDetails = async (req,res) =>{
     try {
     const {id} = req.query;
     const result = await gameService.fetchGameDetails(id);
-    const minReq = compareSpecs.parseRequirements(result.platforms.filter((p)=>p.platform.name=="PC")[0].requirements.minimum);
-    const recReq = compareSpecs.parseRequirements(result.platforms.filter((p)=>p.platform.name=="PC")[0].requirements.recommended);
+    const pcRequirements = getPcRequirements(result);
+    const minReq = compareSpecs.parseRequirements(pcRequirements.minimum);
+    const recReq = compareSpecs.parseRequirements(pcRequirements.recommended);
 
     const response = {
                 id: id,
@@ -95,7 +113,11 @@ const fetchGameDetails = async (req,res) =>{
             success: true
     });
     } catch (error) {
-       console.log(error.message); 
+       console.log(error.message);
+       return res.status(404).json({
+           message: "Game not found",
+           success: false
+       });
     }
 }
 

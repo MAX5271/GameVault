@@ -236,9 +236,15 @@ const searchGpu = (req,res) => {
     }
 }
 
+const isValidRating = (rating) =>
+    typeof rating === "number" && Number.isFinite(rating) && rating >= 0 && rating <= 100;
+
 const addReview = async (req,res) => {
     try {
         const username = req.user;
+        if (!isValidRating(req.body.rating)) {
+            return res.status(400).json({ message: "Rating must be a number between 0 and 100", success: false });
+        }
         const result = await userService.addReview(username,req.body.gameId,req.body.rating);
         return res.status(200).json({
             "message":"Review added successfully",
@@ -257,6 +263,9 @@ const addReview = async (req,res) => {
 const updateReview = async (req,res) => {
     try {
         const username = req.user;
+        if (!isValidRating(req.body.rating)) {
+            return res.status(400).json({ message: "Rating must be a number between 0 and 100", success: false });
+        }
         const result = await userService.updateReview(username,req.body.gameId,req.body.rating);
         return res.status(200).json({
             "message":"Review updated successfully",

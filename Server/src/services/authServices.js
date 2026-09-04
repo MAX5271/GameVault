@@ -2,11 +2,9 @@ const userRepository = require('../repository/userRepository');
 const jwtHelper = require('../utils/jwtHelper');
 
 const loginUser = async (username,password) =>{
-    const user = await userRepository.getUser(username);
-    if(!user) throw new Error("User not found");
-
-    const match = await user.comparePassword(password);
-    if(!match) throw new Error("Incorrect password.");
+    const user = await userRepository.getUser(username).catch(() => null);
+    const match = user ? await user.comparePassword(password) : false;
+    if(!user || !match) throw new Error("Invalid username or password.");
 
     const accessToken = jwtHelper.generateAccessToken(username);
     const refreshToken = jwtHelper.generateRefreshToken(username);

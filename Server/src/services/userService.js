@@ -1,11 +1,21 @@
 const userRepository = require("../repository/userRepository");
+const { isValidUsername, isValidPassword } = require("../utils/validators");
 
 const createUser = async (username, password) => {
+  if (!isValidUsername(username)) {
+    throw new Error("Username must be 3-24 characters, start with a letter, and contain only letters, numbers, underscores or hyphens.");
+  }
+  if (!isValidPassword(password)) {
+    throw new Error("Password must be 8-24 characters and include an uppercase letter, a lowercase letter, a number and a special character (!@#$%).");
+  }
   const res = await userRepository.createUser(username, password);
   return res;
 };
 
 const updateUserPassword = async (username, password, newPassword) => {
+  if (!isValidPassword(newPassword)) {
+    throw new Error("New password must be 8-24 characters and include an uppercase letter, a lowercase letter, a number and a special character (!@#$%).");
+  }
   const res = await userRepository.updateUserPassword(
     username,
     password,

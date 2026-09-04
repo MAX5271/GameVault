@@ -6,6 +6,7 @@ import styles from "./GameDetails.module.css";
 import { motion } from "framer-motion";
 import debounce from "lodash.debounce";
 import BtnSlider from "../../components/ui/BtnSlider";
+import { useToast } from "../../context/ToastContext";
 
 const modalVariants = {
   hidden: {
@@ -41,6 +42,7 @@ function GameDetails({ id, onLoaded }) {
   const [review, setReview] = useState(0);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const showToast = useToast();
 
   const exists = useRef(null);
 
@@ -212,6 +214,7 @@ function GameDetails({ id, onLoaded }) {
       if (error.response?.status === 404) setError(error.message);
       console.error(error);
       setCurrentStatus(previousStatus);
+      showToast("Couldn't update your library. Please try again.");
     }
   };
 
@@ -238,9 +241,10 @@ function GameDetails({ id, onLoaded }) {
           if (endpoint === "addReview") exists.current = true;
         } catch (error) {
           console.error(error);
+          showToast("Couldn't save your rating. Please try again.");
         }
       }, 500),
-    [id, user?.accessToken],
+    [id, user?.accessToken, showToast],
   );
 
   const handleChange = (newValue) => {
@@ -362,24 +366,21 @@ function GameDetails({ id, onLoaded }) {
 
           <div className={styles.descriptionSection}>
             <h3>About</h3>
-            <p
-              onClick={handleShowMore}
-              className={styles.descriptionText}
-              style={{
-                cursor:
-                  gameData.description_raw?.length > 500 ? "pointer" : "default",
-              }}
-            >
+            <p className={styles.descriptionText}>
               {gameData.description_raw?.length > 500
                 ? !showMore
                   ? `${gameData.description_raw.slice(0, 500)}...`
                   : gameData.description_raw
                 : gameData.description_raw}
-              
+              {" "}
               {gameData.description_raw?.length > 500 && (
-                 <span className={styles.readMoreLink}>
-                   {showMore ? " Show Less" : " Read More"}
-                 </span>
+                 <button
+                   type="button"
+                   onClick={handleShowMore}
+                   className={styles.readMoreLink}
+                 >
+                   {showMore ? "Show Less" : "Read More"}
+                 </button>
               )}
             </p>
           </div>

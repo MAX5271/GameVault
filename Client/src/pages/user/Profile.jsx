@@ -4,12 +4,14 @@ import DataContext from "../../context/DataContext";
 import axios from "../../api/axios";
 import GameListItem from "../../components/game/GameListItem";
 import SystemSpecModal from "../../components/system/SystemSpecModal";
+import AccountSettingsModal from "../../components/user/AccountSettingsModal";
 import Modal from "../../components/ui/Modal";
 import styles from "./Profile.module.css";
 import { motion, AnimatePresence } from "framer-motion";
+import { useToast } from "../../context/ToastContext";
 
 function Profile() {
-  const { username } = useParams();
+  const { username: routeUsername } = useParams();
   const { user } = useContext(DataContext);
 
   const [gameGroups, setGameGroups] = useState({
@@ -22,24 +24,17 @@ function Profile() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeId, setActiveId] = useState(null);
   const [specIsOpen, setSpecIsOpen] = useState(false);
+  const [accountIsOpen, setAccountIsOpen] = useState(false);
   const navigate = useNavigate();
+  const showToast = useToast();
 
   useEffect(() => {
     if (!user.username) {
       navigate("/login");
+    } else if (routeUsername !== user.username) {
+      navigate(`/profile/${user.username}`, { replace: true });
     }
-  }, [user.username, navigate]);
-
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      document.body.style.overflow = isOpen || specIsOpen ? "hidden" : "unset";
-    }
-    return () => {
-      if (typeof document !== "undefined") {
-        document.body.style.overflow = "unset";
-      }
-    };
-  }, [isOpen, specIsOpen]);
+  }, [user.username, routeUsername, navigate]);
 
   useEffect(() => {
     let isMounted = true;
@@ -94,7 +89,10 @@ function Profile() {
         }
       } catch (err) {
         console.debug(err);
-        if (isMounted) setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+          showToast("Couldn't load your library. Please try again.");
+        }
       }
     };
 
@@ -103,7 +101,7 @@ function Profile() {
     return () => {
       isMounted = false;
     };
-  }, [user]);
+  }, [user, showToast]);
 
   const handleOpenModal = (id) => {
     setActiveId(id);
@@ -123,8 +121,22 @@ function Profile() {
     setSpecIsOpen(false);
   };
 
+  const handleOpenAccount = () => {
+    setAccountIsOpen(true);
+  };
+
+  const handleCloseAccount = () => {
+    setAccountIsOpen(false);
+  };
+
   const handleLogout = async () => {
     await axios.get("/api/v1/logout");
+    navigate("/login");
+    window.location.reload();
+  };
+
+  const handleAccountDeleted = () => {
+    setAccountIsOpen(false);
     navigate("/login");
     window.location.reload();
   };
@@ -164,7 +176,7 @@ function Profile() {
             animate={{ opacity: 1, x: 0 }}
             className={styles.title}
           >
-            {username}
+            {user.username}
           </motion.h1>
         </div>
         
@@ -180,6 +192,16 @@ function Profile() {
           </motion.button>
 
           <motion.button
+            className={styles.editSpecBtn}
+            whileHover={{ scale: 1.02, backgroundColor: "#fff", color: "#000" }}
+            whileTap={{ scale: 0.98 }}
+            onClick={handleOpenAccount}
+          >
+            <span className={styles.icon}>👤</span>
+            <span>Account Settings</span>
+          </motion.button>
+
+          <motion.button
             className={styles.logoutBtn}
             whileHover={{ scale: 1.02, borderColor: "#ef4444", color: "#ef4444" }}
             whileTap={{ scale: 0.98 }}
@@ -192,6 +214,12 @@ function Profile() {
 
       <AnimatePresence>
         {specIsOpen && <SystemSpecModal onClose={handleCloseSpec}/>}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {accountIsOpen && (
+          <AccountSettingsModal onClose={handleCloseAccount} onAccountDeleted={handleAccountDeleted} />
+        )}
       </AnimatePresence>
 
       {loading ? (

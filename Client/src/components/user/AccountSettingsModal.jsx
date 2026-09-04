@@ -1,38 +1,38 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import styles from './SystemSpecModal.module.css';
-import SystemSpec from './SystemSpec';
+import styles from '../system/SystemSpecModal.module.css';
+import AccountSettings from './AccountSettings';
 import useModalA11y from '../../hooks/useModalA11y';
 
 const overlayVariants = {
   hidden: { opacity: 0 },
-  visible: { 
+  visible: {
     opacity: 1,
     transition: { duration: 0.3 }
   },
-  exit: { 
+  exit: {
     opacity: 0,
-    transition: { duration: 0.3, delay: 0.1 } 
+    transition: { duration: 0.3, delay: 0.1 }
   }
 };
 
 const contentVariants = {
   hidden: { scale: 0.95, opacity: 0, y: 20 },
-  visible: { 
-    scale: 1, 
-    opacity: 1, 
+  visible: {
+    scale: 1,
+    opacity: 1,
     y: 0,
     transition: { duration: 0.3, type: "spring", stiffness: 300, damping: 25 }
   },
-  exit: { 
-    scale: 0.95, 
-    opacity: 0, 
+  exit: {
+    scale: 0.95,
+    opacity: 0,
     y: 20,
-    transition: { duration: 0.2 } 
+    transition: { duration: 0.2 }
   }
 };
 
-function SystemSpecModal({ onClose }) {
+function AccountSettingsModal({ onClose, onAccountDeleted }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const containerRef = useModalA11y(onClose);
 
@@ -52,10 +52,10 @@ function SystemSpecModal({ onClose }) {
         variants={contentVariants}
         role="dialog"
         aria-modal="true"
-        aria-label="System specifications"
+        aria-label="Account settings"
         tabIndex={-1}
       >
-        <SystemSpec onLoaded={() => setIsLoaded(true)} />
+        <AccountSettings onLoaded={() => setIsLoaded(true)} onAccountDeleted={onAccountDeleted} />
 
         {isLoaded && (
             <button className={styles.closeButton} onClick={onClose} aria-label="Close">
@@ -67,4 +67,4 @@ function SystemSpecModal({ onClose }) {
   );
 }
 
-export default SystemSpecModal;
+export default AccountSettingsModal;

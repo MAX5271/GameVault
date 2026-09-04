@@ -24,9 +24,9 @@ function Header({ title }) {
 
   return (
     <header className={styles.header}>
-      <div className={styles.logoContainer} onClick={handleHomeClick}>
+      <button className={styles.logoContainer} onClick={handleHomeClick} aria-label="Go to home page">
         <h1 className={styles.title}>{title}</h1>
-      </div>
+      </button>
 
       <button className={styles.profileBtn} onClick={handleProfileClick}>
         <span className={styles.btnText}>

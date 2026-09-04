@@ -33,16 +33,12 @@ const fetchHomePageGames = async (search, page) => {
 };
 
 const fetchGameDetails = async (id) => {
-  try {
-    const res = await api.get(`/games/${id}`, {
-        params:{
-            key: apiKey,
-        }
-    });
-    return res.data;
-  } catch (error) {
-    console.log(error.message);
-  }
+  const res = await api.get(`/games/${id}`, {
+      params:{
+          key: apiKey,
+      }
+  });
+  return res.data;
 };
 
 module.exports = {

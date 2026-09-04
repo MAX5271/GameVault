@@ -4,13 +4,16 @@ import Footer from "./components/layout/Footer";
 import Nav from "./components/layout/Nav";
 import PersistLogin from "./components/auth/PersistLogin";
 import BackgroundVideo from "./components/ui/BackgroundVideo";
+import ToastContainer from "./components/ui/ToastContainer";
 import Home from "./pages/main/Home";
+import NotFound from "./pages/main/NotFound";
 import GameDetails from "./pages/game/GameDetails";
 import Register from "./pages/auth/Register";
 import { DataProvider } from "./context/DataContext";
 import Login from "./pages/auth/Login";
 import Profile from "./pages/user/Profile";
 import { SearchProvider } from "./context/SearchContext";
+import { ToastProvider } from "./context/ToastContext";
 
 const LayoutWithNav = () => {
   return (
@@ -26,6 +29,7 @@ function App() {
     <div className="App">
         <BackgroundVideo/>
       <DataProvider>
+        <ToastProvider>
           <SearchProvider>
         <Header title="GameVault" />
         <Routes>
@@ -38,9 +42,11 @@ function App() {
           </Route>
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
-          <Route path="*" element={<h1>404 Not Found</h1>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
           </SearchProvider>
+          <ToastContainer />
+        </ToastProvider>
       </DataProvider>
       <Footer />
     </div>

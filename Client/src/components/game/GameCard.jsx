@@ -15,9 +15,11 @@ function GameCard({ imgSrc, gameName, metacritic, onClick }) {
   const badgeColor = getScoreColor(metacritic);
 
   return (
-    <motion.div
+    <motion.button
+      type="button"
       className={styles.card}
       onClick={onClick}
+      aria-label={`View details for ${gameName}`}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
@@ -89,7 +91,7 @@ function GameCard({ imgSrc, gameName, metacritic, onClick }) {
           </motion.div>
         </div>
       </div>
-    </motion.div>
+    </motion.button>
   );
 }
 

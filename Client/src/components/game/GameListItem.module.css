@@ -9,6 +9,9 @@
   border: 1px solid #333;
   width: 100%;
   box-sizing: border-box;
+  font: inherit;
+  text-align: left;
+  color: inherit;
 }
 
 .gameListItem:hover {
