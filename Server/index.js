@@ -30,7 +30,11 @@ const PORT = process.env.PORT||3000;
 //connect to mongoDB
 connectDB();
 
-app.use(helmet());
+app.use(helmet({
+    // Google Identity Services' Sign-In popup needs to postMessage back to
+    // this window; the default "same-origin" COOP severs that opener link.
+    crossOriginOpenerPolicy: { policy: 'same-origin-allow-popups' },
+}));
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
