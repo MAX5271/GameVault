@@ -1,9 +1,7 @@
 import { Outlet, Route, Routes } from "react-router-dom";
-import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
-import Nav from "./components/layout/Nav";
+import TopBar from "./components/layout/TopBar";
 import PersistLogin from "./components/auth/PersistLogin";
-import BackgroundVideo from "./components/ui/BackgroundVideo";
 import ToastContainer from "./components/ui/ToastContainer";
 import Home from "./pages/main/Home";
 import NotFound from "./pages/main/NotFound";
@@ -14,24 +12,18 @@ import Login from "./pages/auth/Login";
 import Profile from "./pages/user/Profile";
 import { SearchProvider } from "./context/SearchContext";
 import { ToastProvider } from "./context/ToastContext";
+import { ThemeProvider } from "./context/ThemeContext";
+import styles from "./App.module.css";
 
 const LayoutWithNav = () => {
-  return (
-    <>
-      <Nav />
-      <Outlet />
-    </>
-  );
+  return <Outlet />;
 };
 
-function App() {
+const AppShell = () => {
   return (
     <div className="App">
-        <BackgroundVideo/>
-      <DataProvider>
-        <ToastProvider>
-          <SearchProvider>
-        <Header title="GameVault" />
+      <TopBar />
+      <div className={styles.centerColumn}>
         <Routes>
           <Route element={<PersistLogin />}>
             <Route element={<LayoutWithNav />}>
@@ -44,12 +36,24 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+      </div>
+      <Footer />
+      <ToastContainer />
+    </div>
+  );
+};
+
+function App() {
+  return (
+    <ThemeProvider>
+      <DataProvider>
+        <ToastProvider>
+          <SearchProvider>
+            <AppShell />
           </SearchProvider>
-          <ToastContainer />
         </ToastProvider>
       </DataProvider>
-      <Footer />
-    </div>
+    </ThemeProvider>
   );
 }
 

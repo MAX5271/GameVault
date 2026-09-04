@@ -67,7 +67,6 @@ const CinemaFace = ({ rating,size }) => {
             scale: cinemaScale,
             position: "absolute", inset: 0,
             display: "flex", justifyContent: "center", alignItems: "center",
-            filter: "drop-shadow(0 0 10px rgba(245, 158, 11, 0.5))"
           }}
         >
           <AbsoluteCinema width="100%" height="100%" />

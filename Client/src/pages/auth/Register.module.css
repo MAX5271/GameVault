@@ -4,82 +4,112 @@
   align-items: center;
   min-height: 80vh;
   background-color: transparent;
+  padding: var(--spacing-24);
 }
 
 .container {
-  background-color: #1e1e1e;
-  padding: 2.5rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  /* Keeps its own dark-mode-aware surface, like the game-details panel,
+     independent of the rest of the app's constant light "paper" card. */
+  --color-surface: #f5f1e8;
+  --color-surface-alt: #ffffff;
+  --color-ink: #0a0a0a;
+  --color-ink-muted: #55524a;
+  --color-border: #0a0a0a;
+  --color-red-deep: #c4001a;
+
+  background-color: var(--color-surface);
+  padding: var(--spacing-32);
+  border: var(--border-width-lg) solid var(--color-border);
+  box-shadow: var(--shadow-brutal-lg);
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  border: 1px solid #333;
+  gap: var(--spacing-24);
+  font-family: var(--font-body);
+  transform: rotate(-0.4deg);
+}
+
+:root[data-theme="dark"] .container {
+  --color-surface: #101010;
+  --color-surface-alt: #1c1c1c;
+  --color-ink: #ffffff;
+  --color-ink-muted: #a8a6a0;
+  --color-border: #ffffff;
+  --color-red-deep: #ff1b2d;
 }
 
 .title {
-  color: #ffffff;
-  font-size: 2rem;
-  font-weight: 600;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 3rem;
   text-align: center;
-  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--spacing-8);
 }
 
 .formGroup {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--spacing-8);
 }
 
 .label {
-  color: #b0b0b0;
-  font-size: 0.9rem;
-  font-weight: 500;
+  color: var(--color-ink);
+  font-family: var(--font-heading);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .input {
-  background-color: #2d2d2d;
-  border: 1px solid #404040;
-  border-radius: 6px;
-  padding: 0.8rem 1rem;
-  color: #ffffff;
-  font-size: 1rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background-color: var(--color-surface-alt);
+  border: var(--border-width) solid var(--color-border);
+  padding: var(--spacing-12) var(--spacing-16);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--text-body);
+  transition: box-shadow 0.1s ease, transform 0.1s ease;
   outline: none;
 }
 
 .input:focus {
-  border-color: #646cff;
-  box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.2);
+  box-shadow: var(--shadow-brutal-sm);
+  transform: translate(-2px, -2px);
 }
 
 .button {
-  margin-top: 1rem;
-  background-color: #ffffff;
-  color: #000000;
-  border: none;
-  padding: 0.8rem;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-weight: 700;
+  margin-top: var(--spacing-8);
+  background-color: var(--color-red);
+  color: var(--color-paper);
+  border: var(--border-width) solid var(--color-border);
+  padding: var(--spacing-12);
+  font-family: var(--font-heading);
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   cursor: pointer;
-  transition: transform 0.1s ease, background-color 0.2s ease;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .button:hover {
-  background-color: #e0e0e0;
-  transform: translateY(-1px);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-brutal-sm);
 }
 
 .button:active {
-  transform: translateY(0);
+  transform: translate(0, 0);
+  box-shadow: none;
 }
 
 .button:disabled {
-    background-color: gray;
-    cursor:not-allowed;
+    background-color: var(--color-surface-alt);
+    color: var(--color-ink-muted);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
 .passwordWrapper {
@@ -96,45 +126,39 @@
 
 .eyeButton {
   position: absolute;
-  right: 8px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   background: transparent;
   border: none;
   cursor: pointer;
-  color: #888;
-  padding: 8px;
-  border-radius: 50%;
+  color: var(--color-ink);
+  padding: var(--spacing-8);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
+  transition: color 0.1s ease;
   outline: none;
 }
 
 .eyeButton:hover {
-  color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.eyeButton:active {
-  transform: translateY(-50%) scale(0.95);
+  color: var(--color-red-deep);
 }
 
 .eyeButton svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 
 .instructions {
-    font-size: 0.75rem;
-    border-radius: 0.5rem;
-    background: #000;
-    color: #fff;
-    padding: 0.5rem;
+    font-size: var(--text-caption);
+    background: var(--color-surface-alt);
+    border: 2px solid var(--color-border);
+    color: var(--color-ink);
+    padding: var(--spacing-8);
     position: relative;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: var(--spacing-8);
+    margin-bottom: var(--spacing-8);
     display: block;
 }
 
@@ -149,35 +173,37 @@
 }
 
 .checklist {
-    font-size: 0.75rem;
-    border-radius: 0.5rem;
-    background: #000;
-    padding: 0.6rem 0.8rem;
+    font-size: var(--text-caption);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    background: var(--color-surface-alt);
+    border: 2px solid var(--color-border);
+    padding: var(--spacing-8) var(--spacing-12);
     position: relative;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: var(--spacing-8);
+    margin-bottom: var(--spacing-8);
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: var(--spacing-4);
 }
 
 .valid {
-    color: limegreen;
+    color: var(--color-ink);
 }
 
 .invalid {
-    color: #ff8080;
+    color: var(--color-red-deep);
 }
 
 .errmsg {
-    background-color: #3d1a1a;
-    color: #ff6b6b;
-    font-weight: bold;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-    border-radius: 6px;
-    border: 1px solid #ff6b6b;
+    background-color: var(--color-red);
+    color: var(--color-paper);
+    font-family: var(--font-heading);
+    font-size: 13px;
+    padding: var(--spacing-8);
+    margin-bottom: var(--spacing-8);
+    border: var(--border-width) solid var(--color-border);
     text-align: center;
 }
 
@@ -185,96 +211,65 @@
     display: inline-block;
 }
 
-.loginButton {
-  margin-top: 1.5rem;
-  width: 100%;
-  background-color: #ffffff;
-  color: #000000;
-  border: none;
-  padding: 1rem;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.loginButton:hover {
-  background-color: #e0e0e0;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-}
-
-.loginButton:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
 .errorMessage {
-  background-color: #3d1a1a;
-  color: #ff6b6b;
-  border: 1px solid #ff6b6b;
-  padding: 0.8rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  background-color: var(--color-red);
+  color: var(--color-paper);
+  border: var(--border-width) solid var(--color-border);
+  padding: var(--spacing-12);
+  margin-bottom: var(--spacing-16);
   text-align: center;
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-family: var(--font-heading);
+  font-size: 13px;
   width: 100%;
 }
 
 .registerOption {
-  margin-top: 1.5rem;
+  margin-top: var(--spacing-24);
   text-align: center;
-  font-size: 0.95rem;
-  color: #ccc;
+  font-size: var(--text-body);
+  color: var(--color-ink-muted);
 }
 
 .registerOption a {
-  color: #646cff;
+  color: var(--color-red-deep);
   text-decoration: none;
-  font-weight: 600;
-  margin-left: 5px;
+  font-weight: 700;
+  margin-left: var(--spacing-4);
 }
 
 .registerOption a:hover {
   text-decoration: underline;
-  color: #747bff;
 }
 
 .loginRedirect {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid #333;
+  margin-top: var(--spacing-24);
+  padding-top: var(--spacing-24);
+  border-top: var(--border-width) solid var(--color-border);
   width: 100%;
 }
 
 .loginLinkText {
-  color: #888;
-  font-size: 0.9rem;
-  margin-right: 0.5rem;
+  color: var(--color-ink-muted);
+  font-size: var(--text-body);
+  margin-right: var(--spacing-8);
 }
 
 .loginRedirectButton {
   background: none;
   border: none;
-  color: #646cff;
-  font-weight: 600;
+  color: var(--color-red-deep);
+  font-weight: 700;
   cursor: pointer;
   padding: 0;
-  font-size: 0.9rem;
+  font-size: var(--text-body);
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color 0.1s ease;
   font-family: inherit;
 }
 
 .loginRedirectButton:hover {
-  color: #8888ff;
   text-decoration: underline;
 }

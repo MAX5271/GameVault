@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import styles from "./Register.module.css";
 import axios from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import {motion} from "framer-motion"
+import DataContext from "../../context/DataContext";
 
 const USER_REGEX = /^[A-Za-z][A-Za-z0-9_-]{2,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -25,9 +26,11 @@ const registerVariants = {
 }
 
 function Register() {
+  const { setUser } = useContext(DataContext);
   const userRef = useRef();
   const navigate = useNavigate();
   const REGISTER_URL = "/api/v1/register";
+  const LOGIN_URL = "/api/v1/login";
 
   const [username, setUsername] = useState("");
   const [validUsername, setValidUsername] = useState(false);
@@ -44,7 +47,7 @@ function Register() {
   const [showPwd, setShowPwd] = useState(false);
   const [showMatch, setShowMatch] = useState(false);
 
-  const [success, setSuccess] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [err, setErr] = useState('');
 
   useEffect(() => {
@@ -78,6 +81,7 @@ function Register() {
       return;
     }
 
+    setSubmitting(true);
     try {
       await axios.post(
         REGISTER_URL,
@@ -87,12 +91,33 @@ function Register() {
           withCredentials: true,
         }
       );
-      setSuccess(true);
-      setErr('');
     } catch (error) {
       if(!error.response) setErr("No response from server");
       else if(error.response.status===409) setErr("Username already taken");
       else setErr('Registration failed');
+      setSubmitting(false);
+      return;
+    }
+
+    setErr('');
+    try {
+      const loginResponse = await axios.post(
+        LOGIN_URL,
+        JSON.stringify({ username, password }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      setUser({
+        username: loginResponse.data.username,
+        accessToken: loginResponse.data.accessToken,
+      });
+      navigate(`/profile/${loginResponse.data.username}`);
+    } catch (error) {
+      // Account was created but auto-login failed — send them to log in manually.
+      console.debug(error.message);
+      navigate('/login');
     }
   };
 
@@ -101,16 +126,6 @@ function Register() {
       <motion.form variants={registerVariants} initial="hidden" animate="visible" onSubmit={handleSubmit} className={styles.container}>
         {err ? <p className={styles.errorMessage}>{err}</p> : null}
         <h1 className={styles.title}>Register</h1>
-        <>
-          {success ? (
-            <button
-              onClick={(e) => {e.preventDefault(); navigate("/login");}}
-              className={styles.loginButton}
-            >
-              Continue to Login
-            </button>
-          ) : (
-            <>
               <div className={styles.formGroup}>
                 <label htmlFor="username" className={styles.label}>Username:</label>
                 <input
@@ -195,22 +210,19 @@ function Register() {
                 </p>
               </div>
 
-              <button type="submit" className={styles.button} disabled={!validMatch || !validUsername || !validPass}>
-                Sign Up
+              <button type="submit" className={styles.button} disabled={submitting || !validMatch || !validUsername || !validPass}>
+                {submitting ? "Signing Up..." : "Sign Up"}
               </button>
 
               <div className={styles.loginRedirect}>
                 <span className={styles.loginLinkText}>Already have an account?</span>
-                <button 
+                <button
                   className={styles.loginRedirectButton}
                   onClick={(e) => { e.preventDefault(); navigate('/login'); }}
                 >
                   Sign In
                 </button>
               </div>
-            </>
-          )}
-        </>
       </motion.form>
     </div>
   );

@@ -3,14 +3,14 @@ import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DataContext from "../../context/DataContext";
 import styles from "./GameDetails.module.css";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import debounce from "lodash.debounce";
 import BtnSlider from "../../components/ui/BtnSlider";
 import { useToast } from "../../context/ToastContext";
 
 const modalVariants = {
   hidden: {
-    y: "100vh",
+    y: "6vh",
     opacity: 0,
   },
   visible: {
@@ -18,22 +18,29 @@ const modalVariants = {
     opacity: 1,
     transition: {
       type: "spring",
-      damping: 25,
-      stiffness: 300,
+      damping: 28,
+      stiffness: 380,
     },
   },
   exit: {
-    y: "100vh",
+    y: "6vh",
     opacity: 0,
     transition: {
-      duration: 0.3,
-      ease: "easeInOut",
+      duration: 0.18,
+      ease: "easeIn",
     },
   },
 };
 
+const reducedModalVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.15 } },
+  exit: { opacity: 0, transition: { duration: 0.1 } },
+};
+
 function GameDetails({ id, onLoaded }) {
   const { user } = useContext(DataContext);
+  const prefersReducedMotion = useReducedMotion();
   const [gameData, setGameData] = useState(null);
   const [showMore, setShowMore] = useState(false);
   const [currentStatus, setCurrentStatus] = useState("");
@@ -259,28 +266,24 @@ function GameDetails({ id, onLoaded }) {
   const getStatusStyle = (status) => {
     if (status === true) {
       return {
-        borderLeft: "4px solid #4ade80",
-        backgroundColor: "rgba(74, 222, 128, 0.15)",
-        paddingLeft: "15px",
-        paddingRight: "15px"
+        borderLeft: "4px solid var(--color-ink)",
+        backgroundColor: "color-mix(in srgb, var(--color-ink) 5%, transparent)",
       };
     }
     if (status === false) {
       return {
-        borderLeft: "4px solid #f87171",
-        backgroundColor: "rgba(248, 113, 113, 0.15)",
-        paddingLeft: "15px",
-        paddingRight: "15px"
+        borderLeft: "4px solid var(--color-red-deep)",
+        backgroundColor: "color-mix(in srgb, var(--color-red) 10%, transparent)",
       };
     }
     return {};
   };
 
   const getMetacriticColor = (score) => {
-    if (!score) return "#ccc";
-    if (score >= 75) return "#66cc33";
-    if (score >= 50) return "#ffcc33";
-    return "#ff0000";
+    if (!score) return "var(--color-ink-muted)";
+    if (score >= 75) return "var(--color-ink)";
+    if (score >= 50) return "var(--color-ink-muted)";
+    return "var(--color-red-deep)";
   };
 
   if (!gameData) return <div className={styles.loading}>Loading...</div>;
@@ -288,7 +291,7 @@ function GameDetails({ id, onLoaded }) {
   return (
     <>
       <motion.div
-        variants={modalVariants}
+        variants={prefersReducedMotion ? reducedModalVariants : modalVariants}
         initial="hidden"
         animate="visible"
         exit="exit"
@@ -323,12 +326,11 @@ function GameDetails({ id, onLoaded }) {
             </select>
 
             {gameData.metacritic && (
-              <div 
-                className={styles.metacriticBadge} 
-                style={{ 
+              <div
+                className={styles.metacriticBadge}
+                style={{
                     color: getMetacriticColor(gameData.metacritic),
                     borderColor: getMetacriticColor(gameData.metacritic),
-                    boxShadow: `0 0 10px ${getMetacriticColor(gameData.metacritic)}30`
                 }}
                 title="Metacritic Score"
               >

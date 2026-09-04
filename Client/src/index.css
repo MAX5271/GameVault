@@ -1,11 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo+Black&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 :root {
-  --bg-color: #1a1a1a;
-  --content-bg: #2d2d2d;
-  --text-color: #f0f0f0;
-  --accent-color: #646cff;
-  --header-footer-bg: #000000;
+  /* Surface (card/panel "paper") — always light, constant across themes
+     (game-details keeps its own dark-mode-aware override locally). */
+  --color-surface: #f5f1e8;
+  --color-surface-alt: #ffffff;
+  --color-ink: #0a0a0a;
+  --color-ink-muted: #55524a;
+
+  /* Paper — CONSTANT light value for content that sits on a --color-red or
+     --color-ink fill (button labels, badges, chips), regardless of theme. */
+  --color-paper: #ffffff;
+
+  /* Canvas (page background/chrome) — inverts per theme */
+  --color-canvas: #0a0a0a;
+  --color-canvas-text: #ffffff;
+  --color-canvas-muted: #b8b6b0;
+  --color-canvas-alt: #161616;
+
+  /* Accent — constant identity, not themed */
+  --color-red: #ff1b2d;
+  --color-red-deep: #c4001a;
+  --color-gray: #2b2b2b;
+
+  /* Structure — always black, brutalist constant (game-details overrides locally) */
+  --color-border: #0a0a0a;
+  --border-width: 3px;
+  --border-width-lg: 4px;
+
+  /* Hard offset shadows — no blur */
+  --shadow-brutal-sm: 4px 4px 0 var(--color-border);
+  --shadow-brutal: 6px 6px 0 var(--color-border);
+  --shadow-brutal-lg: 8px 8px 0 var(--color-border);
+  --shadow-brutal-red: 6px 6px 0 var(--color-red);
+
+  /* Typography */
+  --font-display: 'Bebas Neue', 'Archivo Black', ui-sans-serif, sans-serif;
+  --font-heading: 'Archivo Black', 'Arial Black', ui-sans-serif, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --text-caption: 12px;
+  --text-body: 14px;
+  --text-heading-sm: 22px;
+  --text-heading-lg: 40px;
+  --text-display: 72px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+
+  /* Layout */
+  --page-max-width: 1440px;
+  --section-gap: 48px;
+  --topbar-height: 56px;
+
+  /* Radius — near-zero, brutalist */
+  --radius-none: 0px;
+  --radius-sm: 2px;
+}
+
+:root[data-theme="light"] {
+  --color-canvas: #f5f1e8;
+  --color-canvas-text: #0a0a0a;
+  --color-canvas-muted: #55524a;
+  --color-canvas-alt: #ece6d8;
 }
 
 * {
@@ -14,11 +79,30 @@
   box-sizing: border-box;
 }
 
+html {
+  scrollbar-color: var(--color-red) var(--color-canvas);
+}
+
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
-  background-color: transparent; 
-  color: var(--text-color);
+  background-color: var(--color-canvas);
+  color: var(--color-canvas-text);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  background-image:
+    repeating-linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-red) 5%, transparent) 0px,
+      color-mix(in srgb, var(--color-red) 5%, transparent) 1px,
+      transparent 1px,
+      transparent 26px
+    ),
+    radial-gradient(
+      color-mix(in srgb, var(--color-canvas-text) 10%, transparent) 1px,
+      transparent 1.4px
+    );
+  background-size: auto, 18px 18px;
+  background-attachment: fixed;
 }
 
 #root {
@@ -31,13 +115,9 @@ body {
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
-  padding-top: 80px;
-  padding-bottom: 80px;
 }
 
-@media (max-width: 768px) {
-  .App {
-    padding-top: 100px;
-    padding-bottom: 100px;
-  }
+::selection {
+  background-color: var(--color-red);
+  color: var(--color-paper);
 }

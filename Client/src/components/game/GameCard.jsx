@@ -1,18 +1,12 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import styles from "./GameCard.module.css";
 
 function GameCard({ imgSrc, gameName, metacritic, onClick }) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
-  const getScoreColor = (score) => {
-    if (!score) return "#888";
-    if (score >= 75) return "#66cc33";
-    if (score >= 50) return "#ffcc33";
-    return "#ff4d4d";
-  };
-
-  const badgeColor = getScoreColor(metacritic);
+  const isLowScore = metacritic && metacritic < 50;
 
   return (
     <motion.button
@@ -20,11 +14,12 @@ function GameCard({ imgSrc, gameName, metacritic, onClick }) {
       className={styles.card}
       onClick={onClick}
       aria-label={`View details for ${gameName}`}
-      initial={{ opacity: 0, y: 20 }}
+      initial={prefersReducedMotion ? false : { opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      whileHover="hover"
-      transition={{ duration: 0.3, ease: "easeOut" }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+      whileHover={prefersReducedMotion ? undefined : { x: -3, y: -3 }}
+      whileTap={{ x: 0, y: 0 }}
     >
       <div className={styles.imageContainer}>
         <AnimatePresence>
@@ -33,63 +28,29 @@ function GameCard({ imgSrc, gameName, metacritic, onClick }) {
               className={styles.skeleton}
               initial={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.3 }}
             />
           )}
         </AnimatePresence>
 
-        <motion.img
+        <img
           src={imgSrc}
           alt={gameName}
           className={styles.image}
           loading="lazy"
           onLoad={() => setIsLoaded(true)}
-          variants={{
-            hover: { scale: 1.1 },
-          }}
-          transition={{ duration: 0.4 }}
         />
 
-        <div className={styles.overlay} />
+        {metacritic && (
+          <span className={`${styles.priceChip} ${isLowScore ? styles.lowScore : ""}`}>
+            {metacritic}
+          </span>
+        )}
       </div>
 
-      <div className={styles.content}>
-        <div className={styles.header}>
-          {metacritic && (
-            <motion.span
-              className={styles.metacriticBadge}
-              style={{
-                borderColor: badgeColor,
-                color: badgeColor,
-                boxShadow: `0 0 10px ${badgeColor}40`,
-              }}
-              whileHover={{ scale: 1.1, backgroundColor: `${badgeColor}20` }}
-            >
-              {metacritic}
-            </motion.span>
-          )}
-        </div>
-
-        <div className={styles.info}>
-          <motion.h3
-            className={styles.name}
-            variants={{
-              hover: { y: -5 },
-            }}
-          >
-            {gameName}
-          </motion.h3>
-          
-          <motion.div 
-            className={styles.cta}
-            variants={{
-                hover: { opacity: 1, y: 0 }
-            }}
-            initial={{ opacity: 0, y: 10 }}
-          >
-            View Details
-          </motion.div>
-        </div>
+      <div className={styles.caption}>
+        <h3 className={styles.name}>{gameName}</h3>
+        <span className={styles.subtitle}>VIEW DETAILS →</span>
       </div>
     </motion.button>
   );

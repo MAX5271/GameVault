@@ -15,9 +15,10 @@
 }
 
 .ratingNumber {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   margin: 0 0 10px 10px;
-  color: #fff;
+  color: var(--color-ink);
+  font-family: var(--font-mono);
   font-weight: 700;
 }
 
@@ -42,33 +43,44 @@
 }
 
 .rail {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--color-surface-alt);
+  border: 2px solid var(--color-border);
   height: 8px !important;
-  border-radius: 4px;
+  border-radius: 0;
 }
 
 .track {
-  background-color: #9ca3af;
+  background-color: var(--color-red);
+  border: 2px solid var(--color-border);
   height: 8px !important;
-  border-radius: 4px;
-  box-shadow: 0 0 10px rgba(156, 163, 175, 0.4);
+  border-radius: 0;
 }
 
 .handle {
-  border: 2px solid #fff;
-  background-color: #1e1e1e;
-  width: 24px !important;
-  height: 24px !important;
-  margin-top: -8px !important;
+  border: var(--border-width) solid var(--color-border) !important;
+  background-color: var(--color-surface-alt);
+  width: 22px !important;
+  height: 22px !important;
+  margin-top: -9px !important;
   opacity: 1 !important;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  border-radius: 0;
+  outline: none;
+  box-shadow: none !important;
   cursor: grab;
-  transition: transform 0.1s, background-color 0.2s;
+  transition: transform 0.1s ease;
+}
+
+.handle:hover {
+  box-shadow: var(--shadow-brutal-sm) !important;
+}
+
+.handle:focus,
+.handle:focus-visible {
+  box-shadow: 0 0 0 3px var(--color-red) !important;
 }
 
 .handle:active {
   cursor: grabbing;
-  transform: scale(1.2);
-  background-color: #9ca3af;
-  border-color: #9ca3af;
+  transform: scale(1.15);
+  box-shadow: 0 0 0 3px var(--color-red) !important;
 }

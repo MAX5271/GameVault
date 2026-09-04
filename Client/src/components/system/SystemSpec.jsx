@@ -219,14 +219,14 @@ export default function SystemSpec({ onLoaded }) {
           </div>
         </div>
 
-        {fetchError && <div style={{color: 'red', fontSize: '0.8rem'}}>{fetchError}</div>}
+        {fetchError && <div style={{color: 'var(--color-red-deep)', fontSize: '0.8rem', fontWeight: 700}}>{fetchError}</div>}
 
         <div className={styles.actions}>
           <motion.button
             type="submit"
             className={styles.saveBtn}
             disabled={isSaving}
-            whileHover={{ scale: 1.02, boxShadow: "0px 0px 15px rgba(255, 255, 255, 0.2)" }}
+            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
             {isSaving ? "SAVING..." : "CONFIRM SPECS"}

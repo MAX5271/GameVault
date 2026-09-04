@@ -5,7 +5,8 @@ function Footer() {
 
   return (
     <footer className={styles.footer}>
-      GameVault, {year}
+      <span>GameVault, {year}</span>
+      <span className={styles.muted}>Powered by RAWG API</span>
     </footer>
   );
 }

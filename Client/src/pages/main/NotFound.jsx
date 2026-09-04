@@ -10,7 +10,10 @@ function NotFound() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
     >
-      <h1 className={styles.code}>404</h1>
+      <div className={styles.slash} aria-hidden="true" />
+      <div className={styles.codeWrap}>
+        <h1 className={styles.code}>404</h1>
+      </div>
       <p className={styles.message}>This page doesn't exist, or has wandered off.</p>
       <Link to="/" className={styles.homeLink}>
         Back to Home

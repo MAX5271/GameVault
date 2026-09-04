@@ -1,44 +1,74 @@
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  min-height: calc(100vh - 160px);
-  padding: 2rem;
-  color: #ededed;
+  min-height: calc(100vh - var(--topbar-height) * 2);
+  padding: var(--spacing-32);
+  color: var(--color-canvas-text);
+  overflow: hidden;
+}
+
+.slash {
+  position: absolute;
+  width: 140%;
+  height: 90px;
+  background: var(--color-red);
+  border-top: var(--border-width) solid var(--color-border);
+  border-bottom: var(--border-width) solid var(--color-border);
+  transform: rotate(-6deg);
+  z-index: 0;
+}
+
+.codeWrap {
+  position: relative;
+  z-index: 1;
 }
 
 .code {
-  font-size: 6rem;
-  font-weight: 800;
-  letter-spacing: -3px;
+  font-family: var(--font-display);
+  font-size: 9rem;
+  letter-spacing: 4px;
   margin: 0;
-  background: linear-gradient(to bottom right, #ffffff, #555555);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--color-canvas-text);
+  -webkit-text-stroke: 2px var(--color-border);
 }
 
 .message {
-  font-size: 1.1rem;
-  color: #888;
-  margin: 0.5rem 0 2rem;
+  position: relative;
+  z-index: 1;
+  font-size: var(--text-body);
+  font-weight: 600;
+  color: var(--color-canvas-muted);
+  margin: var(--spacing-8) 0 var(--spacing-32);
 }
 
 .homeLink {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 28px;
-  background-color: #fff;
-  color: #000;
-  border-radius: 8px;
-  font-weight: 700;
+  gap: var(--spacing-8);
+  padding: var(--spacing-12) var(--spacing-24);
+  background-color: var(--color-red);
+  border: var(--border-width) solid var(--color-border);
+  color: var(--color-paper);
+  font-family: var(--font-heading);
+  font-size: 14px;
+  text-transform: uppercase;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--shadow-brutal-sm);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .homeLink:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-brutal);
+}
+
+.homeLink:active {
+  transform: translate(0, 0);
+  box-shadow: none;
 }
